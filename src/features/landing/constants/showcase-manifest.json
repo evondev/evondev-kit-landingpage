@@ -1,0 +1,135 @@
+{
+  "button": {
+    "light": {
+      "src": "/showcase/button-light.webp",
+      "width": 1532,
+      "height": 2060
+    }
+  },
+  "status-badge": {
+    "light": {
+      "src": "/showcase/status-badge-light.webp",
+      "width": 1532,
+      "height": 456
+    }
+  },
+  "date-range-picker": {
+    "light": {
+      "src": "/showcase/date-range-picker-light.webp",
+      "width": 1532,
+      "height": 1568
+    }
+  },
+  "line-chart": {
+    "light": {
+      "src": "/showcase/line-chart-light.webp",
+      "width": 1532,
+      "height": 772
+    }
+  },
+  "invite-modal": {
+    "light": {
+      "src": "/showcase/invite-modal-light.webp",
+      "width": 1532,
+      "height": 852
+    }
+  },
+  "timeline": {
+    "light": {
+      "src": "/showcase/timeline-light.webp",
+      "width": 1532,
+      "height": 1578
+    }
+  },
+  "file-tree": {
+    "light": {
+      "src": "/showcase/file-tree-light.webp",
+      "width": 1532,
+      "height": 1114
+    }
+  },
+  "comment-thread": {
+    "light": {
+      "src": "/showcase/comment-thread-light.webp",
+      "width": 1532,
+      "height": 2924
+    }
+  },
+  "email-tag-input": {
+    "light": {
+      "src": "/showcase/email-tag-input-light.webp",
+      "width": 1532,
+      "height": 558
+    }
+  },
+  "task-form": {
+    "light": {
+      "src": "/showcase/task-form-light.webp",
+      "width": 2880,
+      "height": 1800
+    }
+  },
+  "customer-drawer": {
+    "light": {
+      "src": "/showcase/customer-drawer-light.webp",
+      "width": 2880,
+      "height": 1800
+    }
+  },
+  "order-modal": {
+    "light": {
+      "src": "/showcase/order-modal-light.webp",
+      "width": 2880,
+      "height": 1800
+    }
+  },
+  "task-list": {
+    "light": {
+      "src": "/showcase/task-list-light.webp",
+      "width": 2880,
+      "height": 1800
+    }
+  },
+  "file-upload": {
+    "light": {
+      "src": "/showcase/file-upload-light.webp",
+      "width": 2880,
+      "height": 1800
+    }
+  },
+  "notification-panel": {
+    "light": {
+      "src": "/showcase/notification-panel-light.webp",
+      "width": 2880,
+      "height": 1800
+    }
+  },
+  "assistant-chat": {
+    "light": {
+      "src": "/showcase/assistant-chat-light.webp",
+      "width": 2880,
+      "height": 1800
+    }
+  },
+  "app-shell": {
+    "light": {
+      "src": "/showcase/app-shell-light.webp",
+      "width": 2880,
+      "height": 1800
+    }
+  },
+  "customers": {
+    "light": {
+      "src": "/showcase/customers-light.webp",
+      "width": 2880,
+      "height": 1800
+    }
+  },
+  "customer-detail": {
+    "light": {
+      "src": "/showcase/customer-detail-light.webp",
+      "width": 2880,
+      "height": 1800
+    }
+  }
+}

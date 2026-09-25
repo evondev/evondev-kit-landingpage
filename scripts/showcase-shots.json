@@ -1,0 +1,29 @@
+{
+  "baseUrl": "http://localhost:5173",
+  "themes": ["light"],
+  "pageViewport": { "width": 1440, "height": 900 },
+  "deviceScaleFactor": 2,
+  "shots": [
+    { "id": "button", "route": "/components", "section": "Nút", "row": "all" },
+    { "id": "status-badge", "route": "/components", "section": "Badge trạng thái", "row": "all" },
+    { "id": "date-range-picker", "route": "/components", "section": "Ô chọn khoảng ngày", "row": "all" },
+    { "id": "line-chart", "route": "/components", "section": "Biểu đồ đường" },
+    { "id": "invite-modal", "route": "/components", "section": "Modal có form", "row": 1 },
+    { "id": "timeline", "route": "/components", "section": "Dòng thời gian" },
+    { "id": "file-tree", "route": "/components", "section": "Cây thư mục" },
+    { "id": "comment-thread", "route": "/components", "section": "Khu bình luận" },
+    { "id": "email-tag-input", "route": "/components", "section": "Ô nhập email người nhận", "row": 2 },
+
+    { "id": "task-form", "route": "/dashboard/tasks/new" },
+    { "id": "customer-drawer", "route": "/dashboard/customers/quick-view" },
+    { "id": "order-modal", "route": "/dashboard/orders/detail" },
+    { "id": "task-list", "route": "/dashboard/tasks" },
+    { "id": "file-upload", "route": "/dashboard/projects/documents" },
+    { "id": "notification-panel", "route": "/dashboard/notifications/states" },
+    { "id": "assistant-chat", "route": "/dashboard/assistant" },
+
+    { "id": "app-shell", "route": "/dashboard" },
+    { "id": "customers", "route": "/dashboard/customers" },
+    { "id": "customer-detail", "route": "/dashboard/customers/c-032" }
+  ]
+}

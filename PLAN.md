@@ -37,8 +37,10 @@ nên ảnh trước/sau ở chế độ đó giống hệt nhau. Tách:
 **d. Không có bản chạy thật.** ✅ đã chốt. Showcase chỉ dùng ảnh chụp, không
 deploy `ui-ux-dashboard`, không đụng vào dự án đó.
 
-**e. Landing dùng chính token của skill** (`tokens.css`: nhấn `#181818`, viền,
-font) để trang và ảnh showcase trông cùng một hệ — trang cũng là bằng chứng.
+**e. Landing có phong cách riêng, không dùng gu flat của skill.** ✅ đổi 25/09/2026.
+Nền trắng, tiêu đề navy, nhấn xanh `#1f6feb`, nhãn pill tím, quầng sáng xanh tím
+sau ảnh, card nổi bóng mềm, lưới chấm, đường chia chấm. Chỉ các hình minh hoạ luật
+của skill (class `.skill-theme`) giữ token gốc `tokens.css`, vì chúng minh hoạ đúng gu skill.
 
 **f. Song ngữ: tiếng Việt mặc định, có nút chuyển sang tiếng Anh.** ✅ đã chốt. Xem mục 6.
 
@@ -49,8 +51,8 @@ font) để trang và ảnh showcase trông cùng một hệ — trang cũng là
 Theo cách landing của các sản phẩm dev lớn đang làm:
 
 - Hero **một câu nói vấn đề**, không liệt kê tính năng. Vd: *"UI dashboard không còn mùi AI."*
-- **Ảnh sản phẩm thật** làm hero. Không hình minh hoạ, không gradient trang trí.
-- Gần như **đơn sắc**, một màu nhấn duy nhất cho CTA.
+- **Ảnh sản phẩm thật** làm hero, có card nổi chồng mép và quầng sáng phía sau.
+- Một màu nhấn xanh cho CTA, tím nhạt chỉ cho nhãn pill.
 - **Lệnh cài ngay trên hero**, có nút copy — với sản phẩm dev đó là CTA.
 - **Số thật, không thổi phồng.** Hiện có: 25 component, 8 UI chưa có mẫu vẫn dựng đạt, 9 khối ghép, 3 trang (đếm lại từ `TESTS.md` trước khi đăng).
 - Nhịp dọc rộng, mỗi section một ý. Không carousel, không testimonial bịa.
@@ -81,12 +83,15 @@ Phase 2 chèn section **Refactor** giữa 5 và 6.
 
 ### Phase 1 — showcase
 
-- [ ] Khung Next.js (App Router) + Tailwind v4 + token của skill, nối Vercel, có preview ngay từ đầu
-- [ ] Nội dung đủ các section, ảnh để placeholder
-- [ ] Script chụp ảnh (mục 5), chụp 15–20 ảnh chọn lọc — không chụp hết
-- [ ] File dữ liệu `showcase.ts`: `id, level, title, prompt, image { light, dark }`, **để sẵn trường `before?`** cho Phase 2
-- [ ] Bản tiếng Anh `/en` + nút chuyển ngôn ngữ
-- [ ] Ảnh OG (mỗi thứ tiếng một ảnh), metadata, `hreflang`, favicon
+- [x] Khung Next.js 16 (App Router) + Tailwind v4 + token của skill
+- [ ] Nối Vercel, có preview
+- [x] Nội dung đủ các section
+- [x] Script chụp ảnh (`npm run capture`), đã chụp 19 ảnh chọn lọc
+- [x] File dữ liệu `showcase-items.ts`: `id, level, title, prompt`, có sẵn trường `before?` cho Phase 2.
+  Ảnh không khai tay: script ghi `showcase-manifest.json` (đường dẫn + kích thước) theo `id`.
+- [ ] Ảnh dark: `ui-ux-dashboard` chưa có dark mode nên chưa chụp được. Nút sáng/tối tự hiện khi có ảnh `dark`.
+- [x] Bản tiếng Anh `/en` + nút chuyển ngôn ngữ
+- [x] Ảnh OG (mỗi thứ tiếng một ảnh), metadata, `hreflang`, favicon, sitemap
 
 ### Phase 2 — refactor before/after
 

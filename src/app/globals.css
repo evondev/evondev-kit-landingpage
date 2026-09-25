@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+/* Phong cách landing: nền trắng, tiêu đề navy, quầng sáng xanh tím sau ảnh,
+   card nổi bóng mềm, lưới chấm, nhãn pill tím. Khác với gu flat của skill:
+   đây là trang giới thiệu, không phải màn hình trong app. */
+@theme {
+  /* Font khai bằng next/font trong src/features/landing/constants/fonts.ts */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
+
+  /* ===== MÀU NHẤN ===== */
+  --color-primary: #1f6feb;
+  --color-primary-hover: #1a5fd0;
+  --color-primary-foreground: #ffffff;
+  /* ==================== */
+
+  /* Nhãn pill tím (eyebrow) */
+  --color-accent: #7c3aed;
+  --color-accent-soft: #f5f3ff;
+  --color-accent-border: #ddd6fe;
+
+  --color-background: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-hover: #f8fafc;
+  --color-sunken: #f6f8fc;
+  --color-foreground: #091135;
+  --color-body: #1f2640;
+  --color-muted: #5b6380;
+  --color-dot: #d5dae6;
+
+  --color-border: #edf0f5;
+  --color-border-strong: #e2e6ee;
+
+  --color-secondary: #eef1f6;
+  --color-secondary-hover: #e3e7ef;
+  --color-background-hover: #f1f4f9;
+
+  --shadow-float: 0 1px 2px rgb(9 17 53 / 0.04), 0 12px 32px -8px rgb(9 17 53 / 0.14);
+  --shadow-float-lg: 0 2px 4px rgb(9 17 53 / 0.04), 0 24px 56px -12px rgb(9 17 53 / 0.2);
+  --shadow-button: 0 1px 2px rgb(31 111 235 / 0.3), 0 6px 16px -4px rgb(31 111 235 / 0.45);
+  --shadow-segment-track: inset 0 0 0 1px rgb(9 17 53 / 0.06), inset 0 1px 2px rgb(9 17 53 / 0.04);
+  --shadow-segment-thumb:
+    0 0 0 1px rgb(9 17 53 / 0.05), 0 1px 2px rgb(9 17 53 / 0.08), 0 2px 6px -2px rgb(9 17 53 / 0.1);
+
+  --radius-xl: 0.75rem;
+}
+
+/* Token gốc của skill (tokens.css). Chỉ gắn vào các hình minh hoạ luật của skill,
+   để hình minh hoạ trông đúng như skill dựng ra, không lây phong cách landing. */
+.skill-theme {
+  --color-primary: #181818;
+  --color-primary-foreground: #ffffff;
+  --color-background: #f4f4f6;
+  --color-surface: #ffffff;
+  --color-surface-hover: #f8f8fa;
+  --color-foreground: #2c2c2c;
+  --color-muted: #6b6b73;
+  --color-border: #f7f7f8;
+  --color-border-strong: #eaeaea;
+}
+
+.skill-theme.dark,
+.skill-theme .dark {
+  --color-primary: #e9edf5;
+  --color-primary-foreground: #05060f;
+  --color-background: #05060f;
+  --color-surface: #0f111a;
+  --color-surface-hover: #141722;
+  --color-foreground: #e9edf5;
+  --color-muted: #8b93a7;
+  --color-border: rgba(160, 180, 220, 0.12);
+  --color-border-strong: rgba(160, 180, 220, 0.2);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Header dính đỉnh: nhảy tới #anchor thì chừa chỗ cho nó. */
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply bg-background text-body font-sans antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* Hàng tab cuộn ngang ở màn hẹp: ẩn thanh cuộn, trông như lỗi khi nằm dưới hàng. */
+.scrollbar-clean {
+  scrollbar-width: none;
+}
+.scrollbar-clean::-webkit-scrollbar {
+  display: none;
+}
