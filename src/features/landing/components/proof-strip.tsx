@@ -1,3 +1,4 @@
+import CountUpNumber from "@/features/landing/components/count-up-number";
 import SectionFrame from "@/features/landing/components/section-frame";
 import type { Dictionary } from "@/features/landing/types/dictionary";
 
@@ -18,7 +19,9 @@ export default function ProofStrip({ dictionary }: ProofStripProps) {
         {dictionary.items.map((stat) => (
           <dl key={stat.label} className="flex flex-col-reverse justify-center gap-1 bg-background px-5 py-8 sm:px-8">
             <dt className="text-sm text-muted">{stat.label}</dt>
-            <dd className="text-4xl font-medium tracking-tight text-foreground tabular-nums">{stat.value}</dd>
+            <dd className="text-4xl font-medium tracking-tight text-foreground tabular-nums">
+              <CountUpNumber value={stat.value} />
+            </dd>
           </dl>
         ))}
       </div>

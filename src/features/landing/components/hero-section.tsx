@@ -32,7 +32,7 @@ export default function HeroSection({ dictionary }: HeroSectionProps) {
         <div className="relative flex flex-col items-center px-5 pt-20 text-center sm:px-10 sm:pt-28">
           <Link
             href="#designer"
-            className="inline-flex items-center gap-2 rounded-full border border-border-strong bg-surface py-1 pr-1 pl-3 text-xs font-medium text-foreground shadow-card transition-colors outline-hidden hover:bg-surface-hover focus-visible:ring-2 focus-visible:ring-heat/60"
+            className="inline-flex items-center gap-2 rounded-full border border-border-strong bg-surface py-1 pr-1 pl-3 text-xs font-medium text-foreground shadow-card transition-colors outline-hidden hover:bg-surface-hover focus-visible:ring-2 focus-visible:ring-heat/60 motion-safe:animate-hero-rise"
           >
             {hero.badge}
             <span className="grid size-5 place-items-center rounded-full bg-foreground text-white">
@@ -42,13 +42,15 @@ export default function HeroSection({ dictionary }: HeroSectionProps) {
 
           <h1
             id="hero-title"
-            className="mt-7 max-w-4xl text-4xl font-medium tracking-tight text-balance text-foreground sm:text-6xl sm:leading-[1.05] lg:text-7xl"
+            className="mt-7 max-w-4xl text-4xl font-medium tracking-tight text-balance text-foreground sm:text-6xl sm:leading-[1.05] lg:text-7xl motion-safe:animate-hero-rise motion-safe:[animation-delay:80ms]"
           >
             <AccentTitle title={hero.title} />
           </h1>
-          <p className="mt-6 max-w-xl text-base text-pretty sm:text-lg">{hero.subheadline}</p>
+          <p className="mt-6 max-w-xl text-base text-pretty sm:text-lg motion-safe:animate-hero-rise motion-safe:[animation-delay:180ms]">
+            {hero.subheadline}
+          </p>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <div className="mt-8 flex flex-wrap justify-center gap-3 motion-safe:animate-hero-rise motion-safe:[animation-delay:260ms]">
             <ButtonLink href="#install" variant="primary">
               {hero.primaryCta}
             </ButtonLink>
@@ -57,7 +59,7 @@ export default function HeroSection({ dictionary }: HeroSectionProps) {
             </ButtonLink>
           </div>
 
-          <div className="mt-10 flex w-full justify-center">
+          <div className="mt-10 flex w-full justify-center motion-safe:animate-hero-rise motion-safe:[animation-delay:340ms]">
             <HeroPromptBox
               modes={promptModes}
               tabsLabel={hero.promptBoxLabel}

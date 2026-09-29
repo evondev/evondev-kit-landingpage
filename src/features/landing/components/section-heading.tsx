@@ -21,7 +21,7 @@ export default function SectionHeading({
   className,
 }: SectionHeadingProps) {
   return (
-    <div className={cn("flex max-w-2xl flex-col items-start", isCentered && "mx-auto items-center text-center", className)}>
+    <div className={cn("reveal flex max-w-2xl flex-col items-start", isCentered && "mx-auto items-center text-center", className)}>
       <EyebrowTag label={eyebrow} />
       <h2
         id={id}

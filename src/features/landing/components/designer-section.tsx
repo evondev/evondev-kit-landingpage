@@ -30,7 +30,9 @@ export default function DesignerSection({ number, dictionary }: DesignerSectionP
           ))}
         </ol>
         <div className="flex flex-col justify-center gap-5 bg-sunken/60 p-5 sm:p-10">
-          <WireframePreview labels={dictionary.wireframe} />
+          <div className="reveal">
+            <WireframePreview labels={dictionary.wireframe} />
+          </div>
           <p className="text-sm text-pretty text-muted">{dictionary.toolbarNote}</p>
         </div>
       </div>

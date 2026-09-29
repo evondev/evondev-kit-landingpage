@@ -44,6 +44,69 @@
   --shadow-segment-thumb: 0 0 0 1px rgb(0 0 0 / 0.04), 0 1px 2px rgb(0 0 0 / 0.06), 0 2px 6px -2px rgb(0 0 0 / 0.08);
 
   --radius-xl: 0.625rem;
+
+  /* ===== CHUYỂN ĐỘNG =====
+     Mọi animation gắn qua motion-safe:, người bật "giảm chuyển động" thấy trang đứng yên. */
+  --animate-hero-rise: hero-rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-pixel-blink: pixel-blink 2.4s ease-in-out infinite;
+  --animate-spin-slow: spin 14s linear infinite;
+  --animate-caret-blink: caret-blink 1s steps(1) infinite;
+
+  @keyframes hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+      filter: blur(6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+  }
+
+  @keyframes pixel-blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.15;
+    }
+  }
+
+  @keyframes caret-blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Hiện dần khi cuộn tới, thuần CSS (scroll-driven animation), không tốn JavaScript.
+   Trình duyệt chưa hỗ trợ animation-timeline thì nội dung hiện sẵn như bình thường. */
+@utility reveal {
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+  }
 }
 
 /* Token gốc của skill (tokens.css). Chỉ gắn vào các hình minh hoạ luật của skill,
@@ -60,15 +123,18 @@
   --color-border-strong: #eaeaea;
 }
 
-/* Lưới ô vuông 96px có chấm giữa ô, như nền hero và hai bên khối CTA. */
+/* Lưới ô có chấm giữa ô, như nền hero và hai bên khối CTA.
+   Bề ngang ô = khung chia đều cho --cell-columns cột, nên đường kẻ luôn khớp hai mép khung.
+   Không tô nền: lớp lưới đặt lệch ra 1px đè lên viền khung, viền bên dưới vẫn phải thấy.
+   Đường kẻ nằm ở mép trái và mép trên mỗi ô: đặt lớp lưới -inset-px thì đường đầu tiên
+   trùng đúng viền có sẵn, không thành viền đôi. */
 @utility bg-cells {
-  background-color: var(--color-background);
   background-image:
     radial-gradient(circle at center, var(--color-border-strong) 1.5px, transparent 1.6px),
     linear-gradient(to right, var(--color-border) 1px, transparent 1px),
     linear-gradient(to bottom, var(--color-border) 1px, transparent 1px);
-  background-size: 96px 96px;
-  background-position: center top;
+  background-size: calc(100% / var(--cell-columns, 4)) var(--cell-height, 96px);
+  background-position: 0 0;
 }
 
 /* Mờ dần ở giữa để chữ hero nằm trên nền trơn. */

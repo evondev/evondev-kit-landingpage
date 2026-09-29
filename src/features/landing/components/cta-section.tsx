@@ -1,4 +1,5 @@
 import { ButtonLink } from "@/components/button";
+import AsciiField from "@/features/landing/components/ascii-field";
 import CommandBlock from "@/features/landing/components/command-block";
 import EyebrowTag from "@/features/landing/components/eyebrow-tag";
 import SectionFrame from "@/features/landing/components/section-frame";
@@ -17,10 +18,17 @@ export default function CtaSection({ dictionary }: CtaSectionProps) {
   return (
     <SectionFrame labelledBy="cta-title">
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr_1fr]">
-        <div aria-hidden className="bg-cells hidden border-r border-border lg:block" />
-        <div className="flex flex-col items-center px-5 py-20 text-center sm:px-10 sm:py-24">
+        <div aria-hidden className="relative hidden border-r border-border lg:block">
+          {/* Lệch ra 1px: đường kẻ đầu của lưới đè lên viền trên section và đường ray, không thành viền đôi. */}
+          <div className="bg-cells absolute -inset-px [--cell-columns:3]" />
+        </div>
+        <div className="relative isolate flex flex-col items-center px-5 py-20 text-center sm:px-10 sm:py-24">
+          <AsciiField shape="ring" className="absolute inset-0 -z-10 hidden size-full opacity-70 sm:block" />
           <EyebrowTag label={cta.eyebrow} />
-          <h2 id="cta-title" className="mt-6 text-3xl font-medium tracking-tight text-balance text-foreground sm:text-5xl">
+          <h2
+            id="cta-title"
+            className="mt-6 text-3xl font-medium tracking-tight text-balance text-foreground sm:text-5xl"
+          >
             {cta.title}
           </h2>
           <p className="mt-5 max-w-md text-pretty text-muted">{cta.description}</p>
@@ -37,9 +45,15 @@ export default function CtaSection({ dictionary }: CtaSectionProps) {
               {cta.secondaryCta}
             </a>
           </div>
-          <CommandBlock commands={installCommands} copyLabels={dictionary.copyButton} className="mt-10 w-full max-w-md" />
+          <CommandBlock
+            commands={installCommands}
+            copyLabels={dictionary.copyButton}
+            className="mt-10 w-full max-w-md"
+          />
         </div>
-        <div aria-hidden className="bg-cells hidden border-l border-border lg:block" />
+        <div aria-hidden className="relative hidden border-l border-border lg:block">
+          <div className="bg-cells absolute -inset-px [--cell-columns:3]" />
+        </div>
       </div>
     </SectionFrame>
   );

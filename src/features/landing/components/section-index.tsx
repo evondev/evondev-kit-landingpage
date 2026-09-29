@@ -1,3 +1,4 @@
+import ScrambleText from "@/features/landing/components/scramble-text";
 import { landingSectionCount } from "@/features/landing/constants/landing-section-count";
 
 interface SectionIndexProps {
@@ -20,7 +21,7 @@ export default function SectionIndex({ number, label }: SectionIndexProps) {
       <span aria-hidden className="text-faint">
         ·
       </span>
-      <span>{label}</span>
+      <ScrambleText text={label} />
     </p>
   );
 }
