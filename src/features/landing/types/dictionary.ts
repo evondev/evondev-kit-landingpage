@@ -1,8 +1,11 @@
 import type { FeatureStatus } from "@/features/landing/types/feature-status";
+import type { KitPrincipleIconId } from "@/features/landing/types/kit-principle-icon-id";
+import type { KitSkillId } from "@/features/landing/types/kit-skill-id";
 import type { ModeId } from "@/features/landing/types/mode-id";
 import type { ProbeMark } from "@/features/landing/types/probe-mark";
 import type { RoadmapIconId } from "@/features/landing/types/roadmap-icon-id";
 import type { SeverityTone } from "@/features/landing/types/severity-tone";
+import type { SitePage } from "@/features/landing/types/site-page";
 import type { ShowcaseLevel } from "@/features/landing/types/showcase-level";
 import type { TasteRuleId } from "@/features/landing/types/taste-rule-id";
 
@@ -94,6 +97,39 @@ export interface RoadmapItem {
   progress: string;
 }
 
+export interface PageMeta {
+  title: string;
+  description: string;
+}
+
+export interface AnnouncementContent {
+  text: string;
+  linkLabel: string;
+}
+
+/** Khối kêu gọi cài đặt cuối trang, dùng chung cho trang chủ và trang skill. */
+export interface CtaContent {
+  eyebrow: string;
+  title: string;
+  description: string;
+  primaryCta: string;
+  secondaryCta: string;
+}
+
+export interface KitSkillItem {
+  id: KitSkillId;
+  command: string;
+  title: string;
+  description: string;
+  facts: string[];
+  status: FeatureStatus | null;
+}
+
+export interface KitPrinciple {
+  icon: KitPrincipleIconId;
+  title: SplitTitle;
+}
+
 export interface FaqItem {
   question: string;
   answer: string;
@@ -101,25 +137,47 @@ export interface FaqItem {
 
 /** Mọi chữ trên trang. vi.ts và en.ts cùng implement interface này. */
 export interface Dictionary {
-  meta: {
-    title: string;
-    description: string;
-  };
-  announcement: {
-    text: string;
-    linkLabel: string;
-  };
+  meta: Record<SitePage, PageMeta>;
+  /** Dải thông báo trên cùng trang evon:ui-ux */
+  announcement: AnnouncementContent;
   header: {
     homeLabel: string;
     navLabel: string;
-    modes: string;
-    designer: string;
-    showcase: string;
-    install: string;
-    roadmap: string;
+    nav: {
+      modes: string;
+      designer: string;
+      showcase: string;
+      install: string;
+      roadmap: string;
+      skills: string;
+      principles: string;
+    };
     github: string;
     installCta: string;
     switchLanguageLabel: string;
+  };
+  kitHome: {
+    announcement: AnnouncementContent;
+    hero: {
+      badge: string;
+      title: SplitTitle;
+      subheadline: string;
+      primaryCta: string;
+      secondaryCta: string;
+      commandsLabel: string;
+    };
+    skills: SectionIntro & {
+      detailLabel: string;
+      placeholder: {
+        title: string;
+        description: string;
+      };
+      items: KitSkillItem[];
+    };
+    principles: SectionIntro & {
+      items: KitPrinciple[];
+    };
+    cta: CtaContent;
   };
   copyButton: {
     copy: string;
@@ -199,13 +257,7 @@ export interface Dictionary {
   roadmap: SectionIntro & {
     items: RoadmapItem[];
   };
-  cta: {
-    eyebrow: string;
-    title: string;
-    description: string;
-    primaryCta: string;
-    secondaryCta: string;
-  };
+  cta: CtaContent;
   faq: Omit<SectionIntro, "description"> & {
     items: FaqItem[];
   };

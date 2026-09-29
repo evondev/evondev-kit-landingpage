@@ -1,8 +1,8 @@
-import LandingPage from "@/features/landing/pages/landing-page";
+import KitHomePage from "@/features/landing/pages/kit-home-page";
 import { buildPageMetadata } from "@/features/landing/utils";
 
-export const metadata = buildPageMetadata("vi");
+export const metadata = buildPageMetadata("vi", "home");
 
 export default function VietnameseHomePage() {
-  return <LandingPage locale="vi" />;
+  return <KitHomePage locale="vi" />;
 }

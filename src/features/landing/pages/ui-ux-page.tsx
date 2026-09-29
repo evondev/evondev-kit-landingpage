@@ -14,21 +14,22 @@ import {
   SiteHeader,
   TasteSection,
 } from "@/features/landing/components";
+import { uiUxNavItems } from "@/features/landing/constants/ui-ux-nav-items";
 import type { Locale } from "@/features/landing/types/locale";
 import { getDictionary } from "@/features/landing/utils";
 
-interface LandingPageProps {
+interface UiUxPageProps {
   locale: Locale;
 }
 
-/** Cả hai route `/` và `/en` render trang này, chỉ khác `locale`. */
-export default function LandingPage({ locale }: LandingPageProps) {
+/** Trang skill evon:ui-ux, một skill trong bộ evondevKit. Ở `/ui-ux` và `/en/ui-ux`. */
+export default function UiUxPage({ locale }: UiUxPageProps) {
   const dictionary = getDictionary(locale);
 
   return (
     <>
-      <SiteAnnouncement dictionary={dictionary.announcement} />
-      <SiteHeader locale={locale} dictionary={dictionary.header} />
+      <SiteAnnouncement content={dictionary.announcement} href="#designer" />
+      <SiteHeader locale={locale} page="ui-ux" navItems={uiUxNavItems} dictionary={dictionary.header} />
       <main className="overflow-x-clip">
         <HeroSection dictionary={dictionary} />
         <ProofStrip dictionary={dictionary.proof} />
@@ -40,9 +41,9 @@ export default function LandingPage({ locale }: LandingPageProps) {
         <InstallSection number={6} locale={locale} dictionary={dictionary} />
         <RoadmapSection number={7} dictionary={dictionary.roadmap} soonLabel={dictionary.statusLabels.soon} />
         <FaqSection number={8} dictionary={dictionary.faq} />
-        <CtaSection dictionary={dictionary} />
+        <CtaSection content={dictionary.cta} primaryHref="#install" copyLabels={dictionary.copyButton} />
       </main>
-      <SiteFooter dictionary={dictionary} />
+      <SiteFooter locale={locale} dictionary={dictionary} />
     </>
   );
 }

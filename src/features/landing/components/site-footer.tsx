@@ -1,16 +1,21 @@
+import Link from "next/link";
 import LogoMark from "@/features/landing/components/logo-mark";
 import SectionFrame from "@/features/landing/components/section-frame";
 import { githubOwnerUrl, githubRepoUrl } from "@/features/landing/constants/site-links";
 import type { Dictionary } from "@/features/landing/types/dictionary";
+import type { Locale } from "@/features/landing/types/locale";
+import { getLocalePath } from "@/features/landing/utils/get-locale-path";
+import { cn } from "@/utils/cn";
 
 interface SiteFooterProps {
+  locale: Locale;
   dictionary: Dictionary;
 }
 
 const footerLinkClasses =
   "rounded-md underline-offset-4 outline-hidden hover:text-foreground hover:underline focus-visible:ring-2 focus-visible:ring-heat/60";
 
-export default function SiteFooter({ dictionary }: SiteFooterProps) {
+export default function SiteFooter({ locale, dictionary }: SiteFooterProps) {
   return (
     <footer className="border-b border-border">
       <SectionFrame>
@@ -20,6 +25,11 @@ export default function SiteFooter({ dictionary }: SiteFooterProps) {
             <p className="mt-2 text-sm text-muted">{dictionary.footer.tagline}</p>
           </div>
           <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted">
+            <li>
+              <Link href={getLocalePath(locale, "ui-ux")} className={cn(footerLinkClasses, "font-mono text-xs")}>
+                evon:ui-ux
+              </Link>
+            </li>
             <li>
               <a href={githubOwnerUrl} target="_blank" rel="noreferrer" className={footerLinkClasses}>
                 evondev

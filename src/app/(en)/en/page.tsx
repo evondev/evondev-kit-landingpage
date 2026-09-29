@@ -1,8 +1,8 @@
-import LandingPage from "@/features/landing/pages/landing-page";
+import KitHomePage from "@/features/landing/pages/kit-home-page";
 import { buildPageMetadata } from "@/features/landing/utils";
 
-export const metadata = buildPageMetadata("en");
+export const metadata = buildPageMetadata("en", "home");
 
 export default function EnglishHomePage() {
-  return <LandingPage locale="en" />;
+  return <KitHomePage locale="en" />;
 }

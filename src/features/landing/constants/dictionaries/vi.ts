@@ -2,25 +2,118 @@ import type { Dictionary } from "@/features/landing/types/dictionary";
 
 export const viDictionary: Dictionary = {
   meta: {
-    title: "evon:ui-ux · UI dashboard không còn mùi AI",
-    description:
-      "Skill cho Claude Code làm UI app như một designer: đọc codebase, đưa brief và 2–3 wireframe để bạn chọn, dựng bằng component của dự án, tự đo bằng máy. Miễn phí, MIT.",
+    home: {
+      title: "evondevKit · Bộ skill Claude Code của evondev",
+      description:
+        "Bộ skill Claude Code của evondev. Skill đầu tiên: evon:ui-ux dựng UI app như một designer. Mỗi skill là bộ luật có số hiệu, test trên dự án thật. Miễn phí, MIT.",
+    },
+    "ui-ux": {
+      title: "evon:ui-ux · UI dashboard không còn mùi AI",
+      description:
+        "Skill cho Claude Code làm UI app như một designer: đọc codebase, đưa brief và 2–3 wireframe để bạn chọn, dựng bằng component của dự án, tự đo bằng máy. Miễn phí, MIT.",
+    },
   },
   announcement: {
     text: "Mới: skill mặc định làm như một designer. Brief, 2–3 wireframe, bạn chọn rồi mới dựng.",
     linkLabel: "Xem cách làm",
   },
   header: {
-    homeLabel: "evondevKit, về đầu trang",
+    homeLabel: "evondevKit, về trang chủ",
     navLabel: "Điều hướng chính",
-    modes: "Tính năng",
-    designer: "Quy trình",
-    showcase: "Showcase",
-    install: "Cài đặt",
-    roadmap: "Sắp có",
+    nav: {
+      modes: "Tính năng",
+      designer: "Quy trình",
+      showcase: "Showcase",
+      install: "Cài đặt",
+      roadmap: "Sắp có",
+      skills: "Skill",
+      principles: "Cách làm",
+    },
     github: "GitHub",
     installCta: "Cài skill",
     switchLanguageLabel: "Xem bản tiếng Anh",
+  },
+  kitHome: {
+    announcement: {
+      text: "Mới: evon:ui-ux mặc định làm như một designer. Brief, 2–3 wireframe, bạn chọn rồi mới dựng.",
+      linkLabel: "Xem evon:ui-ux",
+    },
+    hero: {
+      badge: "evon:ui-ux: làm UI như một designer",
+      title: {
+        lead: "Bộ skill Claude\u00a0Code",
+        accent: "của evondev",
+      },
+      subheadline:
+        "Mỗi skill là một bộ luật có số hiệu, sinh ra từ lỗi thật và test trên dự án thật. Cài một lần, gọi trong mọi dự án.",
+      primaryCta: "Xem evon:ui-ux",
+      secondaryCta: "Cài evondevKit",
+      commandsLabel: "Gõ hai lệnh này trong Claude Code",
+    },
+    skills: {
+      label: "Skill",
+      eyebrow: "Skill trong bộ",
+      title: {
+        lead: "Một bộ,",
+        accent: "nhiều skill",
+      },
+      description: "Cài plugin evon một lần. Skill mới thêm vào bộ thì chỉ cần cập nhật marketplace.",
+      detailLabel: "Xem chi tiết",
+      placeholder: {
+        title: "Skill tiếp theo",
+        description: "Đang test trên dự án thật. Chưa qua vòng test thì chưa lên đây.",
+      },
+      items: [
+        {
+          id: "ui-ux",
+          command: "/evon:ui-ux",
+          title: "UI/UX cho app",
+          description:
+            "Dựng và làm lại màn hình app như một designer: brief, 2–3 wireframe, bạn chọn rồi mới dựng. Soi UI đang có, dựng lại giữ brand, refactor giữ nguyên hình.",
+          facts: ["70 đề test đạt", "6 lối vào", "Đo 375–1920px"],
+          status: null,
+        },
+      ],
+    },
+    principles: {
+      label: "Cách làm",
+      eyebrow: "Cách làm skill",
+      title: {
+        lead: "Ít lời hứa,",
+        accent: "nhiều phép đo",
+      },
+      description: "Ba nguyên tắc mọi skill trong bộ đều theo.",
+      items: [
+        {
+          icon: "numbered-rules",
+          title: {
+            lead: "Luật có số hiệu.",
+            accent: "Không dạy bằng tính từ. Mỗi luật một mã, sống ở đúng một file, sinh ra từ một lỗi đã thật sự xảy ra.",
+          },
+        },
+        {
+          icon: "tested",
+          title: {
+            lead: "Test rồi mới hứa.",
+            accent: "Tính năng chưa qua vòng test thì trang này ghi là sắp có, không ghi là có.",
+          },
+        },
+        {
+          icon: "codebase",
+          title: {
+            lead: "Bám dự án của bạn.",
+            accent: "Đọc codebase trước khi viết: dùng component, token và quy ước sẵn có thay vì áp bộ của skill.",
+          },
+        },
+      ],
+    },
+    cta: {
+      eyebrow: "Cài đặt",
+      title: "Cài evondevKit",
+      description: "Hai lệnh trong Claude Code là có đủ bộ. Miễn phí, mã nguồn mở MIT.",
+      primaryCta: "Xem evon:ui-ux",
+      secondaryCta: "Xem trên GitHub",
+    },
   },
   copyButton: {
     copy: "Sao chép",

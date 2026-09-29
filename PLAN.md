@@ -1,7 +1,16 @@
-# Plan — landing page evondevKit
+# Plan — site evondevKit
 
-Landing quảng bá skill **`evon:ui-ux`** (plugin `evon` trong repo `evondev/evondevKit`).
-Deploy trên Vercel.
+Site của brand **evondevKit** (plugin `evon` trong repo `evondev/evondevKit`), mỗi skill một trang.
+Deploy trên Vercel. Chốt 29/09/2026: một site cho cả bộ, không làm mỗi skill một repo.
+
+| Trang | Đường dẫn | Page component |
+| --- | --- | --- |
+| Trang chủ kit | `/`, `/en` | `features/landing/pages/kit-home-page.tsx` |
+| Skill `evon:ui-ux` | `/ui-ux`, `/en/ui-ux` | `features/landing/pages/ui-ux-page.tsx` |
+
+Thêm skill mới: thêm id vào `types/site-page.ts` và `constants/site-page-paths.ts`, đổi
+`kitSkillPages` từ `null` sang trang mới, thêm route `app/(vi)/<skill>` và `app/(en)/en/<skill>`.
+Phần còn lại của file này là kế hoạch trang `evon:ui-ux`.
 
 ## Nguồn dữ liệu (chỉ đọc, không ghi)
 

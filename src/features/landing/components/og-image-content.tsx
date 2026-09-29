@@ -1,13 +1,15 @@
 import { installCommands } from "@/features/landing/constants/install-commands";
-import type { Dictionary } from "@/features/landing/types/dictionary";
+import type { SplitTitle } from "@/features/landing/types/dictionary";
 
 interface OgImageContentProps {
-  dictionary: Dictionary;
+  title: SplitTitle;
+  subtitle: string;
+  skillName: string | null;
   logoSrc: string;
 }
 
 /** Nội dung ảnh OG 1200×630. Satori chỉ hiểu style inline và flexbox, nên không dùng class. */
-export default function OgImageContent({ dictionary, logoSrc }: OgImageContentProps) {
+export default function OgImageContent({ title, subtitle, skillName, logoSrc }: OgImageContentProps) {
   return (
     <div
       style={{
@@ -30,6 +32,8 @@ export default function OgImageContent({ dictionary, logoSrc }: OgImageContentPr
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={logoSrc} alt="" width={52} height={52} />
         evondevKit
+        {skillName ? <span style={{ color: "#a3a3a3", fontWeight: 400 }}>/</span> : null}
+        {skillName ? <span style={{ color: "#c2410c" }}>{skillName}</span> : null}
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
@@ -43,10 +47,10 @@ export default function OgImageContent({ dictionary, logoSrc }: OgImageContentPr
             letterSpacing: -2.5,
           }}
         >
-          <span>{dictionary.hero.title.lead}</span>
-          <span style={{ color: "#fa5d19" }}>{dictionary.hero.title.accent}</span>
+          <span>{title.lead}</span>
+          <span style={{ color: "#fa5d19" }}>{title.accent}</span>
         </div>
-        <div style={{ fontSize: 28, color: "#6b6b6b" }}>{dictionary.hero.badge}</div>
+        <div style={{ fontSize: 28, color: "#6b6b6b" }}>{subtitle}</div>
       </div>
 
       <div

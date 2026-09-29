@@ -2,25 +2,118 @@ import type { Dictionary } from "@/features/landing/types/dictionary";
 
 export const enDictionary: Dictionary = {
   meta: {
-    title: "evon:ui-ux · Dashboard UI that doesn't look AI-made",
-    description:
-      "A Claude Code skill that designs app UI like a designer: it reads your codebase, shows a brief and 2–3 wireframes to pick from, builds with your components, and checks itself with a probe. Free, MIT.",
+    home: {
+      title: "evondevKit · evondev's Claude Code skills",
+      description:
+        "evondev's Claude Code skills. The first one, evon:ui-ux, builds app UI like a designer. Every skill is a set of numbered rules, tested on real projects. Free, MIT.",
+    },
+    "ui-ux": {
+      title: "evon:ui-ux · Dashboard UI that doesn't look AI-made",
+      description:
+        "A Claude Code skill that designs app UI like a designer: it reads your codebase, shows a brief and 2–3 wireframes to pick from, builds with your components, and checks itself with a probe. Free, MIT.",
+    },
   },
   announcement: {
     text: "New: the skill now works like a designer by default. A brief, 2–3 wireframes, you pick, then it builds.",
     linkLabel: "See how",
   },
   header: {
-    homeLabel: "evondevKit, back to top",
+    homeLabel: "evondevKit, home",
     navLabel: "Main navigation",
-    modes: "Features",
-    designer: "Process",
-    showcase: "Showcase",
-    install: "Install",
-    roadmap: "Coming soon",
+    nav: {
+      modes: "Features",
+      designer: "Process",
+      showcase: "Showcase",
+      install: "Install",
+      roadmap: "Coming soon",
+      skills: "Skills",
+      principles: "Principles",
+    },
     github: "GitHub",
     installCta: "Install skill",
     switchLanguageLabel: "Xem bản tiếng Việt",
+  },
+  kitHome: {
+    announcement: {
+      text: "New: evon:ui-ux now works like a designer by default. A brief, 2–3 wireframes, you pick, then it builds.",
+      linkLabel: "See evon:ui-ux",
+    },
+    hero: {
+      badge: "evon:ui-ux: UI like a designer",
+      title: {
+        lead: "Claude\u00a0Code skills",
+        accent: "by evondev",
+      },
+      subheadline:
+        "Every skill is a set of numbered rules, born from real bugs and tested on real projects. Install once, use in every project.",
+      primaryCta: "See evon:ui-ux",
+      secondaryCta: "Install evondevKit",
+      commandsLabel: "Run these two commands in Claude Code",
+    },
+    skills: {
+      label: "Skills",
+      eyebrow: "Skills in the kit",
+      title: {
+        lead: "One kit,",
+        accent: "many skills",
+      },
+      description: "Install the evon plugin once. When a new skill joins the kit, just update the marketplace.",
+      detailLabel: "See details",
+      placeholder: {
+        title: "Next skill",
+        description: "Being tested on real projects. It shows up here once it passes the test round.",
+      },
+      items: [
+        {
+          id: "ui-ux",
+          command: "/evon:ui-ux",
+          title: "UI/UX for apps",
+          description:
+            "Builds and redesigns app screens like a designer: a brief, 2–3 wireframes, you pick, then it builds. Reviews existing UI, rebuilds while keeping your brand, refactors without changing the look.",
+          facts: ["70 test prompts passed", "6 ways in", "Measured 375–1920px"],
+          status: null,
+        },
+      ],
+    },
+    principles: {
+      label: "Principles",
+      eyebrow: "How the skills are made",
+      title: {
+        lead: "Few promises,",
+        accent: "many measurements",
+      },
+      description: "Three principles every skill in the kit follows.",
+      items: [
+        {
+          icon: "numbered-rules",
+          title: {
+            lead: "Numbered rules.",
+            accent: "No teaching by adjectives. Each rule has a code, lives in exactly one file, and came from a bug that actually happened.",
+          },
+        },
+        {
+          icon: "tested",
+          title: {
+            lead: "Tested before promised.",
+            accent: "If a feature hasn't passed its test round, this page says coming soon, not available.",
+          },
+        },
+        {
+          icon: "codebase",
+          title: {
+            lead: "Follows your project.",
+            accent: "Reads your codebase before writing: uses your components, tokens, and conventions instead of imposing its own.",
+          },
+        },
+      ],
+    },
+    cta: {
+      eyebrow: "Install",
+      title: "Install evondevKit",
+      description: "Two commands in Claude Code and you have the whole kit. Free and MIT licensed.",
+      primaryCta: "See evon:ui-ux",
+      secondaryCta: "View on GitHub",
+    },
   },
   copyButton: {
     copy: "Copy",

@@ -1,7 +1,7 @@
 import type { HeaderNavItem } from "@/features/landing/types/header-nav-item";
 
-/** Link trên header, theo thứ tự section trên trang. Nhãn lấy từ dictionary.header. */
-export const headerNavItems: HeaderNavItem[] = [
+/** Link trên header trang evon:ui-ux, theo thứ tự section trên trang. */
+export const uiUxNavItems: HeaderNavItem[] = [
   { href: "#modes", labelKey: "modes" },
   { href: "#designer", labelKey: "designer" },
   { href: "#showcase", labelKey: "showcase" },

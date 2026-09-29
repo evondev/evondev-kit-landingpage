@@ -5,18 +5,19 @@ import EyebrowTag from "@/features/landing/components/eyebrow-tag";
 import SectionFrame from "@/features/landing/components/section-frame";
 import { installCommands } from "@/features/landing/constants/install-commands";
 import { githubRepoUrl } from "@/features/landing/constants/site-links";
-import type { Dictionary } from "@/features/landing/types/dictionary";
+import type { CtaContent, Dictionary } from "@/features/landing/types/dictionary";
 
 interface CtaSectionProps {
-  dictionary: Dictionary;
+  id?: string;
+  content: CtaContent;
+  primaryHref: string;
+  copyLabels: Dictionary["copyButton"];
 }
 
-/** Khối kêu gọi cuối trang, hai bên là lưới ô như hero. */
-export default function CtaSection({ dictionary }: CtaSectionProps) {
-  const { cta } = dictionary;
-
+/** Khối kêu gọi cài đặt cuối trang, hai bên là lưới ô như hero. Dùng cho trang chủ lẫn trang skill. */
+export default function CtaSection({ id, content, primaryHref, copyLabels }: CtaSectionProps) {
   return (
-    <SectionFrame labelledBy="cta-title">
+    <SectionFrame id={id} labelledBy="cta-title">
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr_1fr]">
         <div aria-hidden className="relative hidden border-r border-border lg:block">
           {/* Lệch ra 1px: đường kẻ đầu của lưới đè lên viền trên section và đường ray, không thành viền đôi. */}
@@ -24,17 +25,17 @@ export default function CtaSection({ dictionary }: CtaSectionProps) {
         </div>
         <div className="relative isolate flex flex-col items-center px-5 py-20 text-center sm:px-10 sm:py-24">
           <AsciiField shape="ring" className="absolute inset-0 -z-10 hidden size-full opacity-70 sm:block" />
-          <EyebrowTag label={cta.eyebrow} />
+          <EyebrowTag label={content.eyebrow} />
           <h2
             id="cta-title"
             className="mt-6 text-3xl font-medium tracking-tight text-balance text-foreground sm:text-5xl"
           >
-            {cta.title}
+            {content.title}
           </h2>
-          <p className="mt-5 max-w-md text-pretty text-muted">{cta.description}</p>
+          <p className="mt-5 max-w-md text-pretty text-muted">{content.description}</p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <ButtonLink href="#install" variant="primary">
-              {cta.primaryCta}
+            <ButtonLink href={primaryHref} variant="primary">
+              {content.primaryCta}
             </ButtonLink>
             <a
               href={githubRepoUrl}
@@ -42,12 +43,12 @@ export default function CtaSection({ dictionary }: CtaSectionProps) {
               rel="noreferrer"
               className="inline-flex items-center rounded-xl bg-secondary px-3.5 py-2.5 text-sm font-medium text-foreground transition-colors outline-hidden hover:bg-secondary-hover focus-visible:ring-2 focus-visible:ring-heat/60"
             >
-              {cta.secondaryCta}
+              {content.secondaryCta}
             </a>
           </div>
           <CommandBlock
             commands={installCommands}
-            copyLabels={dictionary.copyButton}
+            copyLabels={copyLabels}
             className="mt-10 w-full max-w-md"
           />
         </div>
