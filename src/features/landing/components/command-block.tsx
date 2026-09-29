@@ -19,10 +19,10 @@ export default function CommandBlock({ commands, copyLabels, className }: Comman
     >
       {commands.map((command) => (
         <li key={command} className="flex items-center gap-3 py-1.5 pr-1.5 pl-4">
-          <span className="shrink-0 font-mono text-sm text-muted select-none" aria-hidden>
+          <span className="shrink-0 font-mono text-sm text-heat select-none" aria-hidden>
             &gt;
           </span>
-          <code className="min-w-0 flex-1 font-mono text-sm [overflow-wrap:anywhere]">{command}</code>
+          <code className="min-w-0 flex-1 font-mono text-[13px] [overflow-wrap:anywhere]">{command}</code>
           <CopyButton text={command} copyLabel={copyLabels.copy} copiedLabel={copyLabels.copied} />
         </li>
       ))}

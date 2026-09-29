@@ -38,7 +38,7 @@ export default function SegmentedTabs({ items, activeId, label, idPrefix, onChan
         role="tablist"
         aria-label={label}
         onKeyDown={handleKeyDown}
-        className="inline-flex w-fit gap-1 rounded-xl bg-sunken p-1 shadow-segment-track"
+        className="inline-flex w-fit gap-0.5 rounded-xl bg-secondary p-1"
       >
         {items.map((item) => {
           const isSelected = item.id === activeId;
@@ -55,9 +55,10 @@ export default function SegmentedTabs({ items, activeId, label, idPrefix, onChan
               onClick={() => onChange(item.id)}
               className={getSegmentedTabClasses(isSelected)}
             >
+              {item.icon}
               {item.label}
               {item.count !== undefined ? (
-                <span className="text-xs font-normal text-muted tabular-nums">{item.count}</span>
+                <span className="font-mono text-xs font-normal text-muted tabular-nums">{item.count}</span>
               ) : null}
             </Button>
           );

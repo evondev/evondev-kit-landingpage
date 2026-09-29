@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
-/* Phong cách landing: nền trắng, tiêu đề navy, quầng sáng xanh tím sau ảnh,
-   card nổi bóng mềm, lưới chấm, nhãn pill tím. Khác với gu flat của skill:
+/* Phong cách landing: nền xám rất nhạt, khung lưới đường tóc có dấu + ở giao điểm,
+   nhãn mono kiểu [ 01 / 08 ], một màu nhấn cam "heat". Khác với gu flat của skill:
    đây là trang giới thiệu, không phải màn hình trong app. */
 @theme {
   /* Font khai bằng next/font trong src/features/landing/constants/fonts.ts */
@@ -9,40 +9,41 @@
   --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
 
   /* ===== MÀU NHẤN ===== */
-  --color-primary: #1f6feb;
-  --color-primary-hover: #1a5fd0;
-  --color-primary-foreground: #ffffff;
+  --color-heat: #fa5d19;
+  --color-heat-hover: #ec5212;
+  /* Chữ cam cỡ nhỏ trên nền sáng: #fa5d19 chỉ đạt 3:1, bản đậm này đạt 5,1:1. */
+  --color-heat-ink: #c2410c;
+  --color-heat-soft: #fa5d1914;
+  --color-heat-border: #fa5d1933;
   /* ==================== */
 
-  /* Nhãn pill tím (eyebrow) */
-  --color-accent: #7c3aed;
-  --color-accent-soft: #f5f3ff;
-  --color-accent-border: #ddd6fe;
+  --color-primary: var(--color-heat);
+  --color-primary-hover: var(--color-heat-hover);
+  --color-primary-foreground: #ffffff;
 
-  --color-background: #ffffff;
+  --color-background: #f9f9f9;
   --color-surface: #ffffff;
-  --color-surface-hover: #f8fafc;
-  --color-sunken: #f6f8fc;
-  --color-foreground: #091135;
-  --color-body: #1f2640;
-  --color-muted: #5b6380;
-  --color-dot: #d5dae6;
+  --color-surface-hover: #fbfbfb;
+  --color-sunken: #f4f4f4;
+  --color-foreground: #262626;
+  --color-body: #3a3a3a;
+  --color-muted: #6b6b6b;
+  --color-faint: #a3a3a3;
 
-  --color-border: #edf0f5;
-  --color-border-strong: #e2e6ee;
+  --color-border: #ededed;
+  --color-border-strong: #e3e3e3;
 
-  --color-secondary: #eef1f6;
-  --color-secondary-hover: #e3e7ef;
-  --color-background-hover: #f1f4f9;
+  --color-secondary: #0000000a;
+  --color-secondary-hover: #00000012;
+  --color-background-hover: #0000000a;
 
-  --shadow-float: 0 1px 2px rgb(9 17 53 / 0.04), 0 12px 32px -8px rgb(9 17 53 / 0.14);
-  --shadow-float-lg: 0 2px 4px rgb(9 17 53 / 0.04), 0 24px 56px -12px rgb(9 17 53 / 0.2);
-  --shadow-button: 0 1px 2px rgb(31 111 235 / 0.3), 0 6px 16px -4px rgb(31 111 235 / 0.45);
-  --shadow-segment-track: inset 0 0 0 1px rgb(9 17 53 / 0.06), inset 0 1px 2px rgb(9 17 53 / 0.04);
-  --shadow-segment-thumb:
-    0 0 0 1px rgb(9 17 53 / 0.05), 0 1px 2px rgb(9 17 53 / 0.08), 0 2px 6px -2px rgb(9 17 53 / 0.1);
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px -12px rgb(0 0 0 / 0.08);
+  --shadow-float: 0 1px 2px rgb(0 0 0 / 0.04), 0 16px 40px -16px rgb(0 0 0 / 0.14);
+  --shadow-button:
+    inset 0 -2px 0 rgb(0 0 0 / 0.12), inset 0 1px 0 rgb(255 255 255 / 0.2), 0 1px 2px rgb(250 93 25 / 0.35);
+  --shadow-segment-thumb: 0 0 0 1px rgb(0 0 0 / 0.04), 0 1px 2px rgb(0 0 0 / 0.06), 0 2px 6px -2px rgb(0 0 0 / 0.08);
 
-  --radius-xl: 0.75rem;
+  --radius-xl: 0.625rem;
 }
 
 /* Token gốc của skill (tokens.css). Chỉ gắn vào các hình minh hoạ luật của skill,
@@ -59,17 +60,20 @@
   --color-border-strong: #eaeaea;
 }
 
-.skill-theme.dark,
-.skill-theme .dark {
-  --color-primary: #e9edf5;
-  --color-primary-foreground: #05060f;
-  --color-background: #05060f;
-  --color-surface: #0f111a;
-  --color-surface-hover: #141722;
-  --color-foreground: #e9edf5;
-  --color-muted: #8b93a7;
-  --color-border: rgba(160, 180, 220, 0.12);
-  --color-border-strong: rgba(160, 180, 220, 0.2);
+/* Lưới ô vuông 96px có chấm giữa ô, như nền hero và hai bên khối CTA. */
+@utility bg-cells {
+  background-color: var(--color-background);
+  background-image:
+    radial-gradient(circle at center, var(--color-border-strong) 1.5px, transparent 1.6px),
+    linear-gradient(to right, var(--color-border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-border) 1px, transparent 1px);
+  background-size: 96px 96px;
+  background-position: center top;
+}
+
+/* Mờ dần ở giữa để chữ hero nằm trên nền trơn. */
+@utility mask-fade-center {
+  mask-image: radial-gradient(ellipse 42% 60% at 50% 45%, transparent 55%, black 100%);
 }
 
 @layer base {
@@ -81,6 +85,10 @@
 
   body {
     @apply bg-background text-body font-sans antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-heat-border);
   }
 
   @media (prefers-reduced-motion: reduce) {

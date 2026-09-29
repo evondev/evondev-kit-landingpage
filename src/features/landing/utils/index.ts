@@ -10,4 +10,3 @@ export { getSiteUrl } from "./get-site-url";
 export { pickShowcaseImage } from "./pick-showcase-image";
 export { buildRootMetadata } from "./build-root-metadata";
 export { getScreenshotFitClasses } from "./get-screenshot-fit-classes";
-export { getGlowClasses } from "./get-glow-classes";

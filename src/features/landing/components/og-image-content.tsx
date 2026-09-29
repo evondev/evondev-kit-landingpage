@@ -1,12 +1,13 @@
-import { heroCommands } from "@/features/landing/constants/hero-commands";
+import { installCommands } from "@/features/landing/constants/install-commands";
 import type { Dictionary } from "@/features/landing/types/dictionary";
 
 interface OgImageContentProps {
   dictionary: Dictionary;
+  logoSrc: string;
 }
 
 /** Nội dung ảnh OG 1200×630. Satori chỉ hiểu style inline và flexbox, nên không dùng class. */
-export default function OgImageContent({ dictionary }: OgImageContentProps) {
+export default function OgImageContent({ dictionary, logoSrc }: OgImageContentProps) {
   return (
     <div
       style={{
@@ -16,36 +17,36 @@ export default function OgImageContent({ dictionary }: OgImageContentProps) {
         flexDirection: "column",
         justifyContent: "space-between",
         padding: 72,
-        background:
-          "radial-gradient(circle at 88% 12%, rgba(150,120,255,0.22), transparent 42%), radial-gradient(circle at 8% 100%, rgba(96,140,255,0.26), transparent 45%), #ffffff",
-        color: "#091135",
+        background: "#f9f9f9",
+        backgroundImage:
+          "linear-gradient(to right, #ededed 1px, transparent 1px), linear-gradient(to bottom, #ededed 1px, transparent 1px)",
+        backgroundSize: "96px 96px",
+        color: "#262626",
         fontFamily: "Inter",
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 32, fontWeight: 600 }}>
-        <div
-          style={{
-            width: 48,
-            height: 48,
-            borderRadius: 12,
-            background: "linear-gradient(135deg, #4d8dff, #1f6feb)",
-            color: "#ffffff",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: 28,
-          }}
-        >
-          e
-        </div>
+        {/* Satori chỉ vẽ <img>, không dùng được next/image. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={logoSrc} alt="" width={52} height={52} />
         evondevKit
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-        <div style={{ fontSize: 76, fontWeight: 600, lineHeight: 1.1, letterSpacing: -2, textWrap: "balance" }}>
-          {dictionary.hero.headline}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            fontSize: 80,
+            fontWeight: 600,
+            lineHeight: 1.05,
+            letterSpacing: -2.5,
+          }}
+        >
+          <span>{dictionary.hero.title.lead}</span>
+          <span style={{ color: "#fa5d19" }}>{dictionary.hero.title.accent}</span>
         </div>
-        <div style={{ fontSize: 30, color: "#5b6380" }}>{dictionary.hero.eyebrow}</div>
+        <div style={{ fontSize: 28, color: "#6b6b6b" }}>{dictionary.hero.badge}</div>
       </div>
 
       <div
@@ -53,15 +54,14 @@ export default function OgImageContent({ dictionary }: OgImageContentProps) {
           display: "flex",
           alignSelf: "flex-start",
           padding: "16px 24px",
-          borderRadius: 16,
-          border: "1px solid #e2e6ee",
+          borderRadius: 14,
+          border: "1px solid #e3e3e3",
           background: "#ffffff",
-          boxShadow: "0 12px 32px -8px rgba(9,17,53,0.16)",
           fontSize: 26,
         }}
       >
-        <span style={{ color: "#5b6380", marginRight: 16 }}>&gt;</span>
-        {heroCommands[0]}
+        <span style={{ color: "#fa5d19", marginRight: 16 }}>&gt;</span>
+        {installCommands[0]}
       </div>
     </div>
   );

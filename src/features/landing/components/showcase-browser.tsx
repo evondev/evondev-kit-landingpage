@@ -48,7 +48,7 @@ export default function ShowcaseBrowser({ entries, dictionary }: ShowcaseBrowser
   }
 
   return (
-    <div className="mt-12">
+    <div className="mt-12 sm:mt-16">
       <div className="flex flex-wrap items-center justify-center gap-3">
         <SegmentedTabs
           items={levelTabs}

@@ -1,13 +1,17 @@
 import {
+  CtaSection,
+  DesignerSection,
   FaqSection,
   HeroSection,
-  HowItWorksSection,
   InstallSection,
-  PlatformsSection,
+  ModesSection,
+  ProbeSection,
+  ProofStrip,
+  RoadmapSection,
   ShowcaseSection,
+  SiteAnnouncement,
   SiteFooter,
   SiteHeader,
-  StatsSection,
   TasteSection,
 } from "@/features/landing/components";
 import type { Locale } from "@/features/landing/types/locale";
@@ -23,17 +27,20 @@ export default function LandingPage({ locale }: LandingPageProps) {
 
   return (
     <>
+      <SiteAnnouncement dictionary={dictionary.announcement} />
       <SiteHeader locale={locale} dictionary={dictionary.header} />
-      {/* Quầng sáng tràn ra ngoài khung: cắt ngang để trang không cuộn ngang (R1). */}
       <main className="overflow-x-clip">
         <HeroSection dictionary={dictionary} />
-        <StatsSection dictionary={dictionary.stats} />
-        <HowItWorksSection dictionary={dictionary.howItWorks} />
-        <ShowcaseSection locale={locale} dictionary={dictionary.showcase} />
-        <TasteSection dictionary={dictionary.taste} />
-        <PlatformsSection dictionary={dictionary.platforms} />
-        <InstallSection locale={locale} dictionary={dictionary} />
-        <FaqSection dictionary={dictionary.faq} />
+        <ProofStrip dictionary={dictionary.proof} />
+        <ModesSection number={1} dictionary={dictionary.modes} statusLabels={dictionary.statusLabels} />
+        <DesignerSection number={2} dictionary={dictionary.designer} />
+        <ProbeSection number={3} dictionary={dictionary.probe} />
+        <ShowcaseSection number={4} locale={locale} dictionary={dictionary.showcase} />
+        <TasteSection number={5} dictionary={dictionary.taste} />
+        <InstallSection number={6} locale={locale} dictionary={dictionary} />
+        <RoadmapSection number={7} dictionary={dictionary.roadmap} soonLabel={dictionary.statusLabels.soon} />
+        <FaqSection number={8} dictionary={dictionary.faq} />
+        <CtaSection dictionary={dictionary} />
       </main>
       <SiteFooter dictionary={dictionary} />
     </>

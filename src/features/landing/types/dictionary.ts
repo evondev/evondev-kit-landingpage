@@ -1,3 +1,8 @@
+import type { FeatureStatus } from "@/features/landing/types/feature-status";
+import type { ModeId } from "@/features/landing/types/mode-id";
+import type { ProbeMark } from "@/features/landing/types/probe-mark";
+import type { RoadmapIconId } from "@/features/landing/types/roadmap-icon-id";
+import type { SeverityTone } from "@/features/landing/types/severity-tone";
 import type { ShowcaseLevel } from "@/features/landing/types/showcase-level";
 import type { TasteRuleId } from "@/features/landing/types/taste-rule-id";
 
@@ -6,10 +11,68 @@ export interface StatItem {
   label: string;
 }
 
-export interface HowItWorksStep {
+/** Tiêu đề hai phần: phần đầu màu chữ, phần sau màu cam. */
+export interface SplitTitle {
+  lead: string;
+  accent: string;
+}
+
+export interface SectionIntro {
+  /** Nhãn mono trên thanh số thứ tự: [ 01 / 08 ] · NHÃN */
+  label: string;
+  /** Nhãn nhỏ ngay trên tiêu đề */
+  eyebrow: string;
+  title: SplitTitle;
+  description: string;
+}
+
+export interface ModeItem {
+  id: ModeId;
+  /** Tên ngắn trên hàng tab của hero */
+  tabLabel: string;
   title: string;
   description: string;
-  sample: string;
+  /** Câu đề mẫu, lấy từ bảng "Dùng" trong README của evondevKit */
+  prompt: string;
+  status: FeatureStatus | null;
+}
+
+export interface DesignerStep {
+  code: string;
+  title: string;
+  description: string;
+  /** Chỗ skill dừng chờ bạn, không có thì skill đi tiếp */
+  gate: string | null;
+}
+
+export interface WireframeLabels {
+  toolbarLabel: string;
+  optionLabel: string;
+  colorLabel: string;
+  desktopLabel: string;
+  mobileLabel: string;
+  stateLabel: string;
+  stateValue: string;
+  reasonTitle: string;
+  reasonLines: string[];
+  recommendedLabel: string;
+}
+
+export interface SeverityItem {
+  tone: SeverityTone;
+  label: string;
+  description: string;
+}
+
+export interface ReviewRow {
+  issue: string;
+  severity: SeverityTone;
+  fix: string;
+}
+
+export interface ProbeCheck {
+  name: string;
+  marks: ProbeMark[];
 }
 
 export interface TasteRule {
@@ -19,21 +82,21 @@ export interface TasteRule {
   description: string;
 }
 
-export interface PlatformItem {
+export interface VisualStyle {
   name: string;
+  isDefault: boolean;
+}
+
+export interface RoadmapItem {
+  icon: RoadmapIconId;
+  title: string;
   description: string;
-  isTested: boolean;
+  progress: string;
 }
 
 export interface FaqItem {
   question: string;
   answer: string;
-}
-
-export interface SectionIntro {
-  eyebrow: string;
-  title: string;
-  description: string;
 }
 
 /** Mọi chữ trên trang. vi.ts và en.ts cùng implement interface này. */
@@ -42,10 +105,18 @@ export interface Dictionary {
     title: string;
     description: string;
   };
+  announcement: {
+    text: string;
+    linkLabel: string;
+  };
   header: {
     homeLabel: string;
+    navLabel: string;
+    modes: string;
+    designer: string;
     showcase: string;
     install: string;
+    roadmap: string;
     github: string;
     installCta: string;
     switchLanguageLabel: string;
@@ -54,24 +125,52 @@ export interface Dictionary {
     copy: string;
     copied: string;
   };
+  statusLabels: Record<FeatureStatus, string>;
   hero: {
-    eyebrow: string;
-    headline: string;
+    badge: string;
+    title: SplitTitle;
     subheadline: string;
-    commandsLabel: string;
+    primaryCta: string;
     secondaryCta: string;
+    promptBoxLabel: string;
+    copyPromptLabel: string;
+    copiedPromptLabel: string;
     imageAlt: string;
-    promptCardLabel: string;
-    promptCardText: string;
-    checkCardTitle: string;
-    checkCardItems: string[];
+    windowLabel: string;
   };
-  stats: {
+  proof: {
+    lead: string;
+    accent: string;
+    tail: string;
     items: StatItem[];
     source: string;
   };
-  howItWorks: SectionIntro & {
-    steps: HowItWorksStep[];
+  modes: SectionIntro & {
+    promptLabel: string;
+    items: ModeItem[];
+  };
+  designer: SectionIntro & {
+    steps: DesignerStep[];
+    wireframe: WireframeLabels;
+    toolbarNote: string;
+  };
+  probe: SectionIntro & {
+    reviewTitle: SplitTitle;
+    reviewHeaders: {
+      number: string;
+      issue: string;
+      fix: string;
+    };
+    reviewRows: ReviewRow[];
+    reviewReply: string;
+    severities: SeverityItem[];
+    sweepTitle: SplitTitle;
+    sweepWidths: string[];
+    sweepCheckHeader: string;
+    sweepChecks: ProbeCheck[];
+    sweepNote: string;
+    passLabel: string;
+    failLabel: string;
   };
   showcase: SectionIntro & {
     tabs: Record<ShowcaseLevel, string>;
@@ -87,14 +186,25 @@ export interface Dictionary {
   };
   taste: SectionIntro & {
     rules: TasteRule[];
-  };
-  platforms: SectionIntro & {
-    testedBadge: string;
-    untestedBadge: string;
-    items: PlatformItem[];
+    stylesTitle: string;
+    stylesNote: string;
+    defaultStyleLabel: string;
+    styles: VisualStyle[];
   };
   install: SectionIntro & {
     tabsLabel: string;
+    testedBadge: string;
+    untestedBadge: string;
+  };
+  roadmap: SectionIntro & {
+    items: RoadmapItem[];
+  };
+  cta: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    primaryCta: string;
+    secondaryCta: string;
   };
   faq: Omit<SectionIntro, "description"> & {
     items: FaqItem[];

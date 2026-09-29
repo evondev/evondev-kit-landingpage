@@ -1,15 +1,14 @@
-import { ArrowDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import { ButtonLink } from "@/components/button";
-import CommandBlock from "@/features/landing/components/command-block";
-import DotGrid from "@/features/landing/components/dot-grid";
-import EyebrowPill from "@/features/landing/components/eyebrow-pill";
-import GlowBackdrop from "@/features/landing/components/glow-backdrop";
-import HeroCheckCard from "@/features/landing/components/hero-check-card";
-import HeroPromptCard from "@/features/landing/components/hero-prompt-card";
+import AccentTitle from "@/features/landing/components/accent-title";
+import BrowserFrame from "@/features/landing/components/browser-frame";
+import HeroBackdrop from "@/features/landing/components/hero-backdrop";
+import HeroPromptBox from "@/features/landing/components/hero-prompt-box";
 import Screenshot from "@/features/landing/components/screenshot";
-import { heroCommands } from "@/features/landing/constants/hero-commands";
 import { heroShowcaseId } from "@/features/landing/constants/hero-showcase-id";
 import type { Dictionary } from "@/features/landing/types/dictionary";
+import type { HeroPromptMode } from "@/features/landing/types/hero-prompt-mode";
 import { getShowcaseImages } from "@/features/landing/utils/get-showcase-images";
 
 interface HeroSectionProps {
@@ -19,53 +18,65 @@ interface HeroSectionProps {
 export default function HeroSection({ dictionary }: HeroSectionProps) {
   const heroImages = getShowcaseImages(heroShowcaseId);
   const { hero } = dictionary;
+  const promptModes: HeroPromptMode[] = dictionary.modes.items.map((mode) => ({
+    id: mode.id,
+    tabLabel: mode.tabLabel,
+    prompt: mode.prompt,
+  }));
 
   return (
-    <section aria-labelledby="hero-title" className="relative isolate pt-16 sm:pt-24">
-      <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-4 text-center sm:px-6">
-        <EyebrowPill label={hero.eyebrow} />
-        <h1
-          id="hero-title"
-          className="mt-6 max-w-4xl text-4xl font-semibold tracking-tight text-balance text-foreground sm:text-6xl sm:leading-[1.1]"
-        >
-          {hero.headline}
-        </h1>
-        <p className="mt-6 max-w-2xl text-base text-pretty sm:text-lg">{hero.subheadline}</p>
+    <section aria-labelledby="hero-title" className="px-4 sm:px-6">
+      <div className="relative isolate mx-auto w-full max-w-[1112px] border-x border-border">
+        <HeroBackdrop />
 
-        <div className="mt-10 w-full max-w-xl">
-          <p className="mb-3 text-sm font-medium text-foreground">{hero.commandsLabel}</p>
-          <CommandBlock commands={heroCommands} copyLabels={dictionary.copyButton} className="shadow-float" />
+        <div className="relative flex flex-col items-center px-5 pt-20 text-center sm:px-10 sm:pt-28">
+          <Link
+            href="#designer"
+            className="inline-flex items-center gap-2 rounded-full border border-border-strong bg-surface py-1 pr-1 pl-3 text-xs font-medium text-foreground shadow-card transition-colors outline-hidden hover:bg-surface-hover focus-visible:ring-2 focus-visible:ring-heat/60"
+          >
+            {hero.badge}
+            <span className="grid size-5 place-items-center rounded-full bg-foreground text-white">
+              <ArrowRight className="size-3" aria-hidden />
+            </span>
+          </Link>
+
+          <h1
+            id="hero-title"
+            className="mt-7 max-w-4xl text-4xl font-medium tracking-tight text-balance text-foreground sm:text-6xl sm:leading-[1.05] lg:text-7xl"
+          >
+            <AccentTitle title={hero.title} />
+          </h1>
+          <p className="mt-6 max-w-xl text-base text-pretty sm:text-lg">{hero.subheadline}</p>
+
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <ButtonLink href="#install" variant="primary">
+              {hero.primaryCta}
+            </ButtonLink>
+            <ButtonLink href="#showcase" variant="secondary">
+              {hero.secondaryCta}
+            </ButtonLink>
+          </div>
+
+          <div className="mt-10 flex w-full justify-center">
+            <HeroPromptBox
+              modes={promptModes}
+              tabsLabel={hero.promptBoxLabel}
+              copyLabel={hero.copyPromptLabel}
+              copiedLabel={hero.copiedPromptLabel}
+            />
+          </div>
         </div>
 
-        <ButtonLink href="#showcase" variant="ghost" className="mt-4">
-          <ArrowDown className="size-4 shrink-0" aria-hidden />
-          {hero.secondaryCta}
-        </ButtonLink>
-
-        <div className="relative mt-14 w-full sm:mt-20">
-          <DotGrid className="-inset-x-10 -top-16 -bottom-10" />
-          <GlowBackdrop tone="blue" className="-top-24 -left-24 size-[520px]" />
-          <GlowBackdrop tone="violet" className="-right-24 -bottom-24 size-[520px]" />
-
-          {/* Bo lồng nhau: ngoài 20px = trong 12px + đệm 8px. */}
-          <div className="rounded-[20px] border border-border bg-surface/80 p-2 shadow-float-lg">
+        <div className="relative px-3 pt-16 pb-12 sm:px-8 sm:pt-20 sm:pb-16">
+          <BrowserFrame label={hero.windowLabel}>
             <Screenshot
               image={heroImages?.light ?? null}
               alt={hero.imageAlt}
               placeholderLabel={dictionary.showcase.placeholder}
-              sizes="(min-width: 1152px) 1120px, 100vw"
+              sizes="(min-width: 1112px) 1040px, 100vw"
               isPriority
-              className="rounded-xl"
             />
-          </div>
-
-          {/* Hai card nổi chồng lên mép ảnh, chỉ ở màn rộng: màn hẹp chúng che mất ảnh. */}
-          <div className="absolute -top-10 -left-6 hidden lg:block">
-            <HeroPromptCard label={hero.promptCardLabel} text={hero.promptCardText} />
-          </div>
-          <div className="absolute -right-6 -bottom-12 hidden lg:block">
-            <HeroCheckCard title={hero.checkCardTitle} items={hero.checkCardItems} />
-          </div>
+          </BrowserFrame>
         </div>
       </div>
     </section>

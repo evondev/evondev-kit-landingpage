@@ -7,6 +7,7 @@ export const installTools: InstallTool[] = [
   {
     id: "claude-code",
     name: "Claude Code",
+    isTested: true,
     steps: [
       {
         description: {
@@ -34,6 +35,7 @@ export const installTools: InstallTool[] = [
   {
     id: "codex",
     name: "Codex",
+    isTested: false,
     steps: [
       {
         description: {
@@ -61,6 +63,7 @@ export const installTools: InstallTool[] = [
   {
     id: "antigravity",
     name: "Antigravity",
+    isTested: false,
     steps: [
       {
         description: {

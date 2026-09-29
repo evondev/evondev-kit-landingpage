@@ -2,18 +2,27 @@
 
 import { Check, Copy } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Button } from "@/components/button";
+import { Button, type ButtonVariant } from "@/components/button";
+import { cn } from "@/utils/cn";
 
 interface CopyButtonProps {
   text: string;
   copyLabel: string;
   copiedLabel: string;
+  variant?: ButtonVariant;
+  className?: string;
 }
 
 const copiedResetDelay = 2000;
 
 /** Nút chỉ icon, chép `text` vào clipboard rồi đổi sang dấu tích trong 2 giây. */
-export default function CopyButton({ text, copyLabel, copiedLabel }: CopyButtonProps) {
+export default function CopyButton({
+  text,
+  copyLabel,
+  copiedLabel,
+  variant = "ghost",
+  className,
+}: CopyButtonProps) {
   const [isCopied, setIsCopied] = useState(false);
 
   useEffect(() => {
@@ -37,11 +46,11 @@ export default function CopyButton({ text, copyLabel, copiedLabel }: CopyButtonP
 
   return (
     <Button
-      variant="ghost"
+      variant={variant}
       onClick={handleCopy}
       aria-label={isCopied ? copiedLabel : copyLabel}
       title={isCopied ? copiedLabel : copyLabel}
-      className="size-8 shrink-0 rounded-lg p-0"
+      className={cn("size-8 shrink-0 rounded-lg p-0", className)}
     >
       <Icon className="size-4" aria-hidden />
       <span className="sr-only" aria-live="polite">

@@ -19,7 +19,7 @@ export default function ShowcaseCard({ entry, theme, dictionary, onOpen }: Showc
   const image = pickShowcaseImage(entry.images, theme);
 
   return (
-    <article className="flex min-w-0 flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-float transition-shadow hover:shadow-float-lg">
+    <article className="flex min-w-0 flex-col overflow-hidden rounded-2xl border border-border-strong bg-surface transition-shadow hover:shadow-float">
       <Button
         variant="ghost"
         onClick={onOpen}
@@ -38,7 +38,7 @@ export default function ShowcaseCard({ entry, theme, dictionary, onOpen }: Showc
           />
         </span>
         {image ? (
-          <span className="absolute top-3 right-3 grid size-8 place-items-center rounded-lg bg-surface text-muted shadow-float opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+          <span className="absolute top-3 right-3 grid size-8 place-items-center rounded-lg border border-border bg-surface text-heat shadow-card opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
             <Maximize2 className="size-4" aria-hidden />
           </span>
         ) : null}
@@ -46,11 +46,11 @@ export default function ShowcaseCard({ entry, theme, dictionary, onOpen }: Showc
 
       <div className="flex flex-1 flex-col gap-3 border-t border-border p-5">
         <div className="flex flex-wrap items-center gap-2">
-          <h3 className="font-semibold text-foreground">{entry.title}</h3>
+          <h3 className="font-medium text-foreground">{entry.title}</h3>
           {entry.isUnprecedented ? <UnprecedentedBadge label={dictionary.unprecedentedBadge} /> : null}
         </div>
-        <p className="text-sm text-pretty">
-          <span className="font-medium text-foreground">{dictionary.promptLabel}: </span>
+        <p className="text-sm text-pretty text-muted">
+          <span className="font-mono text-[11px] tracking-wider text-heat-ink uppercase">{dictionary.promptLabel} </span>
           “{entry.prompt}”
         </p>
       </div>

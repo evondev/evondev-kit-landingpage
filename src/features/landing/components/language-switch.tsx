@@ -13,7 +13,7 @@ const locales: Locale[] = ["vi", "en"];
 /** Hai link VI / EN dạng segmented. Không đoán ngôn ngữ trình duyệt: người dùng tự bấm. */
 export default function LanguageSwitch({ locale, switchLanguageLabel }: LanguageSwitchProps) {
   return (
-    <nav aria-label={switchLanguageLabel} className="flex gap-1 rounded-xl bg-sunken p-1 shadow-segment-track">
+    <nav aria-label={switchLanguageLabel} className="flex gap-0.5 rounded-xl bg-secondary p-1">
       {locales.map((itemLocale) => {
         const isCurrent = itemLocale === locale;
 

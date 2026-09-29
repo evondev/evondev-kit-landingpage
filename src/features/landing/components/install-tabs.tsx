@@ -33,7 +33,7 @@ export default function InstallTabs({ tabs, panels, tabsLabel }: InstallTabsProp
           role="tabpanel"
           aria-labelledby={`${tabIdPrefix}-tab-${panel.id}`}
           hidden={panel.id !== activeToolId}
-          className="mt-4 rounded-2xl border border-border bg-surface shadow-float-lg"
+          className="mt-4"
         >
           {panel.content}
         </div>

@@ -37,10 +37,13 @@ nên ảnh trước/sau ở chế độ đó giống hệt nhau. Tách:
 **d. Không có bản chạy thật.** ✅ đã chốt. Showcase chỉ dùng ảnh chụp, không
 deploy `ui-ux-dashboard`, không đụng vào dự án đó.
 
-**e. Landing có phong cách riêng, không dùng gu flat của skill.** ✅ đổi 25/09/2026.
-Nền trắng, tiêu đề navy, nhấn xanh `#1f6feb`, nhãn pill tím, quầng sáng xanh tím
-sau ảnh, card nổi bóng mềm, lưới chấm, đường chia chấm. Chỉ các hình minh hoạ luật
-của skill (class `.skill-theme`) giữ token gốc `tokens.css`, vì chúng minh hoạ đúng gu skill.
+**e. Landing có phong cách riêng, không dùng gu flat của skill.** ✅ đổi 29/09/2026.
+Theo phong cách firecrawl.dev: nền `#f9f9f9`, khung 1112px có đường ray dọc và dấu + ở
+giao điểm, thanh mono `[ 01 / 08 ] · NHÃN` đầu mỗi section, một màu nhấn cam `#fa5d19`
+(chữ cam cỡ nhỏ dùng `#c2410c` cho đủ tương phản), tiêu đề hai phần đen / cam. Logo ở
+`public/brand/logo-mark.png` (cắt từ `public/logo.png`). Chỉ các hình minh hoạ luật của
+skill (class `.skill-theme`) giữ token gốc `tokens.css`. Tính năng chưa xong test hiện ở
+section "Sắp có", không ghi là đã có.
 
 **f. Song ngữ: tiếng Việt mặc định, có nút chuyển sang tiếng Anh.** ✅ đã chốt. Xem mục 6.
 

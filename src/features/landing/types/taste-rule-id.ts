@@ -1,1 +1,1 @@
-export type TasteRuleId = "flat" | "one-accent" | "hairline" | "narrow" | "dark";
+export type TasteRuleId = "flat" | "one-accent" | "hairline" | "narrow";

@@ -1,30 +1,34 @@
-import DottedDivider from "@/features/landing/components/dotted-divider";
-import SectionHeading from "@/features/landing/components/section-heading";
+import AccentTitle from "@/features/landing/components/accent-title";
+import EyebrowTag from "@/features/landing/components/eyebrow-tag";
+import FaqItem from "@/features/landing/components/faq-item";
+import SectionFrame from "@/features/landing/components/section-frame";
+import SectionIndex from "@/features/landing/components/section-index";
 import type { Dictionary } from "@/features/landing/types/dictionary";
 
 interface FaqSectionProps {
+  number: number;
   dictionary: Dictionary["faq"];
 }
 
-/** Chia bằng đường chấm, hiện hết khi dưới 6 câu. */
-export default function FaqSection({ dictionary }: FaqSectionProps) {
+export default function FaqSection({ number, dictionary }: FaqSectionProps) {
   return (
-    <section aria-labelledby="faq-title" className="pt-24 sm:pt-32">
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_2fr]">
-        <SectionHeading id="faq-title" eyebrow={dictionary.eyebrow} title={dictionary.title} />
-
-        <dl>
-          {dictionary.items.map((item, index) => (
-            <div key={item.question}>
-              {index > 0 ? <DottedDivider /> : null}
-              <div className="py-6 first:pt-0">
-                <dt className="text-lg font-semibold text-foreground">{item.question}</dt>
-                <dd className="mt-2 text-pretty">{item.answer}</dd>
-              </div>
-            </div>
-          ))}
-        </dl>
+    <SectionFrame id="faq" labelledBy="faq-title">
+      <SectionIndex number={number} label={dictionary.label} />
+      <div className="grid grid-cols-1 gap-10 px-5 py-16 sm:px-10 sm:py-24 lg:grid-cols-[1fr_2fr]">
+        <div>
+          <EyebrowTag label={dictionary.eyebrow} />
+        </div>
+        <div className="min-w-0">
+          <h2 id="faq-title" className="text-3xl font-medium tracking-tight text-balance text-foreground sm:text-5xl">
+            <AccentTitle title={dictionary.title} />
+          </h2>
+          <div className="mt-10 border-t border-border">
+            {dictionary.items.map((item) => (
+              <FaqItem key={item.question} item={item} />
+            ))}
+          </div>
+        </div>
       </div>
-    </section>
+    </SectionFrame>
   );
 }

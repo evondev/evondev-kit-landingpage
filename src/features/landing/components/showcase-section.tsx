@@ -1,23 +1,24 @@
-import GlowBackdrop from "@/features/landing/components/glow-backdrop";
+import SectionFrame from "@/features/landing/components/section-frame";
 import SectionHeading from "@/features/landing/components/section-heading";
+import SectionIndex from "@/features/landing/components/section-index";
 import ShowcaseBrowser from "@/features/landing/components/showcase-browser";
 import type { Dictionary } from "@/features/landing/types/dictionary";
 import type { Locale } from "@/features/landing/types/locale";
 import { buildShowcaseEntries } from "@/features/landing/utils/build-showcase-entries";
 
 interface ShowcaseSectionProps {
+  number: number;
   locale: Locale;
   dictionary: Dictionary["showcase"];
 }
 
-export default function ShowcaseSection({ locale, dictionary }: ShowcaseSectionProps) {
+export default function ShowcaseSection({ number, locale, dictionary }: ShowcaseSectionProps) {
   const entries = buildShowcaseEntries(locale);
 
   return (
-    <section id="showcase" aria-labelledby="showcase-title" className="pt-24 sm:pt-32">
-      <div className="relative isolate mx-auto w-full max-w-6xl px-4 sm:px-6">
-        <GlowBackdrop tone="violet" className="top-1/3 -left-40 size-[560px]" />
-        <GlowBackdrop tone="blue" className="-right-40 bottom-0 size-[560px]" />
+    <SectionFrame id="showcase" labelledBy="showcase-title">
+      <SectionIndex number={number} label={dictionary.label} />
+      <div className="px-5 py-16 sm:px-10 sm:py-24">
         <SectionHeading
           id="showcase-title"
           eyebrow={dictionary.eyebrow}
@@ -26,8 +27,10 @@ export default function ShowcaseSection({ locale, dictionary }: ShowcaseSectionP
           isCentered
         />
         <ShowcaseBrowser entries={entries} dictionary={dictionary} />
-        {dictionary.languageNote ? <p className="mt-6 text-sm text-muted">{dictionary.languageNote}</p> : null}
+        {dictionary.languageNote ? (
+          <p className="mt-8 text-center text-sm text-muted">{dictionary.languageNote}</p>
+        ) : null}
       </div>
-    </section>
+    </SectionFrame>
   );
 }
