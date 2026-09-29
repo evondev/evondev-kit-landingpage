@@ -9,8 +9,6 @@ export interface ShowcaseItem {
   title: LocalizedText;
   /** Câu đề gốc trong TESTS.md */
   prompt: LocalizedText;
-  /** Bậc 1b: UI skill chưa có mẫu, tự dựng từ nguyên tắc */
-  isUnprecedented?: boolean;
   /** Phase 2: ảnh trước khi refactor */
   before?: ShowcaseImageSet;
 }

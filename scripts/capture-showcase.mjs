@@ -2,6 +2,7 @@
 //
 //   1. Mở ui-ux-dashboard:           cd ~/dev/ui-ux-dashboard && npm run dev
 //   2. Chụp tất cả:                  npm run capture
+//      Dashboard ở cổng khác:        SHOWCASE_BASE_URL=http://localhost:5174 npm run capture
 //      Chụp vài mục:                 npm run capture -- button customers
 //
 // Danh sách route ở scripts/showcase-shots.json, `id` trùng id trong showcase-items.ts.
@@ -18,6 +19,8 @@ const projectRoot = join(dirname(fileURLToPath(import.meta.url)), "..");
 const outputDirectory = join(projectRoot, "public/showcase");
 const manifestPath = join(projectRoot, "src/features/landing/constants/showcase-manifest.json");
 const config = JSON.parse(await readFile(join(projectRoot, "scripts/showcase-shots.json"), "utf8"));
+// Dashboard chạy cổng khác (Vite tự nhảy 5174 khi 5173 bận): SHOWCASE_BASE_URL=http://localhost:5174 npm run capture
+const baseUrl = process.env.SHOWCASE_BASE_URL ?? config.baseUrl;
 
 const requestedIds = process.argv.slice(2);
 const shots = requestedIds.length
@@ -89,7 +92,7 @@ for (const shot of shots) {
     if (shot.viewport) await page.setViewportSize(shot.viewport);
     else await page.setViewportSize(config.pageViewport);
 
-    await page.goto(`${config.baseUrl}${shot.route}`, { waitUntil: "networkidle" });
+    await page.goto(`${baseUrl}${shot.route}`, { waitUntil: "networkidle" });
 
     const images = {};
 

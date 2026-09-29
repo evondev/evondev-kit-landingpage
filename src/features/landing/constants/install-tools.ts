@@ -46,15 +46,15 @@ export const installTools: InstallTool[] = [
       },
       {
         description: {
-          vi: "Chép thư mục skill vào dự án. Muốn dùng chung mọi dự án thì chép vào ~/.codex/skills/ thay vì .agents/skills/.",
-          en: "Copy the skill folder into your project. To share it across projects, copy it to ~/.codex/skills/ instead of .agents/skills/.",
+          vi: "Chép thư mục skill vào .agents/skills/ của dự án.",
+          en: "Copy the skill folder into your project's .agents/skills/.",
         },
         commands: ["mkdir -p .agents/skills", "cp -R ~/evondevKit/skills/ui-ux .agents/skills/"],
       },
       {
         description: {
-          vi: "Khởi động lại Codex. Không có lệnh /evon:ui-ux: nhắc “dùng skill ui-ux” trong đề, hoặc để agent tự bật khi đề khớp.",
-          en: "Restart Codex. There's no /evon:ui-ux command: mention “use the ui-ux skill” in your prompt, or let the agent turn it on when the prompt matches.",
+          vi: "Không có lệnh /evon:ui-ux: gõ “dùng skill ui-ux” trong đề.",
+          en: "There's no /evon:ui-ux command: write “use the ui-ux skill” in your prompt.",
         },
         commands: [],
       },
@@ -74,15 +74,15 @@ export const installTools: InstallTool[] = [
       },
       {
         description: {
-          vi: "Chép thư mục skill vào .agents/skills/ của dự án. Codex cũng đọc thư mục này, một bản dùng cho cả hai.",
-          en: "Copy the skill folder into your project's .agents/skills/. Codex reads this folder too, so one copy serves both.",
+          vi: "Chép thư mục skill vào .agents/skills/ của dự án.",
+          en: "Copy the skill folder into your project's .agents/skills/.",
         },
         commands: ["mkdir -p .agents/skills", "cp -R ~/evondevKit/skills/ui-ux .agents/skills/"],
       },
       {
         description: {
-          vi: "Nhắc “dùng skill ui-ux” trong đề, hoặc để agent tự bật khi đề khớp.",
-          en: "Mention “use the ui-ux skill” in your prompt, or let the agent turn it on when the prompt matches.",
+          vi: "Không có lệnh /evon:ui-ux: gõ “dùng skill ui-ux” trong đề.",
+          en: "There's no /evon:ui-ux command: write “use the ui-ux skill” in your prompt.",
         },
         commands: [],
       },

@@ -9,7 +9,6 @@ export function buildShowcaseEntries(locale: Locale): ShowcaseEntry[] {
     level: item.level,
     title: item.title[locale],
     prompt: item.prompt[locale],
-    isUnprecedented: item.isUnprecedented ?? false,
     images: getShowcaseImages(item.id),
   }));
 }

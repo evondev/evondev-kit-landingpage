@@ -3,6 +3,7 @@ import SectionFrame from "@/features/landing/components/section-frame";
 import SectionHeading from "@/features/landing/components/section-heading";
 import SectionIndex from "@/features/landing/components/section-index";
 import type { Dictionary } from "@/features/landing/types/dictionary";
+import { isLoneLastItem } from "@/features/landing/utils/is-lone-last-item";
 
 interface ModesSectionProps {
   number: number;
@@ -24,8 +25,14 @@ export default function ModesSection({ number, dictionary, statusLabels }: Modes
         />
       </div>
       <ul className="grid grid-cols-1 gap-px border-t border-border bg-border md:grid-cols-2 lg:grid-cols-3">
-        {dictionary.items.map((mode) => (
-          <ModeCard key={mode.id} mode={mode} promptLabel={dictionary.promptLabel} statusLabels={statusLabels} />
+        {dictionary.items.map((mode, index) => (
+          <ModeCard
+            key={mode.id}
+            mode={mode}
+            promptLabel={dictionary.promptLabel}
+            statusLabels={statusLabels}
+            isWide={isLoneLastItem(index, dictionary.items.length)}
+          />
         ))}
       </ul>
     </SectionFrame>

@@ -53,11 +53,14 @@ export default function WireframePreview({ labels }: WireframePreviewProps) {
             <p className="text-sm font-medium text-foreground">{labels.reasonTitle}</p>
             <StatusTag status="new" label={labels.recommendedLabel} />
           </div>
-          <ul className="mt-3 space-y-2.5 text-xs text-pretty text-muted">
-            {labels.reasonLines.map((line) => (
-              <li key={line}>{line}</li>
+          <dl className="mt-3 space-y-2.5 text-xs text-pretty">
+            {labels.reasonItems.map((reasonItem) => (
+              <div key={reasonItem.label}>
+                <dt className="font-medium text-foreground">{reasonItem.label}</dt>
+                <dd className="mt-0.5 text-muted">{reasonItem.text}</dd>
+              </div>
             ))}
-          </ul>
+          </dl>
         </figcaption>
       </div>
     </figure>

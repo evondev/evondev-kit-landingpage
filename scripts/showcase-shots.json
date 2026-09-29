@@ -24,6 +24,12 @@
 
     { "id": "app-shell", "route": "/dashboard" },
     { "id": "customers", "route": "/dashboard/customers" },
-    { "id": "customer-detail", "route": "/dashboard/customers/c-032" }
+    { "id": "customer-detail", "route": "/dashboard/customers/c-032" },
+    { "id": "revenue-report", "route": "/dashboard/revenue" },
+    { "id": "calendar", "route": "/dashboard/calendar" },
+    { "id": "members", "route": "/dashboard/members" },
+    { "id": "security-settings", "route": "/dashboard/settings/security" },
+    { "id": "pricing", "route": "/pricing" },
+    { "id": "login", "route": "/login" }
   ]
 }

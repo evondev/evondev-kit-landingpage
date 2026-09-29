@@ -57,7 +57,6 @@ export const showcaseItems: ShowcaseItem[] = [
   {
     id: "timeline",
     level: "component",
-    isUnprecedented: true,
     title: { vi: "Dòng thời gian", en: "Timeline" },
     prompt: {
       vi: "Dựng cho tôi dòng thời gian hoạt động của một đơn hàng: tạo đơn, xác nhận, đóng gói, giao hàng, có một bước giao thất bại.",
@@ -67,7 +66,6 @@ export const showcaseItems: ShowcaseItem[] = [
   {
     id: "file-tree",
     level: "component",
-    isUnprecedented: true,
     title: { vi: "Cây thư mục", en: "File tree" },
     prompt: {
       vi: "Dựng cho tôi cây thư mục tài liệu, mở đóng được từng nhánh, có thư mục rỗng và tên file rất dài.",
@@ -77,7 +75,6 @@ export const showcaseItems: ShowcaseItem[] = [
   {
     id: "comment-thread",
     level: "component",
-    isUnprecedented: true,
     title: { vi: "Bình luận lồng nhau", en: "Nested comments" },
     prompt: {
       vi: "Dựng cho tôi khu bình luận có trả lời lồng nhau, có bình luận đã xoá và bình luận đang gửi.",
@@ -87,7 +84,6 @@ export const showcaseItems: ShowcaseItem[] = [
   {
     id: "email-tag-input",
     level: "component",
-    isUnprecedented: true,
     title: { vi: "Ô nhập nhiều tag", en: "Tag input" },
     prompt: {
       vi: "Dựng cho tôi ô nhập email người nhận, gõ xong Enter thành một tag, có email sai định dạng.",
@@ -153,7 +149,6 @@ export const showcaseItems: ShowcaseItem[] = [
   {
     id: "assistant-chat",
     level: "block",
-    isUnprecedented: true,
     title: { vi: "Chat với trợ lý AI", en: "AI assistant chat" },
     prompt: {
       vi: "Dựng cho tôi khung chat với trợ lý AI: tin nhắn hai phía, câu trả lời đang chạy ra, bước dùng công cụ thu gọn được, gợi ý câu hỏi tiếp và ô soạn tin.",
@@ -187,6 +182,60 @@ export const showcaseItems: ShowcaseItem[] = [
     prompt: {
       vi: "Dựng cho tôi trang chi tiết một khách hàng.",
       en: "Build me a customer detail page.",
+    },
+  },
+  {
+    id: "revenue-report",
+    level: "page",
+    title: { vi: "Báo cáo doanh thu", en: "Revenue report" },
+    prompt: {
+      vi: "Dựng cho tôi trang báo cáo doanh thu có chọn khoảng ngày.",
+      en: "Build me a revenue report page with a date range picker.",
+    },
+  },
+  {
+    id: "calendar",
+    level: "page",
+    title: { vi: "Lịch công việc", en: "Task calendar" },
+    prompt: {
+      vi: "Dựng cho tôi trang lịch cho app quản lý công việc.",
+      en: "Build me a calendar page for a task management app.",
+    },
+  },
+  {
+    id: "members",
+    level: "page",
+    title: { vi: "Thành viên và phân quyền", en: "Members and roles" },
+    prompt: {
+      vi: "Dựng cho tôi trang quản lý thành viên trong workspace, có mời thành viên và đổi vai trò.",
+      en: "Build me a workspace members page with inviting members and changing roles.",
+    },
+  },
+  {
+    id: "security-settings",
+    level: "page",
+    title: { vi: "Cài đặt bảo mật", en: "Security settings" },
+    prompt: {
+      vi: "Dựng cho tôi trang cài đặt bảo mật, có bật xác thực hai lớp và danh sách phiên đăng nhập.",
+      en: "Build me a security settings page with two-factor authentication and a list of active sessions.",
+    },
+  },
+  {
+    id: "pricing",
+    level: "page",
+    title: { vi: "Bảng giá", en: "Pricing" },
+    prompt: {
+      vi: "Dựng cho tôi trang bảng giá.",
+      en: "Build me a pricing page.",
+    },
+  },
+  {
+    id: "login",
+    level: "page",
+    title: { vi: "Đăng nhập", en: "Sign in" },
+    prompt: {
+      vi: "Dựng cho tôi trang đăng nhập.",
+      en: "Build me a sign-in page.",
     },
   },
 ];

@@ -1,7 +1,6 @@
 import { Maximize2 } from "lucide-react";
 import { Button } from "@/components/button";
 import Screenshot from "@/features/landing/components/screenshot";
-import UnprecedentedBadge from "@/features/landing/components/unprecedented-badge";
 import type { Dictionary } from "@/features/landing/types/dictionary";
 import type { ShowcaseEntry } from "@/features/landing/types/showcase-entry";
 import type { ShowcaseTheme } from "@/features/landing/types/showcase-theme";
@@ -45,10 +44,7 @@ export default function ShowcaseCard({ entry, theme, dictionary, onOpen }: Showc
       </Button>
 
       <div className="flex flex-1 flex-col gap-3 border-t border-border p-5">
-        <div className="flex flex-wrap items-center gap-2">
-          <h3 className="font-medium text-foreground">{entry.title}</h3>
-          {entry.isUnprecedented ? <UnprecedentedBadge label={dictionary.unprecedentedBadge} /> : null}
-        </div>
+        <h3 className="font-medium text-foreground">{entry.title}</h3>
         <p className="text-sm text-pretty text-muted">
           <span className="font-mono text-[11px] tracking-wider text-heat-ink uppercase">{dictionary.promptLabel} </span>
           “{entry.prompt}”

@@ -7,6 +7,5 @@ export interface ShowcaseEntry {
   level: ShowcaseLevel;
   title: string;
   prompt: string;
-  isUnprecedented: boolean;
   images: ShowcaseImageSet | null;
 }

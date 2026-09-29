@@ -48,6 +48,12 @@ export interface DesignerStep {
   gate: string | null;
 }
 
+/** Một dòng trong khung lý do của wireframe: Ưu, Nhược, Hợp khi. */
+export interface WireframeReasonItem {
+  label: string;
+  text: string;
+}
+
 export interface WireframeLabels {
   toolbarLabel: string;
   optionLabel: string;
@@ -57,7 +63,7 @@ export interface WireframeLabels {
   stateLabel: string;
   stateValue: string;
   reasonTitle: string;
-  reasonLines: string[];
+  reasonItems: WireframeReasonItem[];
   recommendedLabel: string;
 }
 
@@ -233,7 +239,6 @@ export interface Dictionary {
   showcase: SectionIntro & {
     tabs: Record<ShowcaseLevel, string>;
     promptLabel: string;
-    unprecedentedBadge: string;
     placeholder: string;
     openImageLabel: string;
     closeLabel: string;

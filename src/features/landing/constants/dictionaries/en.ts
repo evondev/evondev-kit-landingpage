@@ -45,7 +45,7 @@ export const enDictionary: Dictionary = {
         accent: "by evondev",
       },
       subheadline:
-        "Every skill is a set of numbered rules, born from real bugs and tested on real projects. Install once, use in every project.",
+        "Every skill is a set of numbered rules, tested on real projects. Install once, use in every project.",
       primaryCta: "See evon:ui-ux",
       secondaryCta: "Install evondevKit",
       commandsLabel: "Run these two commands in Claude Code",
@@ -70,7 +70,7 @@ export const enDictionary: Dictionary = {
           title: "UI/UX for apps",
           description:
             "Builds and redesigns app screens like a designer: a brief, 2–3 wireframes, you pick, then it builds. Reviews existing UI, rebuilds while keeping your brand, refactors without changing the look.",
-          facts: ["70 test prompts passed", "6 ways in", "Measured 375–1920px"],
+          facts: ["70 test prompts passed", "7 ways in", "Measured 375–1920px"],
           status: null,
         },
       ],
@@ -88,7 +88,7 @@ export const enDictionary: Dictionary = {
           icon: "numbered-rules",
           title: {
             lead: "Numbered rules.",
-            accent: "No teaching by adjectives. Each rule has a code, lives in exactly one file, and came from a bug that actually happened.",
+            accent: "No teaching by adjectives. Each rule has a code and lives in exactly one file; many came from bugs found in testing.",
           },
         },
         {
@@ -154,10 +154,10 @@ export const enDictionary: Dictionary = {
   },
   modes: {
     label: "Features",
-    eyebrow: "Six ways in",
+    eyebrow: "Seven ways in",
     title: {
       lead: "One skill,",
-      accent: "six ways to work",
+      accent: "seven ways to work",
     },
     description:
       "It works like a designer by default. To take another path, say so in your prompt: the skill picks it up without asking again.",
@@ -217,6 +217,15 @@ export const enDictionary: Dictionary = {
         prompt: "/evon:ui-ux Refactor the /settings CSS to Tailwind and keep the UI identical.",
         status: "beta",
       },
+      {
+        id: "small-fix",
+        tabLabel: "Small fix",
+        title: "Anything smaller than a screen",
+        description:
+          "Fix a component, add a dropdown, fix a bug, change a color. The skill still reads your codebase first, then just does it with the default layout, no wireframes.",
+        prompt: "/evon:ui-ux Add a status filter dropdown to the orders table.",
+        status: null,
+      },
     ],
   },
   designer: {
@@ -252,7 +261,7 @@ export const enDictionary: Dictionary = {
         code: "U4",
         title: "Build it",
         description:
-          "Code for the chosen option, using your project's components, with the probe run until the issue list is empty.",
+          "Code for the chosen option, using your project's components. The probe runs and fixes follow, up to three rounds; anything left is explained at handover.",
         gate: null,
       },
     ],
@@ -265,10 +274,10 @@ export const enDictionary: Dictionary = {
       stateLabel: "State",
       stateValue: "With data",
       reasonTitle: "Why A",
-      reasonLines: [
-        "Main job: find late orders. Search and filters sit right above the table.",
-        "Changed from before: the stat cards at the top are gone.",
-        "Trade-off: less room for charts.",
+      reasonItems: [
+        { label: "Pros", text: "Late orders are quick to find: search and filters sit right above the table." },
+        { label: "Cons", text: "Less room for overview charts." },
+        { label: "Best when", text: "People come here to process orders, not to check totals." },
       ],
       recommendedLabel: "Recommended",
     },
@@ -306,17 +315,17 @@ export const enDictionary: Dictionary = {
       { tone: "taste", label: "Taste", description: "Suggestions from the skill's taste, unchecked by default." },
     ],
     sweepTitle: {
-      lead: "Five screen widths.",
-      accent: "From 1920 down to 375px, reporting the width range that breaks instead of one 375 screenshot.",
+      lead: "Six screen widths.",
+      accent: "375, 768, 1024, 1280, 1440, and 1920px. Add --sweep to scan from 1440 down to 375 and report the width range that breaks.",
     },
-    sweepWidths: ["1920", "1440", "1280", "768", "375"],
+    sweepWidths: ["1920", "1440", "1280", "1024", "768", "375"],
     sweepCheckHeader: "Check",
     sweepChecks: [
-      { name: "Text contrast ≥ 4.5:1", marks: ["pass", "pass", "pass", "pass", "pass"] },
-      { name: "No horizontal scroll", marks: ["pass", "pass", "pass", "pass", "fail"] },
-      { name: "Nav stays on one line", marks: ["pass", "pass", "pass", "fail", "pass"] },
-      { name: "Popovers stay on screen", marks: ["pass", "pass", "pass", "pass", "fail"] },
-      { name: "Hover is visible", marks: ["pass", "pass", "pass", "pass", "pass"] },
+      { name: "Text contrast ≥ 4.5:1", marks: ["pass", "pass", "pass", "pass", "pass", "pass"] },
+      { name: "No horizontal scroll", marks: ["pass", "pass", "pass", "pass", "pass", "fail"] },
+      { name: "Nav stays on one line", marks: ["pass", "pass", "pass", "pass", "fail", "pass"] },
+      { name: "Popovers stay on screen", marks: ["pass", "pass", "pass", "pass", "pass", "fail"] },
+      { name: "Hover is visible", marks: ["pass", "pass", "pass", "pass", "pass", "pass"] },
     ],
     sweepNote: "Sample report. The probe also checks selected items, focus rings, and the state right after a click.",
     passLabel: "Pass",
@@ -336,7 +345,6 @@ export const enDictionary: Dictionary = {
       page: "Pages",
     },
     promptLabel: "Prompt",
-    unprecedentedBadge: "No template",
     placeholder: "Screenshot coming",
     openImageLabel: "View larger",
     closeLabel: "Close",
@@ -353,7 +361,7 @@ export const enDictionary: Dictionary = {
       accent: "no adjectives",
     },
     description:
-      "Each rule lives in exactly one file and came from a bug that actually happened. These are four you can see on screen right away.",
+      "Each rule lives in exactly one file, and many came from bugs found in testing. These are four you can see on screen right away.",
     rules: [
       {
         id: "flat",
@@ -363,7 +371,7 @@ export const enDictionary: Dictionary = {
       },
       {
         id: "one-accent",
-        code: "M3",
+        code: "M3 · I1 · I3",
         title: "One accent, one primary button",
         description:
           "The default button is outlined. Each area gets a single filled button, so the one that needs to stand out actually does.",
@@ -431,7 +439,7 @@ export const enDictionary: Dictionary = {
       {
         icon: "agents",
         title: "Tested on Codex and Antigravity",
-        description: "Both tools can read the skill, but no test round has run there yet. Support gets listed once it has.",
+        description: "The README covers installing on both tools, but no test round has run there yet. Support gets listed once it has.",
         progress: "Not started",
       },
       {

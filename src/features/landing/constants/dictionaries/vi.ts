@@ -45,7 +45,7 @@ export const viDictionary: Dictionary = {
         accent: "của evondev",
       },
       subheadline:
-        "Mỗi skill là một bộ luật có số hiệu, sinh ra từ lỗi thật và test trên dự án thật. Cài một lần, gọi trong mọi dự án.",
+        "Mỗi skill là một bộ luật có số hiệu, test trên dự án thật. Cài một lần, gọi trong mọi dự án.",
       primaryCta: "Xem evon:ui-ux",
       secondaryCta: "Cài evondevKit",
       commandsLabel: "Gõ hai lệnh này trong Claude Code",
@@ -70,7 +70,7 @@ export const viDictionary: Dictionary = {
           title: "UI/UX cho app",
           description:
             "Dựng và làm lại màn hình app như một designer: brief, 2–3 wireframe, bạn chọn rồi mới dựng. Soi UI đang có, dựng lại giữ brand, refactor giữ nguyên hình.",
-          facts: ["70 đề test đạt", "6 lối vào", "Đo 375–1920px"],
+          facts: ["70 đề test đạt", "7 lối vào", "Đo 375–1920px"],
           status: null,
         },
       ],
@@ -88,7 +88,7 @@ export const viDictionary: Dictionary = {
           icon: "numbered-rules",
           title: {
             lead: "Luật có số hiệu.",
-            accent: "Không dạy bằng tính từ. Mỗi luật một mã, sống ở đúng một file, sinh ra từ một lỗi đã thật sự xảy ra.",
+            accent: "Không dạy bằng tính từ. Mỗi luật một mã, sống ở đúng một file; nhiều luật sinh ra từ lỗi đã gặp khi test.",
           },
         },
         {
@@ -154,10 +154,10 @@ export const viDictionary: Dictionary = {
   },
   modes: {
     label: "Tính năng",
-    eyebrow: "Sáu lối vào",
+    eyebrow: "Bảy lối vào",
     title: {
       lead: "Một skill,",
-      accent: "sáu cách làm việc",
+      accent: "bảy cách làm việc",
     },
     description:
       "Mặc định là làm như designer. Muốn đi lối khác thì nói rõ trong đề: skill nhận ra, không hỏi lại.",
@@ -217,6 +217,15 @@ export const viDictionary: Dictionary = {
         prompt: "/evon:ui-ux Refactor CSS trang /settings sang Tailwind, giữ nguyên giao diện.",
         status: "beta",
       },
+      {
+        id: "small-fix",
+        tabLabel: "Sửa nhỏ",
+        title: "Việc nhỏ hơn một màn",
+        description:
+          "Sửa một component, thêm một dropdown, sửa một lỗi, đổi một màu. Skill vẫn đọc codebase trước, rồi làm luôn theo bố cục mặc định, không qua wireframe.",
+        prompt: "/evon:ui-ux Thêm dropdown lọc theo trạng thái vào bảng đơn hàng.",
+        status: null,
+      },
     ],
   },
   designer: {
@@ -252,7 +261,7 @@ export const viDictionary: Dictionary = {
         code: "U4",
         title: "Dựng thật",
         description:
-          "Code theo phương án đã chọn, bám component của dự án, chạy probe tới khi danh sách lỗi trống.",
+          "Code theo phương án đã chọn, bám component của dự án. Chạy probe rồi sửa, tối đa ba vòng; lỗi còn lại ghi lý do lúc giao.",
         gate: null,
       },
     ],
@@ -265,10 +274,10 @@ export const viDictionary: Dictionary = {
       stateLabel: "Trạng thái",
       stateValue: "Có dữ liệu",
       reasonTitle: "Vì sao A",
-      reasonLines: [
-        "Việc chính: tìm đơn trễ. Ô tìm và lọc nằm ngay trên bảng.",
-        "Đổi so với bản cũ: bỏ hàng card số liệu ở đầu trang.",
-        "Đánh đổi: ít chỗ cho biểu đồ.",
+      reasonItems: [
+        { label: "Ưu", text: "Tìm đơn trễ nhanh: ô tìm và lọc nằm ngay trên bảng." },
+        { label: "Nhược", text: "Ít chỗ cho biểu đồ tổng quan." },
+        { label: "Hợp khi", text: "Người dùng vào để xử lý đơn, không để xem số tổng." },
       ],
       recommendedLabel: "Khuyên dùng",
     },
@@ -306,17 +315,17 @@ export const viDictionary: Dictionary = {
       { tone: "taste", label: "Gu", description: "Gợi ý theo gu skill, mặc định không chọn." },
     ],
     sweepTitle: {
-      lead: "Quét năm khổ màn.",
-      accent: "Từ 1920 xuống 375px, báo khoảng bề ngang bị lỗi thay vì chỉ chụp một ảnh 375.",
+      lead: "Đo sáu khổ màn.",
+      accent: "375, 768, 1024, 1280, 1440 và 1920px. Thêm --sweep thì quét từ 1440 xuống 375, báo khoảng bề ngang bị lỗi.",
     },
-    sweepWidths: ["1920", "1440", "1280", "768", "375"],
+    sweepWidths: ["1920", "1440", "1280", "1024", "768", "375"],
     sweepCheckHeader: "Phép đo",
     sweepChecks: [
-      { name: "Tương phản chữ ≥ 4,5:1", marks: ["pass", "pass", "pass", "pass", "pass"] },
-      { name: "Trang không cuộn ngang", marks: ["pass", "pass", "pass", "pass", "fail"] },
-      { name: "Nav không rớt dòng", marks: ["pass", "pass", "pass", "fail", "pass"] },
-      { name: "Lớp nổi nằm trong màn", marks: ["pass", "pass", "pass", "pass", "fail"] },
-      { name: "Rê chuột nhìn thấy được", marks: ["pass", "pass", "pass", "pass", "pass"] },
+      { name: "Tương phản chữ ≥ 4,5:1", marks: ["pass", "pass", "pass", "pass", "pass", "pass"] },
+      { name: "Trang không cuộn ngang", marks: ["pass", "pass", "pass", "pass", "pass", "fail"] },
+      { name: "Nav không rớt dòng", marks: ["pass", "pass", "pass", "pass", "fail", "pass"] },
+      { name: "Lớp nổi nằm trong màn", marks: ["pass", "pass", "pass", "pass", "pass", "fail"] },
+      { name: "Rê chuột nhìn thấy được", marks: ["pass", "pass", "pass", "pass", "pass", "pass"] },
     ],
     sweepNote: "Báo cáo mẫu. Probe còn đo mục đang chọn, vòng focus, và trạng thái bấm xong đứng yên.",
     passLabel: "Đạt",
@@ -336,7 +345,6 @@ export const viDictionary: Dictionary = {
       page: "Trang",
     },
     promptLabel: "Đề",
-    unprecedentedBadge: "Chưa có mẫu",
     placeholder: "Ảnh đang chụp",
     openImageLabel: "Xem lớn",
     closeLabel: "Đóng",
@@ -353,7 +361,7 @@ export const viDictionary: Dictionary = {
       accent: "không có tính từ",
     },
     description:
-      "Mỗi luật sống ở đúng một file và sinh ra từ một lỗi đã thật sự xảy ra. Đây là bốn luật bạn thấy ngay trên màn hình.",
+      "Mỗi luật sống ở đúng một file, nhiều luật sinh ra từ lỗi đã gặp khi test. Đây là bốn luật bạn thấy ngay trên màn hình.",
     rules: [
       {
         id: "flat",
@@ -363,7 +371,7 @@ export const viDictionary: Dictionary = {
       },
       {
         id: "one-accent",
-        code: "M3",
+        code: "M3 · I1 · I3",
         title: "Một màu nhấn, một nút chính",
         description: "Nút mặc định là nút viền. Mỗi khu chỉ một nút nền nhấn, nên nút cần nổi thì nổi thật.",
       },
@@ -430,7 +438,7 @@ export const viDictionary: Dictionary = {
       {
         icon: "agents",
         title: "Test trên Codex và Antigravity",
-        description: "Hai công cụ đã đọc được skill nhưng chưa chạy vòng test nào. Test xong mới ghi là hỗ trợ.",
+        description: "README có hướng dẫn cài cho hai công cụ này, nhưng chưa chạy vòng test nào. Test xong mới ghi là hỗ trợ.",
         progress: "Chưa bắt đầu",
       },
       {
