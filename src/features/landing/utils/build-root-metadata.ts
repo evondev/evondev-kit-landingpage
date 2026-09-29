@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
+import { githubOwnerUrl } from "@/features/landing/constants/site-links";
 import { getSiteUrl } from "@/features/landing/utils/get-site-url";
 
 /** Metadata chung của root layout, để cả trang 404 cũng có metadataBase. */
 export function buildRootMetadata(): Metadata {
   return {
     metadataBase: new URL(getSiteUrl()),
+    applicationName: "evondevKit",
+    authors: [{ name: "evondev", url: githubOwnerUrl }],
+    creator: "evondev",
+    publisher: "evondev",
   };
 }

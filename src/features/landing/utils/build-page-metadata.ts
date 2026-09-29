@@ -33,6 +33,7 @@ export function buildPageMetadata(locale: Locale): Metadata {
       title: dictionary.meta.title,
       description: dictionary.meta.description,
       locale: openGraphLocales[locale],
+      alternateLocale: locale === "vi" ? openGraphLocales.en : openGraphLocales.vi,
     },
     twitter: {
       card: "summary_large_image",
