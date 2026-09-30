@@ -527,6 +527,11 @@ export const enDictionary: Dictionary = {
           "Designer mode stops exactly twice: to approve the brief and to pick a wireframe. Everywhere else it takes a default and tells you when it hands over. Say “just build it” to skip the wireframes too. Building a design system first stops only once, for you to approve the design system page.",
       },
       {
+        question: "How long should my prompt be?",
+        answer:
+          "One sentence is enough to start, and every prompt on this page is that short. The skill reads your codebase and gives you a brief to adjust before it builds. For a closer result, add who uses the screen, the main thing they do there, and what the real data looks like (a few sample rows, which columns matter). Skip words like “beautiful” or “modern”, the skill already takes care of that.",
+      },
+      {
         question: "What if my project already has a design system?",
         answer:
           "The skill uses your components. With shadcn, Radix, MUI, Ant, or an in-house kit, it uses those and only adjusts tokens to fit. Your brand colors stay unless you say “drop the old style”.",
@@ -539,7 +544,7 @@ export const enDictionary: Dictionary = {
       {
         question: "Does it do dark mode?",
         answer:
-          "Yes, it can build a dark UI if you ask for one in the prompt. Adding dark mode to an existing app (a light / dark toggle) is still being tested, see Coming soon.",
+          "Not yet. So far the skill has only been tested thoroughly on light UIs. Dark mode, both building dark screens and adding a light / dark toggle to an existing app, is in progress, see Coming soon.",
       },
       {
         question: "Does it build landing pages?",

@@ -525,6 +525,11 @@ export const viDictionary: Dictionary = {
           "Chế độ designer chỉ dừng hai lần: duyệt brief và chọn wireframe. Ngoài hai lần đó, skill tự chọn theo mặc định rồi báo lại lúc giao. Muốn bỏ luôn bước wireframe thì gõ “dựng luôn”. Dựng design system trước thì chỉ dừng một lần, để bạn duyệt trang design system.",
       },
       {
+        question: "Prompt cần viết dài cỡ nào?",
+        answer:
+          "Một câu là đủ để bắt đầu, các prompt trên trang này đều ngắn như vậy. Skill đọc codebase và đưa brief để bạn chỉnh trước khi dựng. Muốn ra sát ý hơn thì kể thêm: ai dùng màn này, họ làm việc gì chính ở đó, dữ liệu thật trông ra sao (vài dòng mẫu, cột nào quan trọng). Mấy chữ như “đẹp”, “hiện đại” thì không cần, skill đã lo phần đó.",
+      },
+      {
         question: "Dự án đã có design system thì sao?",
         answer:
           "Skill dùng component của bạn. Dự án dùng shadcn, Radix, MUI, Ant hay bộ tự làm thì nó dùng đúng bộ đó, chỉ chỉnh token cho khớp. Màu brand giữ nguyên, trừ khi bạn nói “bỏ style cũ”.",
@@ -537,7 +542,7 @@ export const viDictionary: Dictionary = {
       {
         question: "Có làm dark mode không?",
         answer:
-          "Có, skill dựng được giao diện nền tối nếu bạn nói trong prompt. Còn thêm dark mode cho app đang chạy (có nút chuyển sáng / tối) thì mình vẫn đang test, bạn xem ở mục Sắp có.",
+          "Chưa. Hiện skill mới test kỹ với giao diện nền sáng. Dark mode, cả dựng màn nền tối lẫn thêm nút chuyển sáng / tối cho app đang chạy, mình đang làm, bạn xem ở mục Sắp có.",
       },
       {
         question: "Skill có làm landing page không?",
