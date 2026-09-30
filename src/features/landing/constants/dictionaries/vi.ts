@@ -3,14 +3,14 @@ import type { Dictionary } from "@/features/landing/types/dictionary";
 export const viDictionary: Dictionary = {
   meta: {
     home: {
-      title: "evondevKit · Bộ skill Claude Code của evondev",
+      title: "evondevKit · Bộ skill cho coding agent của evondev",
       description:
-        "Bộ skill Claude Code do evondev viết. Skill đầu tiên là evon:ui-ux, làm UI app theo cách một designer làm. Skill nào cũng là bộ luật cụ thể, đã test trên dự án thật. Miễn phí, MIT.",
+        "Bộ skill cho Claude Code, Codex và Antigravity do evondev viết. Skill đầu tiên là evon:ui-ux, làm UI app theo cách một designer làm. Skill nào cũng là bộ luật cụ thể, đã test trên dự án thật. Miễn phí, MIT.",
     },
     "ui-ux": {
-      title: "evon:ui-ux · UI dashboard không còn mùi AI",
+      title: "evon:ui-ux · Wireframe, design system, dựng lại UI như designer",
       description:
-        "Skill Claude Code làm UI app theo cách một designer làm: đọc codebase, đưa brief và 2–3 wireframe cho bạn chọn, dựng bằng component có sẵn của dự án, rồi tự kiểm tra bằng script. Miễn phí, MIT.",
+        "Skill UI/UX cho Claude Code, Codex và Antigravity: đưa brief và 2–3 wireframe cho bạn chọn, dựng design system, soi và dựng lại UI đang có, luôn bằng component của dự án. Miễn phí, MIT.",
     },
   },
   header: {
@@ -37,11 +37,11 @@ export const viDictionary: Dictionary = {
     hero: {
       badge: "evon:ui-ux: làm UI như một designer",
       title: {
-        lead: "Bộ skill Claude Code",
+        lead: "Bộ skill cho coding agent",
         accent: "của evondev",
       },
       subheadline:
-        "Mỗi skill là một bộ luật cụ thể, test trên dự án thật rồi mới đưa lên đây. Cài một lần, dùng cho mọi dự án.",
+        "Mỗi skill là một bộ luật cụ thể, test trên dự án thật rồi mới đưa lên đây. Cài một lần, dùng cho mọi dự án, trên Claude Code, Codex hay Antigravity.",
       primaryCta: "Xem evon:ui-ux",
       secondaryCta: "Cài evondevKit",
       commandsLabel: "Gõ hai lệnh này trong Claude Code",
@@ -53,7 +53,7 @@ export const viDictionary: Dictionary = {
         lead: "Cài một lần,",
         accent: "có thêm skill mới",
       },
-      description: "Bạn chỉ cần cài plugin evon một lần. Khi mình thêm skill mới, cập nhật marketplace là có.",
+      description: "Trên Claude Code, bạn chỉ cần cài plugin evon một lần. Khi mình thêm skill mới, cập nhật marketplace là có.",
       detailLabel: "Xem chi tiết",
       placeholder: {
         title: "Skill tiếp theo",
@@ -106,7 +106,7 @@ export const viDictionary: Dictionary = {
     cta: {
       eyebrow: "Cài đặt",
       title: "Cài evondevKit",
-      description: "Gõ hai lệnh trong Claude Code là có đủ bộ. Miễn phí, mã nguồn mở MIT.",
+      description: "Claude Code gõ hai lệnh là có đủ bộ, Codex và Antigravity thì chép thư mục skill vào dự án. Miễn phí, mã nguồn mở MIT.",
       primaryCta: "Xem evon:ui-ux",
       secondaryCta: "Xem trên GitHub",
     },
@@ -432,8 +432,8 @@ export const viDictionary: Dictionary = {
       {
         id: "hairline",
         code: "M13 · M15",
-        title: "Viền thay cho bóng",
-        description: "Card trong trang cách nhau bằng viền 1px. Bóng chỉ dùng cho thứ nổi lên trên trang như modal, dropdown.",
+        title: "Viền thay cho shadow",
+        description: "Card trong trang cách nhau bằng viền 1px. Shadow chỉ dùng cho thứ nổi lên trên trang như modal, dropdown.",
       },
       {
         id: "narrow",
@@ -443,15 +443,12 @@ export const viDictionary: Dictionary = {
       },
     ],
     stylesTitle: "Muốn phong cách khác, nói một câu trong prompt",
-    stylesNote: "Dự án đã có phong cách riêng thì skill theo dự án, và báo lại cho bạn lúc giao.",
-    defaultStyleLabel: "Mặc định",
-    styles: [
-      { name: "Flat viền mảnh", isDefault: true },
-      { name: "Đổ bóng", isDefault: false },
-      { name: "Glassmorphism", isDefault: false },
-      { name: "Gradient", isDefault: false },
-      { name: "Nền tối", isDefault: false },
-      { name: "Nhiều màu", isDefault: false },
+    stylesNote:
+      "Flat được chăm kỹ nhất. Kiểu khác vẫn giữ đúng tương phản và thứ bậc nhưng chưa tinh bằng. Dự án đã có phong cách riêng thì skill theo dự án, và báo lại lúc giao.",
+    styleGroups: [
+      { label: "Mặc định", isDefault: true, styles: ["Flat viền mảnh"] },
+      { label: "Theo dự án hoặc khi bạn nói", isDefault: false, styles: ["Shadow", "Nền tối", "Có màu"] },
+      { label: "Làm được, ít hợp dashboard", isDefault: false, styles: ["Glassmorphism", "Gradient"] },
     ],
   },
   install: {
@@ -493,7 +490,7 @@ export const viDictionary: Dictionary = {
   cta: {
     eyebrow: "Bắt đầu",
     title: "Dựng màn đầu tiên nhé?",
-    description: "Gõ hai lệnh trong Claude Code, rồi viết prompt như đang nói chuyện với designer. Miễn phí, mã nguồn mở MIT.",
+    description: "Cài vào Claude Code, Codex hoặc Antigravity, rồi viết prompt như đang nói chuyện với designer. Miễn phí, mã nguồn mở MIT.",
     primaryCta: "Cài skill",
     secondaryCta: "Xem trên GitHub",
   },
@@ -557,7 +554,7 @@ export const viDictionary: Dictionary = {
     ],
   },
   footer: {
-    tagline: "Bộ skill Claude Code của evondev.",
+    tagline: "Bộ skill cho coding agent của evondev.",
     license: "Giấy phép MIT",
   },
 };

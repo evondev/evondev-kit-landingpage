@@ -3,14 +3,14 @@ import type { Dictionary } from "@/features/landing/types/dictionary";
 export const enDictionary: Dictionary = {
   meta: {
     home: {
-      title: "evondevKit · evondev's Claude Code skills",
+      title: "evondevKit · evondev's skills for coding agents",
       description:
-        "Claude Code skills written by evondev. The first one, evon:ui-ux, builds app UI the way a designer would. Every skill is a set of concrete rules, tested on real projects. Free, MIT.",
+        "Skills for Claude Code, Codex and Antigravity, written by evondev. The first one, evon:ui-ux, builds app UI the way a designer would. Every skill is a set of concrete rules, tested on real projects. Free, MIT.",
     },
     "ui-ux": {
-      title: "evon:ui-ux · UI dashboard without the AI hassle",
+      title: "evon:ui-ux · Wireframes, design systems, UI rebuilds like a designer",
       description:
-        "A Claude Code skill that builds app UI the way a designer would: it reads your codebase, shows a brief and 2–3 wireframes to pick from, builds with your own components, then checks its work with a script. Free, MIT.",
+        "A UI/UX skill for Claude Code, Codex and Antigravity: a brief and 2–3 wireframes to pick from, a design system, reviews and rebuilds of your existing UI, always with your project's own components. Free, MIT.",
     },
   },
   header: {
@@ -37,11 +37,11 @@ export const enDictionary: Dictionary = {
     hero: {
       badge: "evon:ui-ux: UI like a designer",
       title: {
-        lead: "Claude\u00a0Code skills",
+        lead: "Coding\u00a0agent skills",
         accent: "by evondev",
       },
       subheadline:
-        "Every skill is a set of concrete rules, tested on real projects before it shows up here. Install once, use it in every project.",
+        "Every skill is a set of concrete rules, tested on real projects before it shows up here. Install once, use it in every project, in Claude Code, Codex or Antigravity.",
       primaryCta: "See evon:ui-ux",
       secondaryCta: "Install evondevKit",
       commandsLabel: "Run these two commands in Claude Code",
@@ -53,7 +53,7 @@ export const enDictionary: Dictionary = {
         lead: "Install once,",
         accent: "get every new skill",
       },
-      description: "Install the evon plugin once. When I add a new skill, update the marketplace and it's there.",
+      description: "In Claude Code, install the evon plugin once. When I add a new skill, update the marketplace and it's there.",
       detailLabel: "See details",
       placeholder: {
         title: "Next skill",
@@ -106,7 +106,7 @@ export const enDictionary: Dictionary = {
     cta: {
       eyebrow: "Install",
       title: "Install evondevKit",
-      description: "Two commands in Claude Code and you have the whole kit. Free and MIT licensed.",
+      description: "Two commands in Claude Code and you have the whole kit; in Codex or Antigravity, copy the skill folder into your project. Free and MIT licensed.",
       primaryCta: "See evon:ui-ux",
       secondaryCta: "View on GitHub",
     },
@@ -445,15 +445,12 @@ export const enDictionary: Dictionary = {
       },
     ],
     stylesTitle: "Want a different style? Say so in one line",
-    stylesNote: "If your project already has its own style, the skill follows it and tells you when it hands over.",
-    defaultStyleLabel: "Default",
-    styles: [
-      { name: "Flat, thin borders", isDefault: true },
-      { name: "Elevated", isDefault: false },
-      { name: "Glassmorphism", isDefault: false },
-      { name: "Gradient", isDefault: false },
-      { name: "Dark", isDefault: false },
-      { name: "Colorful", isDefault: false },
+    stylesNote:
+      "Flat gets the most care. Other styles keep the same contrast and hierarchy but are less polished. If your project already has its own style, the skill follows it and tells you when it hands over.",
+    styleGroups: [
+      { label: "Default", isDefault: true, styles: ["Flat, thin borders"] },
+      { label: "From your project, or on request", isDefault: false, styles: ["Elevated", "Dark", "Colorful"] },
+      { label: "Doable, rarely right for dashboards", isDefault: false, styles: ["Glassmorphism", "Gradient"] },
     ],
   },
   install: {
@@ -495,7 +492,7 @@ export const enDictionary: Dictionary = {
   cta: {
     eyebrow: "Get started",
     title: "Ready to build your first screen?",
-    description: "Two commands in Claude Code, then write your prompt like you're talking to a designer. Free and open source under MIT.",
+    description: "Install it in Claude Code, Codex or Antigravity, then write your prompt like you're talking to a designer. Free and open source under MIT.",
     primaryCta: "Install skill",
     secondaryCta: "View on GitHub",
   },
@@ -559,7 +556,7 @@ export const enDictionary: Dictionary = {
     ],
   },
   footer: {
-    tagline: "evondev's Claude Code skills.",
+    tagline: "evondev's skills for coding agents.",
     license: "MIT license",
   },
 };

@@ -1,10 +1,9 @@
 import SectionFrame from "@/features/landing/components/section-frame";
 import SectionHeading from "@/features/landing/components/section-heading";
 import SectionIndex from "@/features/landing/components/section-index";
-import StatusTag from "@/features/landing/components/status-tag";
+import StyleGroupRow from "@/features/landing/components/style-group-row";
 import TasteRuleCard from "@/features/landing/components/taste-rule-card";
 import type { Dictionary } from "@/features/landing/types/dictionary";
-import { getStyleChipClasses } from "@/features/landing/utils/get-style-chip-classes";
 
 interface TasteSectionProps {
   number: number;
@@ -35,14 +34,11 @@ export default function TasteSection({ number, dictionary }: TasteSectionProps) 
           <h3 className="font-medium text-foreground">{dictionary.stylesTitle}</h3>
           <p className="mt-1 text-sm text-pretty text-muted">{dictionary.stylesNote}</p>
         </div>
-        <ul className="flex flex-wrap gap-2">
-          {dictionary.styles.map((style) => (
-            <li key={style.name} className={getStyleChipClasses(style.isDefault)}>
-              {style.name}
-              {style.isDefault ? <StatusTag status="new" label={dictionary.defaultStyleLabel} /> : null}
-            </li>
+        <div className="flex flex-col gap-3">
+          {dictionary.styleGroups.map((group) => (
+            <StyleGroupRow key={group.label} group={group} />
           ))}
-        </ul>
+        </div>
       </div>
     </SectionFrame>
   );

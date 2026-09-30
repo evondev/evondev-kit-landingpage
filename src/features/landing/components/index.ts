@@ -59,6 +59,7 @@ export { default as SiteFooter } from "./site-footer";
 export { default as SiteHeader } from "./site-header";
 export { default as SkeletonLine } from "./skeleton-line";
 export { default as StatusTag } from "./status-tag";
+export { default as StyleGroupRow } from "./style-group-row";
 export { default as SweepTable } from "./sweep-table";
 export { default as TasteDemoFlat } from "./taste-demo-flat";
 export { default as TasteDemoHairline } from "./taste-demo-hairline";

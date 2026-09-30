@@ -100,9 +100,10 @@ export interface TasteRule {
   description: string;
 }
 
-export interface VisualStyle {
-  name: string;
+export interface VisualStyleGroup {
+  label: string;
   isDefault: boolean;
+  styles: string[];
 }
 
 export interface RoadmapItem {
@@ -268,8 +269,7 @@ export interface Dictionary {
     rules: TasteRule[];
     stylesTitle: string;
     stylesNote: string;
-    defaultStyleLabel: string;
-    styles: VisualStyle[];
+    styleGroups: VisualStyleGroup[];
   };
   install: SectionIntro & {
     tabsLabel: string;
