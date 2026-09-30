@@ -17,7 +17,9 @@ export default function ProofStrip({ dictionary }: ProofStripProps) {
           </span>
         </p>
         {dictionary.items.map((stat) => (
-          <dl key={stat.label} className="flex flex-col-reverse justify-center gap-1 bg-background px-5 py-8 sm:px-8">
+          // column-reverse để số đứng trên nhãn mà dt vẫn đi trước dd; justify-end là canh từ trên xuống,
+          // nên nhãn dài xuống dòng cũng không đẩy số lệch khỏi hàng.
+          <dl key={stat.label} className="flex flex-col-reverse justify-end gap-1 bg-background px-5 py-8 sm:px-8">
             <dt className="text-sm text-muted">{stat.label}</dt>
             <dd className="text-4xl font-medium tracking-tight text-foreground tabular-nums">
               <CountUpNumber value={stat.value} />

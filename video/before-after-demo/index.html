@@ -1,0 +1,1110 @@
+<!doctype html>
+<!--
+  Video trước / sau của evon:ui-ux, 1920×1080, 23 giây: màn Phòng trọ của 68Lane đi từ
+  màn cũ, qua wireframe, tới màn dựng xong.
+  Mở thẳng file này trong trình duyệt để xem trước (tự lặp). Thêm ?lang=en cho bản tiếng Anh.
+  Render ra MP4 / WebM: npm run render:video -- before-after-demo (xem scripts/render-video.mjs).
+
+  Cùng cách làm với video/ui-ux-demo: mọi chuyển động tính từ renderFrame(giây), không dùng
+  CSS animation. Ba ảnh lấy từ public/before-after/, cùng cỡ 2400×1193 nên quét ngang khớp nhau.
+  Toạ độ khung chú thích tính bằng % khung ảnh.
+-->
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1920" />
+    <title>evon:ui-ux before / after</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&subset=vietnamese&display=block"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+    <style>
+      :root {
+        --heat: #fa5d19;
+        --heat-ink: #c2410c;
+        --heat-soft: #fa5d1914;
+        --heat-border: #fa5d1966;
+        --background: #f9f9f9;
+        --surface: #ffffff;
+        --sunken: #f4f4f4;
+        --foreground: #262626;
+        --muted: #6b6b6b;
+        --faint: #a3a3a3;
+        --border: #ededed;
+        --border-strong: #e3e3e3;
+        --rail: #e6e6e6;
+        --shadow-card: 0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px -12px rgb(0 0 0 / 0.08);
+        --shadow-float: 0 1px 2px rgb(0 0 0 / 0.04), 0 24px 60px -24px rgb(0 0 0 / 0.18);
+        --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+        --font-mono: "JetBrains Mono", ui-monospace, monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: var(--background);
+        font-family: var(--font-sans);
+        color: var(--foreground);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      #stage {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: var(--background);
+      }
+
+      /* ===== Khung: đường ray, dấu +, thanh trên, thanh dưới (giống ui-ux-demo) ===== */
+      .rail {
+        position: absolute;
+        background: var(--rail);
+      }
+      .rail--vertical {
+        top: 0;
+        bottom: 0;
+        width: 1px;
+      }
+      .rail--horizontal {
+        left: 0;
+        right: 0;
+        height: 1px;
+      }
+      .cross {
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        transform: translate(-7px, -7px);
+      }
+      .cross::before,
+      .cross::after {
+        content: "";
+        position: absolute;
+        background: #bdbdbd;
+      }
+      .cross::before {
+        left: 7px;
+        top: 0;
+        width: 1px;
+        height: 15px;
+      }
+      .cross::after {
+        top: 7px;
+        left: 0;
+        height: 1px;
+        width: 15px;
+      }
+
+      .topbar,
+      .footer {
+        position: absolute;
+        left: 240px;
+        right: 240px;
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 28px;
+      }
+      .topbar {
+        top: 0;
+      }
+      .footer {
+        bottom: 0;
+      }
+      .step-label {
+        font-family: var(--font-mono);
+        font-size: 19px;
+        letter-spacing: 0.04em;
+        color: var(--muted);
+      }
+      .step-label strong {
+        color: var(--heat-ink);
+        font-weight: 500;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: var(--font-mono);
+        font-size: 19px;
+      }
+      .brand img {
+        width: 34px;
+        height: 34px;
+      }
+      .footer-name {
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+      .footer-name span {
+        margin-left: 14px;
+        font-family: var(--font-mono);
+        font-size: 16px;
+        font-weight: 400;
+        color: var(--faint);
+      }
+      .progress {
+        display: flex;
+        gap: 8px;
+      }
+      .progress-segment {
+        position: relative;
+        width: 56px;
+        height: 4px;
+        border-radius: 2px;
+        background: #e4e4e4;
+        overflow: hidden;
+      }
+      .progress-fill {
+        position: absolute;
+        inset: 0;
+        background: var(--heat);
+        transform-origin: left center;
+        transform: scaleX(0);
+      }
+
+      /* ===== Cảnh: vùng giữa hai đường ray ngang ===== */
+      .scene {
+        position: absolute;
+        left: 0;
+        top: 120px;
+        width: 1920px;
+        height: 840px;
+        display: none;
+      }
+      .caption {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 26px;
+        text-align: center;
+        font-size: 30px;
+        font-weight: 500;
+        color: var(--muted);
+        letter-spacing: -0.01em;
+      }
+
+      /* ===== Khung trình duyệt dùng chung cho cảnh 1–4 ===== */
+      .browser {
+        position: absolute;
+        left: 300px;
+        top: 216px;
+        width: 1320px;
+        border: 1px solid var(--border-strong);
+        border-radius: 16px;
+        background: var(--surface);
+        box-shadow: var(--shadow-float);
+        overflow: hidden;
+      }
+      .browser-bar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        height: 40px;
+        padding: 0 16px;
+        border-bottom: 1px solid var(--border);
+        background: #fbfbfb;
+      }
+      .browser-bar i {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #e0e0e0;
+      }
+      .browser-url {
+        margin: 0 auto;
+        padding: 4px 18px;
+        border-radius: 6px;
+        background: var(--sunken);
+        font-family: var(--font-mono);
+        font-size: 15px;
+        color: var(--muted);
+      }
+      .browser-view {
+        position: relative;
+        width: 1318px;
+        height: 655px;
+        overflow: hidden;
+      }
+      /* z-index 0 gom ảnh và khung đánh dấu vào một lớp, để thanh kéo và nhãn luôn nằm trên */
+      .view-layers {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .view-layers img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+      }
+
+      /* Khung đánh dấu vùng: nét đứt là lỗi, nét liền là chỗ đã sửa */
+      .mark,
+      .ring {
+        z-index: 2;
+      }
+      .mark {
+        position: absolute;
+        border: 3px dashed var(--heat);
+        border-radius: 12px;
+        background: rgb(250 93 25 / 0.07);
+      }
+      .mark--fix {
+        border-style: solid;
+        background: rgb(250 93 25 / 0.05);
+      }
+      .mark-number {
+        position: absolute;
+        left: -18px;
+        top: -18px;
+        display: grid;
+        place-items: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: var(--heat);
+        color: #fff;
+        font-family: var(--font-mono);
+        font-size: 19px;
+        font-weight: 600;
+        box-shadow: 0 0 0 4px #fff;
+      }
+      .mark-number--end {
+        left: auto;
+        right: -18px;
+      }
+      .ring {
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        margin: -32px 0 0 -32px;
+        border: 3px solid var(--heat);
+        border-radius: 50%;
+      }
+
+      /* Thẻ liệt kê lỗi / chỗ đã sửa, nổi ở góc dưới phải khung ảnh */
+      .note-card {
+        position: absolute;
+        right: 26px;
+        bottom: 26px;
+        width: 620px;
+        padding: 10px 26px;
+        border: 1px solid var(--border-strong);
+        border-radius: 16px;
+        background: var(--surface);
+        box-shadow: var(--shadow-float);
+      }
+      .note-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 16px 0;
+        font-size: 25px;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+      }
+      .note-row + .note-row {
+        border-top: 1px solid var(--border);
+      }
+      .note-row b {
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        background: var(--heat-soft);
+        border: 1px solid var(--heat-border);
+        color: var(--heat-ink);
+        font-family: var(--font-mono);
+        font-size: 17px;
+        font-weight: 600;
+      }
+      .note-row svg {
+        width: 22px;
+        height: 22px;
+        margin-left: auto;
+        color: var(--heat);
+        stroke-width: 2.5;
+      }
+
+      /* Thanh kéo so sánh: y như section Trước / sau trên landing */
+      .handle {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 0;
+      }
+      .handle-line {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -2px;
+        width: 4px;
+        background: #fff;
+        box-shadow: 0 0 0 1px rgb(0 0 0 / 0.08), 0 0 28px rgb(0 0 0 / 0.12);
+      }
+      .handle-knob {
+        position: absolute;
+        top: 50%;
+        left: -34px;
+        display: grid;
+        place-items: center;
+        width: 68px;
+        height: 68px;
+        margin-top: -34px;
+        border: 1px solid var(--border-strong);
+        border-radius: 50%;
+        background: var(--surface);
+        box-shadow: var(--shadow-float);
+        color: var(--foreground);
+      }
+      .handle-knob svg {
+        width: 30px;
+        height: 30px;
+      }
+      .stage-tag {
+        position: absolute;
+        bottom: 22px;
+        padding: 8px 14px;
+        border-radius: 8px;
+        font-family: var(--font-mono);
+        font-size: 20px;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        color: #fff;
+      }
+      .stage-tag--left {
+        left: 22px;
+        background: rgb(38 38 38 / 0.85);
+      }
+      .stage-tag--right {
+        right: 22px;
+        background: var(--heat);
+      }
+
+      /* Cảnh 1: ô gõ đề */
+      .prompt-box {
+        position: absolute;
+        left: 400px;
+        top: 720px;
+        width: 1120px;
+        padding: 26px 34px 30px;
+        background: var(--surface);
+        border: 1px solid var(--border-strong);
+        border-radius: 18px;
+        box-shadow: var(--shadow-float);
+      }
+      .prompt-head {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 14px;
+        font-family: var(--font-mono);
+        font-size: 17px;
+        color: var(--faint);
+      }
+      .prompt-head .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--heat);
+      }
+      .prompt-head .enter-key {
+        margin-left: auto;
+        padding: 5px 12px;
+        border: 1px solid var(--border-strong);
+        border-radius: 8px;
+        color: var(--muted);
+      }
+      .prompt-text {
+        font-family: var(--font-mono);
+        font-size: 31px;
+        line-height: 1.45;
+      }
+      .prompt-text .chevron {
+        color: var(--heat);
+        margin-right: 14px;
+      }
+      .prompt-text .command {
+        color: var(--heat-ink);
+        font-weight: 500;
+      }
+      .caret {
+        display: inline-block;
+        width: 15px;
+        height: 34px;
+        margin-left: 3px;
+        vertical-align: -5px;
+        background: var(--heat);
+      }
+
+      /* Cảnh 2: thẻ phương án wireframe */
+      .option-card {
+        position: absolute;
+        right: 260px;
+        top: 620px;
+        width: 720px;
+        padding: 26px 30px 28px;
+        border: 1px solid var(--border-strong);
+        border-radius: 18px;
+        background: var(--surface);
+        box-shadow: var(--shadow-float);
+      }
+      .option-switch {
+        display: inline-flex;
+        gap: 4px;
+        padding: 4px;
+        border-radius: 12px;
+        background: #0000000a;
+        font-family: var(--font-mono);
+        font-size: 18px;
+        font-weight: 500;
+      }
+      .option-switch span {
+        display: grid;
+        place-items: center;
+        width: 42px;
+        height: 36px;
+        border-radius: 9px;
+        color: var(--muted);
+      }
+      .option-switch .is-active {
+        background: var(--surface);
+        color: var(--foreground);
+        box-shadow: 0 0 0 1px rgb(0 0 0 / 0.04), 0 1px 2px rgb(0 0 0 / 0.06), 0 2px 6px -2px rgb(0 0 0 / 0.08);
+      }
+      .option-title {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-top: 20px;
+        font-size: 30px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+      .recommend-tag {
+        padding: 5px 12px;
+        border: 1px solid var(--heat-border);
+        border-radius: 8px;
+        background: var(--heat-soft);
+        font-family: var(--font-mono);
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--heat-ink);
+        letter-spacing: 0.04em;
+      }
+      .option-reason {
+        margin-top: 12px;
+        font-size: 23px;
+        line-height: 1.45;
+        color: var(--muted);
+      }
+
+      /* Cảnh 5: ba bước + lệnh cài */
+      .steps-row {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 26px;
+      }
+      .step-thumb {
+        width: 400px;
+      }
+      .step-thumb figure {
+        overflow: hidden;
+        border: 1px solid var(--border-strong);
+        border-radius: 12px;
+        background: var(--surface);
+        box-shadow: var(--shadow-card);
+      }
+      .step-thumb img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 2400 / 1193;
+        object-fit: cover;
+        object-position: top;
+      }
+      .step-thumb p {
+        margin-top: 14px;
+        text-align: center;
+        font-family: var(--font-mono);
+        font-size: 19px;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        color: var(--muted);
+      }
+      .step-thumb.is-final p {
+        color: var(--heat-ink);
+      }
+      .step-thumb.is-final figure {
+        border-color: var(--heat-border);
+        box-shadow: 0 0 0 4px var(--heat-soft), var(--shadow-float);
+      }
+      .step-arrow {
+        margin-bottom: 36px;
+        color: var(--faint);
+      }
+      .step-arrow svg {
+        width: 34px;
+        height: 34px;
+      }
+      .end-title {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 360px;
+        text-align: center;
+        font-size: 76px;
+        font-weight: 600;
+        line-height: 1.05;
+        letter-spacing: -0.035em;
+      }
+      .end-title .accent {
+        color: var(--heat);
+      }
+      .end-commands {
+        position: absolute;
+        left: 530px;
+        top: 530px;
+        width: 860px;
+        list-style: none;
+        border: 1px solid var(--border-strong);
+        border-radius: 14px;
+        background: var(--surface);
+        overflow: hidden;
+      }
+      .end-commands li {
+        display: flex;
+        gap: 18px;
+        padding: 18px 26px;
+        font-family: var(--font-mono);
+        font-size: 25px;
+      }
+      .end-commands li + li {
+        border-top: 1px solid var(--border);
+      }
+      .end-commands li span {
+        color: var(--heat);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="stage">
+      <div class="rail rail--vertical" style="left: 240px"></div>
+      <div class="rail rail--vertical" style="left: 1680px"></div>
+      <div class="rail rail--horizontal" style="top: 120px"></div>
+      <div class="rail rail--horizontal" style="top: 960px"></div>
+      <div class="cross" style="left: 240px; top: 120px"></div>
+      <div class="cross" style="left: 1680px; top: 120px"></div>
+      <div class="cross" style="left: 240px; top: 960px"></div>
+      <div class="cross" style="left: 1680px; top: 960px"></div>
+
+      <div class="topbar">
+        <div class="step-label" id="step-label"></div>
+        <div class="brand">
+          <img src="../../public/brand/logo-mark.png" alt="" />
+          evon:ui-ux
+        </div>
+      </div>
+
+      <!-- Chữ đầu cảnh 1–4, đổi theo cảnh -->
+      <section class="scene" id="scene-before"><p class="caption" id="caption-before" data-text="captionBefore"></p></section>
+      <section class="scene" id="scene-wireframe"><p class="caption" id="caption-wireframe" data-text="captionWireframe"></p></section>
+      <section class="scene" id="scene-build"><p class="caption" id="caption-build" data-text="captionBuild"></p></section>
+      <section class="scene" id="scene-compare"><p class="caption" id="caption-compare" data-text="captionCompare"></p></section>
+
+      <!-- Khung trình duyệt sống qua cảnh 1–4 -->
+      <div class="browser" id="browser">
+        <div class="browser-bar">
+          <i></i><i></i><i></i>
+          <span class="browser-url" data-text="browserLabel"></span>
+        </div>
+        <div class="browser-view">
+          <div class="view-layers">
+            <!-- Ảnh mới nằm trên ảnh cũ để lúc quét lộ dần; cảnh so sánh thì đẩy ảnh trước lên trên -->
+            <img id="shot-before" src="../../public/before-after/phong-tro-before.webp" alt="" />
+            <img id="shot-wireframe" src="../../public/before-after/phong-tro-wireframe.webp" alt="" />
+            <img id="shot-after" src="../../public/before-after/phong-tro-after.webp" alt="" />
+
+            <!-- Lỗi của màn cũ -->
+            <div class="mark" id="problem-1" style="left: 11.8%; top: 12%; width: 87%; height: 23.6%"><span class="mark-number">1</span></div>
+            <div class="mark" id="problem-2" style="left: 11.8%; top: 36%; width: 87.2%; height: 29.4%"><span class="mark-number">2</span></div>
+            <div class="ring" id="problem-ring-1" style="left: 82.4%; top: 1.6%"></div>
+            <div class="ring" id="problem-ring-2" style="left: 5.4%; top: 13.8%"></div>
+            <div class="ring" id="problem-ring-3" style="left: 15.4%; top: 74.8%"></div>
+            <div class="ring" id="problem-ring-4" style="left: 82.6%; top: 29.2%"></div>
+
+            <!-- Chỗ đã sửa ở màn mới -->
+            <div class="mark mark--fix" id="fix-1" style="left: 11.2%; top: 8%; width: 88%; height: 10%"><span class="mark-number">1</span></div>
+            <div class="mark mark--fix" id="fix-2" style="left: 11.2%; top: 22.8%; width: 88%; height: 32.4%"><span class="mark-number">2</span></div>
+            <div class="mark mark--fix" id="fix-3" style="left: 11.5%; top: 41.2%; width: 11.6%; height: 4.6%"><span class="mark-number mark-number--end">3</span></div>
+          </div>
+
+          <div class="note-card" id="problem-card">
+            <div class="note-row" id="problem-row-1"><b>1</b><span data-text="problem1"></span></div>
+            <div class="note-row" id="problem-row-2"><b>2</b><span data-text="problem2"></span></div>
+            <div class="note-row" id="problem-row-3"><b>3</b><span data-text="problem3"></span></div>
+          </div>
+          <div class="note-card" id="fix-card">
+            <div class="note-row" id="fix-row-1"><b>1</b><span data-text="fix1"></span><i data-lucide="check"></i></div>
+            <div class="note-row" id="fix-row-2"><b>2</b><span data-text="fix2"></span><i data-lucide="check"></i></div>
+            <div class="note-row" id="fix-row-3"><b>3</b><span data-text="fix3"></span><i data-lucide="check"></i></div>
+          </div>
+
+          <span class="stage-tag stage-tag--left" id="tag-left" data-text="stageBefore"></span>
+          <span class="stage-tag stage-tag--right" id="tag-right" data-text="stageAfter"></span>
+          <div class="handle" id="handle">
+            <span class="handle-line"></span>
+            <span class="handle-knob"><i data-lucide="chevrons-left-right"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nổi trên khung trình duyệt -->
+      <div class="prompt-box" id="prompt-box">
+        <div class="prompt-head"><span class="dot"></span>Claude Code<span class="enter-key" id="enter-key">↵ Enter</span></div>
+        <p class="prompt-text">
+          <span class="chevron">&gt;</span><span class="command">/evon:ui-ux </span><span id="typed-prompt"></span
+          ><span class="caret" id="caret"></span>
+        </p>
+      </div>
+
+      <div class="option-card" id="option-card">
+        <div class="option-switch">
+          <span class="is-active">A</span><span>B</span><span>C</span><span>D</span><span>E</span>
+        </div>
+        <p class="option-title"><span data-text="optionTitle"></span><span class="recommend-tag" data-text="optionTag"></span></p>
+        <p class="option-reason" data-text="optionReason"></p>
+      </div>
+
+      <!-- 5. Kết -->
+      <section class="scene" id="scene-end">
+        <div class="steps-row">
+          <div class="step-thumb" id="thumb-1">
+            <figure><img src="../../public/before-after/phong-tro-before.webp" alt="" /></figure>
+            <p data-text="stageBefore"></p>
+          </div>
+          <span class="step-arrow" id="arrow-1"><i data-lucide="arrow-right"></i></span>
+          <div class="step-thumb" id="thumb-2">
+            <figure><img src="../../public/before-after/phong-tro-wireframe.webp" alt="" /></figure>
+            <p data-text="stageWireframe"></p>
+          </div>
+          <span class="step-arrow" id="arrow-2"><i data-lucide="arrow-right"></i></span>
+          <div class="step-thumb is-final" id="thumb-3">
+            <figure><img src="../../public/before-after/phong-tro-after.webp" alt="" /></figure>
+            <p data-text="stageAfter"></p>
+          </div>
+        </div>
+        <h1 class="end-title" id="end-title">
+          <span data-text="endLead"></span>
+          <span class="accent" data-text="endAccent"></span>
+        </h1>
+        <ul class="end-commands" id="end-commands">
+          <li><span>&gt;</span>/plugin marketplace add evondev/evondevKit</li>
+          <li><span>&gt;</span>/plugin install evon@evondevkit</li>
+        </ul>
+      </section>
+
+      <div class="footer">
+        <div class="footer-name">evondevKit<span>github.com/evondev/evondevKit</span></div>
+        <div class="progress" id="progress"></div>
+      </div>
+    </div>
+
+    <script>
+      const FPS = 30;
+      const DURATION = 23;
+
+      const copyByLocale = {
+        vi: {
+          steps: ["TRƯỚC", "WIREFRAME", "DỰNG", "SO SÁNH", "CÀI ĐẶT"],
+          browserLabel: "68Lane · Phòng trọ",
+          captionBefore: "Màn Phòng trọ cũ của 68Lane",
+          problem1: "Bộ lọc chiếm một phần ba màn",
+          problem2: "Ảnh vẽ minh hoạ, 4 phòng một hàng",
+          problem3: "Đỏ khắp nơi, không gì nổi lên",
+          prompt: "làm lại màn phòng trọ cho gọn, dễ so giá",
+          captionWireframe: "Wireframe xám trước: chốt cấu trúc, chưa đụng màu",
+          optionTitle: "A · Lưới thẻ + hàng lọc gọn",
+          optionTag: "KHUYÊN DÙNG",
+          optionReason:
+            "Người dùng đến để lọc theo khu vực và giá rồi so giá, nên hàng lọc dính trên đầu danh sách và giá đứng đầu mỗi thẻ.",
+          captionBuild: "Dựng thật từ đúng wireframe đã chọn",
+          fix1: "Bộ lọc gọn còn hai hàng",
+          fix2: "7 phòng một hàng, trước là 4",
+          fix3: "Giá đứng đầu mỗi thẻ",
+          captionCompare: "Cùng 8 phòng, trước và sau",
+          stageBefore: "TRƯỚC",
+          stageWireframe: "WIREFRAME",
+          stageAfter: "SAU",
+          endLead: "Một câu đề,",
+          endAccent: "từ rối thành gọn",
+        },
+        en: {
+          steps: ["BEFORE", "WIREFRAME", "BUILD", "COMPARE", "INSTALL"],
+          browserLabel: "68Lane · Room listings",
+          captionBefore: "68Lane's old room listing screen",
+          problem1: "Filters take a third of the screen",
+          problem2: "Drawn placeholders, 4 rooms a row",
+          problem3: "Red everywhere, nothing stands out",
+          prompt: "tidy the room list, easy to compare",
+          captionWireframe: "Grey wireframe first: settle the structure, no color yet",
+          optionTitle: "A · Card grid + compact filters",
+          optionTag: "RECOMMENDED",
+          optionReason:
+            "People come to filter by area and price, then compare prices, so the filter row sticks above the list and the price leads each card.",
+          captionBuild: "Built from the exact wireframe you picked",
+          fix1: "Filters fit in two rows",
+          fix2: "7 rooms a row, up from 4",
+          fix3: "Price leads every card",
+          captionCompare: "Same 8 rooms, before and after",
+          stageBefore: "BEFORE",
+          stageWireframe: "WIREFRAME",
+          stageAfter: "AFTER",
+          endLead: "One prompt,",
+          endAccent: "from messy to clean",
+        },
+      };
+
+      const locale = new URLSearchParams(location.search).get("lang") === "en" ? "en" : "vi";
+      const copy = copyByLocale[locale];
+
+      function fillCopy() {
+        document.documentElement.lang = locale;
+        document.querySelectorAll("[data-text]").forEach((element) => {
+          element.textContent = copy[element.dataset.text];
+        });
+        document.getElementById("progress").innerHTML = copy.steps
+          .map(() => `<span class="progress-segment"><span class="progress-fill"></span></span>`)
+          .join("");
+        lucide.createIcons();
+      }
+
+      /* ===== Tiện ích thời gian (giống ui-ux-demo) ===== */
+
+      const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
+      const progressBetween = (time, start, duration) => clamp((time - start) / duration);
+      const easeOut = (value) => 1 - Math.pow(1 - value, 3);
+      const easeInOut = (value) => (value < 0.5 ? 4 * value ** 3 : 1 - Math.pow(-2 * value + 2, 3) / 2);
+      const easeOutBack = (value) => 1 + 2.70158 * Math.pow(value - 1, 3) + 1.70158 * Math.pow(value - 1, 2);
+      const lerp = (from, to, amount) => from + (to - from) * amount;
+
+      function $(id) {
+        return document.getElementById(id);
+      }
+
+      function applyRise(element, time, start, duration = 0.7, distance = 18) {
+        const amount = easeOut(progressBetween(time, start, duration));
+
+        element.style.opacity = amount;
+        element.style.transform = `translateY(${(1 - amount) * distance}px)`;
+        element.style.filter = amount < 1 ? `blur(${(1 - amount) * 6}px)` : "none";
+      }
+
+      function applyPop(element, time, start, duration = 0.45) {
+        const amount = progressBetween(time, start, duration);
+
+        element.style.opacity = easeOut(clamp(amount * 1.6));
+        element.style.transform = `scale(${0.8 + 0.2 * easeOutBack(amount)})`;
+      }
+
+      function exitAmount(time, start, duration = 0.5) {
+        return easeInOut(progressBetween(time, start, duration));
+      }
+
+      // Nội suy qua các mốc [giây, giá trị], mỗi đoạn easeInOut. Dùng cho thanh kéo tự lướt.
+      function keyframeValue(time, keyframes) {
+        if (time <= keyframes[0][0]) return keyframes[0][1];
+
+        for (let index = 1; index < keyframes.length; index++) {
+          const [endTime, endValue] = keyframes[index];
+          const [startTime, startValue] = keyframes[index - 1];
+
+          if (time <= endTime) return lerp(startValue, endValue, easeInOut((time - startTime) / (endTime - startTime)));
+        }
+
+        return keyframes[keyframes.length - 1][1];
+      }
+
+      const scenes = [
+        { id: "scene-before", start: 0, end: 5.6 },
+        { id: "scene-wireframe", start: 5.6, end: 10.4 },
+        { id: "scene-build", start: 10.4, end: 15.2 },
+        { id: "scene-compare", start: 15.2, end: 19.2 },
+        { id: "scene-end", start: 19.2, end: DURATION },
+      ];
+
+      // Hai lần quét: thanh kéo đi từ phải sang trái, ảnh mới lộ dần ở bên phải thanh.
+      const wipeToWireframe = { start: 5.6, duration: 1.3 };
+      const wipeToAfter = { start: 10.4, duration: 1.3 };
+      // Cảnh so sánh: % bề ngang phần ảnh trước bên trái thanh.
+      const compareKeyframes = [
+        [15.35, 0],
+        [16.35, 66],
+        [17.25, 26],
+        [18.05, 52],
+      ];
+
+      /* ===== Khung trình duyệt và ảnh ===== */
+
+      function setHandle(percent, opacity) {
+        const handle = $("handle");
+
+        handle.style.left = `${percent}%`;
+        handle.style.opacity = opacity;
+      }
+
+      function renderBrowser(time) {
+        const browser = $("browser");
+        const enter = easeOut(progressBetween(time, 0.15, 0.8));
+        const exit = exitAmount(time, 18.8, 0.5);
+
+        browser.style.display = time < 19.3 ? "block" : "none";
+        browser.style.opacity = Math.min(enter, 1 - exit);
+        browser.style.transform = `translateY(${(1 - enter) * 28}px) scale(${1 - 0.05 * exit})`;
+        browser.style.filter = enter < 1 ? `blur(${(1 - enter) * 6}px)` : "none";
+
+        const wireframeWipe = easeInOut(progressBetween(time, wipeToWireframe.start, wipeToWireframe.duration));
+        const afterWipe = easeInOut(progressBetween(time, wipeToAfter.start, wipeToAfter.duration));
+        const isComparing = time >= 15.2;
+        const shotBefore = $("shot-before");
+        const shotWireframe = $("shot-wireframe");
+        const shotAfter = $("shot-after");
+
+        if (isComparing) {
+          const comparePercent = keyframeValue(time, compareKeyframes);
+
+          shotAfter.style.clipPath = "none";
+          shotWireframe.style.display = "none";
+          shotBefore.style.display = "block";
+          shotBefore.style.zIndex = 1;
+          shotBefore.style.clipPath = `inset(0 ${100 - comparePercent}% 0 0)`;
+          setHandle(comparePercent, progressBetween(time, 15.25, 0.3) * (1 - exit));
+        } else {
+          const wireframeEdge = (1 - wireframeWipe) * 100;
+          const afterEdge = (1 - afterWipe) * 100;
+
+          shotBefore.style.display = wireframeWipe < 1 ? "block" : "none";
+          shotBefore.style.zIndex = 0;
+          shotBefore.style.clipPath = "none";
+          shotWireframe.style.display = wireframeWipe > 0 && afterWipe < 1 ? "block" : "none";
+          shotWireframe.style.clipPath = `inset(0 0 0 ${wireframeEdge}%)`;
+          shotAfter.style.display = afterWipe > 0 ? "block" : "none";
+          shotAfter.style.clipPath = `inset(0 0 0 ${afterEdge}%)`;
+
+          const isWipingWireframe = wireframeWipe > 0 && wireframeWipe < 1;
+          const isWipingAfter = afterWipe > 0 && afterWipe < 1;
+
+          if (isWipingWireframe) setHandle(wireframeEdge, 1);
+          else if (isWipingAfter) setHandle(afterEdge, 1);
+          else setHandle(0, 0);
+        }
+
+        const tagOpacity = progressBetween(time, 15.35, 0.35) * (1 - exit);
+        $("tag-left").style.opacity = tagOpacity;
+        $("tag-right").style.opacity = tagOpacity;
+      }
+
+      /* ===== Từng cảnh ===== */
+
+      function renderCaption(id, time, start, end) {
+        const caption = $(id);
+
+        applyRise(caption, time, start + 0.1, 0.6, 14);
+        caption.style.opacity *= 1 - exitAmount(time, end - 0.4, 0.35);
+      }
+
+      function renderBefore(time) {
+        renderCaption("caption-before", time, 0, 5.6);
+
+        const marksExit = exitAmount(time, 3.7, 0.4);
+        const problemTimes = [1.0, 1.6, 2.2];
+
+        applyPop($("problem-1"), time, problemTimes[0]);
+        applyPop($("problem-2"), time, problemTimes[1]);
+        [1, 2, 3, 4].forEach((index) => applyPop($(`problem-ring-${index}`), time, problemTimes[2] + (index - 1) * 0.08));
+
+        applyRise($("problem-card"), time, 0.9, 0.6, 20);
+        [1, 2, 3].forEach((index) => applyRise($(`problem-row-${index}`), time, problemTimes[index - 1], 0.5, 12));
+
+        ["problem-1", "problem-2", "problem-card", ...[1, 2, 3, 4].map((index) => `problem-ring-${index}`)].forEach((id) => {
+          $(id).style.opacity *= 1 - marksExit;
+        });
+      }
+
+      function renderPrompt(time) {
+        const promptBox = $("prompt-box");
+        const isVisible = time >= 3.9 && time < 5.7;
+
+        promptBox.style.display = isVisible ? "block" : "none";
+
+        if (!isVisible) return;
+
+        applyRise(promptBox, time, 3.9, 0.5, 24);
+        promptBox.style.opacity *= 1 - exitAmount(time, 5.25, 0.35);
+
+        const typedCount = Math.round(copy.prompt.length * progressBetween(time, 4.2, 0.85));
+        const isPressingEnter = time >= 5.1 && time < 5.3;
+
+        $("typed-prompt").textContent = copy.prompt.slice(0, typedCount);
+        $("caret").style.opacity = Math.floor(time * 2.4) % 2 === 0 || typedCount < copy.prompt.length ? 1 : 0;
+        $("enter-key").style.background = isPressingEnter ? "var(--heat-soft)" : "var(--surface)";
+        $("enter-key").style.borderColor = isPressingEnter ? "var(--heat-border)" : "var(--border-strong)";
+      }
+
+      function renderWireframe(time) {
+        renderCaption("caption-wireframe", time, 5.6, 10.4);
+      }
+
+      function renderOptionCard(time) {
+        const optionCard = $("option-card");
+        const isVisible = time >= 7.1 && time < 10.4;
+
+        optionCard.style.display = isVisible ? "block" : "none";
+
+        if (!isVisible) return;
+
+        applyRise(optionCard, time, 7.1, 0.7, 24);
+        optionCard.style.opacity *= 1 - exitAmount(time, 9.9, 0.4);
+      }
+
+      function renderBuild(time) {
+        renderCaption("caption-build", time, 10.4, 15.2);
+
+        const fixTimes = [12.0, 12.5, 13.0];
+        const fixesExit = exitAmount(time, 14.65, 0.4);
+
+        [1, 2, 3].forEach((index) => {
+          applyPop($(`fix-${index}`), time, fixTimes[index - 1]);
+          applyRise($(`fix-row-${index}`), time, fixTimes[index - 1], 0.5, 12);
+          $(`fix-${index}`).style.opacity *= 1 - fixesExit;
+        });
+
+        applyRise($("fix-card"), time, 11.9, 0.6, 20);
+        $("fix-card").style.opacity *= 1 - fixesExit;
+      }
+
+      function renderCompare(time) {
+        renderCaption("caption-compare", time, 15.2, 19.2);
+      }
+
+      function renderEnd(time) {
+        applyRise($("thumb-1"), time, 19.35, 0.7, 24);
+        applyRise($("arrow-1"), time, 19.6, 0.5, 10);
+        applyRise($("thumb-2"), time, 19.65, 0.7, 24);
+        applyRise($("arrow-2"), time, 19.9, 0.5, 10);
+        applyRise($("thumb-3"), time, 19.95, 0.7, 24);
+        applyRise($("end-title"), time, 20.35, 0.8, 24);
+        applyRise($("end-commands"), time, 20.8, 0.7, 20);
+
+        // Mờ về nền ở nửa giây cuối để lặp lại cảnh 1 không bị giật.
+        $("scene-end").style.opacity = 1 - exitAmount(time, DURATION - 0.55, 0.5);
+      }
+
+      // Khung, ghi chú nằm trong khung trình duyệt nên tự ẩn/hiện theo mốc, không theo cảnh.
+      function hideOutside(ids, time, start, end) {
+        const isVisible = time >= start && time < end;
+
+        ids.forEach((id) => {
+          $(id).style.display = isVisible ? "" : "none";
+        });
+      }
+
+      function renderChrome(time) {
+        const stepIndex = scenes.findLastIndex((scene) => time >= scene.start);
+        const label = $("step-label");
+        const nextSceneStart = scenes[stepIndex + 1]?.start ?? DURATION;
+        const fadeIn = progressBetween(time, scenes[stepIndex].start, 0.3);
+        const fadeOut = 1 - progressBetween(time, nextSceneStart - 0.25, 0.25);
+        const step = String(stepIndex + 1).padStart(2, "0");
+        const total = String(scenes.length).padStart(2, "0");
+
+        label.innerHTML = `[ ${step} / ${total} ] · <strong>${copy.steps[stepIndex]}</strong>`;
+        label.style.opacity = Math.min(fadeIn, fadeOut);
+
+        document.querySelectorAll(".progress-fill").forEach((fill, index) => {
+          const scene = scenes[index];
+
+          fill.style.transform = `scaleX(${progressBetween(time, scene.start, scene.end - scene.start)})`;
+          fill.style.opacity = 1 - exitAmount(time, DURATION - 0.55, 0.5);
+        });
+      }
+
+      const sceneRenderers = {
+        "scene-before": renderBefore,
+        "scene-wireframe": renderWireframe,
+        "scene-build": renderBuild,
+        "scene-compare": renderCompare,
+        "scene-end": renderEnd,
+      };
+
+      function renderFrame(time) {
+        scenes.forEach((scene) => {
+          $(scene.id).style.display = time >= scene.start && time < scene.end ? "block" : "none";
+        });
+
+        hideOutside(["problem-1", "problem-2", "problem-card", "problem-ring-1", "problem-ring-2", "problem-ring-3", "problem-ring-4"], time, 0, 4.2);
+        hideOutside(["fix-1", "fix-2", "fix-3", "fix-card"], time, 11.8, 15.1);
+
+        renderBrowser(time);
+        scenes.forEach((scene) => {
+          if (time >= scene.start && time < scene.end) sceneRenderers[scene.id](time);
+        });
+        renderPrompt(time);
+        renderOptionCard(time);
+        renderChrome(time);
+      }
+
+      /* ===== Khởi động ===== */
+
+      async function waitForAssets() {
+        await document.fonts.ready;
+        await Promise.all([...document.images].map((image) => image.decode().catch(() => {})));
+      }
+
+      fillCopy();
+
+      window.renderFrame = renderFrame;
+      window.videoConfig = { fps: FPS, duration: DURATION };
+      window.videoReady = waitForAssets().then(() => true);
+
+      // Xem trước: tự chạy và lặp. Script render gọi renderFrame từng frame, không dùng vòng này.
+      if (!new URLSearchParams(location.search).has("render")) {
+        window.videoReady.then(() => {
+          const startedAt = performance.now();
+
+          function tick(now) {
+            renderFrame(((now - startedAt) / 1000) % DURATION);
+            requestAnimationFrame(tick);
+          }
+
+          requestAnimationFrame(tick);
+        });
+      } else {
+        renderFrame(0);
+      }
+    </script>
+  </body>
+</html>

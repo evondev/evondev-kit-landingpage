@@ -1,0 +1,1838 @@
+<!doctype html>
+<!--
+  Video giới thiệu evon:ui-ux, 1920×1080, 27 giây.
+  Mở thẳng file này trong trình duyệt để xem trước (tự lặp). Thêm ?lang=en cho bản tiếng Anh.
+  Render ra MP4 / WebM: npm run render:video (xem scripts/render-video.mjs).
+
+  Mọi chuyển động tính từ một hàm renderFrame(giây), không dùng CSS animation, nên script
+  render tua tới đúng từng frame được. Style theo landing: nền #f9f9f9, đường ray có dấu +,
+  nhãn mono [ 01 / 06 ], một màu nhấn cam.
+-->
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1920" />
+    <title>evon:ui-ux video</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&subset=vietnamese&display=block"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+    <style>
+      :root {
+        --heat: #fa5d19;
+        --heat-ink: #c2410c;
+        --heat-soft: #fa5d1914;
+        --heat-border: #fa5d1966;
+        --background: #f9f9f9;
+        --surface: #ffffff;
+        --sunken: #f4f4f4;
+        --foreground: #262626;
+        --body: #3a3a3a;
+        --muted: #6b6b6b;
+        --faint: #a3a3a3;
+        --border: #ededed;
+        --border-strong: #e3e3e3;
+        --rail: #e6e6e6;
+        --shadow-card: 0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px -12px rgb(0 0 0 / 0.08);
+        --shadow-float: 0 1px 2px rgb(0 0 0 / 0.04), 0 24px 60px -24px rgb(0 0 0 / 0.18);
+        --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+        --font-mono: "JetBrains Mono", ui-monospace, monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: var(--background);
+        font-family: var(--font-sans);
+        color: var(--foreground);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      #stage {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: var(--background);
+      }
+
+      /* ===== Khung: đường ray, dấu +, thanh trên, thanh dưới ===== */
+      .rail {
+        position: absolute;
+        background: var(--rail);
+      }
+      .rail--vertical {
+        top: 0;
+        bottom: 0;
+        width: 1px;
+      }
+      .rail--horizontal {
+        left: 0;
+        right: 0;
+        height: 1px;
+      }
+      .cross {
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        transform: translate(-7px, -7px);
+      }
+      .cross::before,
+      .cross::after {
+        content: "";
+        position: absolute;
+        background: #bdbdbd;
+      }
+      .cross::before {
+        left: 7px;
+        top: 0;
+        width: 1px;
+        height: 15px;
+      }
+      .cross::after {
+        top: 7px;
+        left: 0;
+        height: 1px;
+        width: 15px;
+      }
+
+      .topbar,
+      .footer {
+        position: absolute;
+        left: 240px;
+        right: 240px;
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 28px;
+      }
+      .topbar {
+        top: 0;
+      }
+      .footer {
+        bottom: 0;
+      }
+
+      .step-label {
+        font-family: var(--font-mono);
+        font-size: 19px;
+        letter-spacing: 0.04em;
+        color: var(--muted);
+      }
+      .step-label strong {
+        color: var(--heat-ink);
+        font-weight: 500;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: var(--font-mono);
+        font-size: 19px;
+        color: var(--foreground);
+      }
+      .brand img {
+        width: 34px;
+        height: 34px;
+      }
+
+      .footer-name {
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+      .footer-name span {
+        margin-left: 14px;
+        font-family: var(--font-mono);
+        font-size: 16px;
+        font-weight: 400;
+        color: var(--faint);
+      }
+
+      .progress {
+        display: flex;
+        gap: 8px;
+      }
+      .progress-segment {
+        position: relative;
+        width: 56px;
+        height: 4px;
+        border-radius: 2px;
+        background: #e4e4e4;
+        overflow: hidden;
+      }
+      .progress-fill {
+        position: absolute;
+        inset: 0;
+        background: var(--heat);
+        transform-origin: left center;
+        transform: scaleX(0);
+      }
+
+      /* ===== Cảnh ===== */
+      .scene {
+        position: absolute;
+        left: 0;
+        top: 120px;
+        width: 1920px;
+        height: 840px;
+        display: none;
+      }
+
+      .caption {
+        position: absolute;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 30px;
+        font-weight: 500;
+        color: var(--muted);
+        letter-spacing: -0.01em;
+      }
+
+      /* Cảnh 1: gõ đề */
+      .prompt-box {
+        position: absolute;
+        left: 360px;
+        top: 250px;
+        width: 1200px;
+        min-height: 300px;
+        padding: 34px 40px 76px;
+        background: var(--surface);
+        border: 1px solid var(--border-strong);
+        border-radius: 18px;
+        box-shadow: var(--shadow-float);
+      }
+      .prompt-head {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 22px;
+        font-family: var(--font-mono);
+        font-size: 17px;
+        color: var(--faint);
+      }
+      .prompt-head .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--heat);
+      }
+      .prompt-text {
+        font-family: var(--font-mono);
+        font-size: 34px;
+        line-height: 1.5;
+        color: var(--foreground);
+      }
+      .prompt-text .chevron {
+        color: var(--heat);
+        margin-right: 16px;
+      }
+      .prompt-text .command {
+        color: var(--heat-ink);
+        font-weight: 500;
+      }
+      .caret {
+        display: inline-block;
+        width: 16px;
+        height: 38px;
+        margin-left: 3px;
+        vertical-align: -6px;
+        background: var(--heat);
+      }
+      .enter-key {
+        position: absolute;
+        right: 28px;
+        bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border: 1px solid var(--border-strong);
+        border-radius: 10px;
+        font-family: var(--font-mono);
+        font-size: 17px;
+        color: var(--muted);
+        background: var(--surface);
+      }
+
+      /* Cảnh 2: brief */
+      .brief-card {
+        position: absolute;
+        left: 400px;
+        top: 90px;
+        width: 1120px;
+        padding: 40px 48px 36px;
+        background: var(--surface);
+        border: 1px solid var(--border-strong);
+        border-radius: 18px;
+        box-shadow: var(--shadow-float);
+      }
+      .brief-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 32px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+      .gate-tag {
+        padding: 6px 12px;
+        border: 1px solid var(--heat-border);
+        border-radius: 8px;
+        background: var(--heat-soft);
+        font-family: var(--font-mono);
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--heat-ink);
+        letter-spacing: 0.04em;
+      }
+      .audit-line {
+        margin-top: 14px;
+        font-family: var(--font-mono);
+        font-size: 18px;
+        color: var(--muted);
+      }
+      .brief-rows {
+        margin-top: 28px;
+        border-top: 1px solid var(--border);
+      }
+      .brief-row {
+        display: grid;
+        grid-template-columns: 200px 1fr auto;
+        align-items: center;
+        gap: 24px;
+        padding: 20px 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 25px;
+      }
+      .brief-row dt {
+        color: var(--muted);
+      }
+      .brief-row dd {
+        color: var(--foreground);
+        font-weight: 500;
+      }
+      .source-tag {
+        padding: 5px 12px;
+        border-radius: 999px;
+        background: var(--sunken);
+        font-size: 17px;
+        color: var(--muted);
+      }
+      .brief-foot {
+        margin-top: 22px;
+        font-size: 21px;
+        color: var(--muted);
+      }
+
+      .reply-bubble {
+        position: absolute;
+        padding: 16px 26px;
+        border-radius: 18px 18px 4px 18px;
+        background: var(--foreground);
+        color: #ffffff;
+        font-family: var(--font-mono);
+        font-size: 26px;
+        font-weight: 500;
+        box-shadow: var(--shadow-float);
+        white-space: nowrap;
+        transform-origin: 100% 100%;
+      }
+
+      /* Cảnh 3: wireframe */
+      .toolbar {
+        position: absolute;
+        top: 140px;
+        left: 50%;
+        display: flex;
+        gap: 14px;
+        transform: translateX(-50%);
+      }
+      .segmented {
+        position: relative;
+        display: flex;
+        padding: 5px;
+        border: 1px solid var(--border-strong);
+        border-radius: 12px;
+        background: var(--sunken);
+      }
+      .segmented-thumb {
+        position: absolute;
+        top: 5px;
+        bottom: 5px;
+        border-radius: 8px;
+        background: var(--surface);
+        box-shadow: 0 0 0 1px rgb(0 0 0 / 0.04), 0 1px 2px rgb(0 0 0 / 0.06), 0 2px 6px -2px rgb(0 0 0 / 0.08);
+      }
+      .segmented-item {
+        position: relative;
+        padding: 9px 20px;
+        font-size: 19px;
+        font-weight: 500;
+        color: var(--muted);
+      }
+      .segmented-item.is-active {
+        color: var(--foreground);
+      }
+
+      .option-card {
+        position: absolute;
+        top: 250px;
+        width: 448px;
+        padding: 18px 20px 20px;
+        background: var(--surface);
+        border: 1px solid var(--border-strong);
+        border-radius: 16px;
+        box-shadow: var(--shadow-card);
+      }
+      .option-card::after {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border: 2px solid var(--heat);
+        border-radius: 16px;
+        opacity: var(--selected, 0);
+        pointer-events: none;
+      }
+      .option-head {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 14px;
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+      .option-letter {
+        display: grid;
+        place-items: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background: var(--sunken);
+        font-family: var(--font-mono);
+        font-size: 17px;
+        color: var(--foreground);
+      }
+      .option-card.is-selected .option-letter {
+        background: var(--heat);
+        color: #ffffff;
+      }
+      .option-canvas {
+        position: relative;
+        width: 408px;
+        height: 255px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+      }
+      .option-canvas > .wf,
+      .option-canvas > .wf-layer {
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform-origin: 0 0;
+        transform: scale(0.35417); /* 408 / 1152 */
+      }
+      .option-note {
+        margin-top: 14px;
+        font-size: 17px;
+        color: var(--muted);
+      }
+
+      /* Cảnh 4: màn thật */
+      .browser {
+        position: absolute;
+        left: 384px;
+        top: 42px;
+        width: 1152px;
+        height: 756px;
+        border: 1px solid var(--border-strong);
+        border-radius: 14px;
+        background: var(--surface);
+        box-shadow: var(--shadow-float);
+        overflow: hidden;
+        transform-origin: 0 0;
+      }
+      .browser-bar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        height: 36px;
+        padding: 0 14px;
+        border-bottom: 1px solid var(--border);
+        background: #fbfbfb;
+      }
+      .browser-bar i {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: #e0e0e0;
+      }
+      .browser-url {
+        margin: 0 auto;
+        padding: 3px 16px;
+        border-radius: 6px;
+        background: var(--sunken);
+        font-family: var(--font-mono);
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .browser-view {
+        position: relative;
+        width: 1152px;
+        height: 720px;
+        overflow: hidden;
+      }
+      .browser-view > * {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1152px;
+        height: 720px;
+      }
+      .reveal-line {
+        position: absolute;
+        left: 0;
+        width: 1152px;
+        height: 3px;
+        background: var(--heat);
+        box-shadow: 0 0 24px 4px rgb(250 93 25 / 0.45);
+      }
+      .float-badge {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 22px;
+        border: 1px solid var(--border-strong);
+        border-radius: 14px;
+        background: var(--surface);
+        box-shadow: var(--shadow-float);
+        font-size: 22px;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+      .float-badge svg {
+        width: 26px;
+        height: 26px;
+        color: var(--heat);
+      }
+
+      /* Cảnh 5: tường ảnh */
+      .wall {
+        position: absolute;
+        left: 0;
+        top: 140px;
+        width: 1920px;
+        height: 680px;
+        -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 260px, #000 1660px, transparent 1920px);
+        mask-image: linear-gradient(90deg, transparent 0, #000 260px, #000 1660px, transparent 1920px);
+      }
+      .wall-row {
+        position: absolute;
+        left: 0;
+        display: flex;
+        gap: 24px;
+      }
+      .wall-row img {
+        width: 336px;
+        height: 210px;
+        object-fit: cover;
+        object-position: top left;
+        border: 1px solid var(--border-strong);
+        border-radius: 12px;
+        background: var(--surface);
+        box-shadow: var(--shadow-card);
+      }
+
+      /* Cảnh 6: kết */
+      .end {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 150px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .end-logo {
+        width: 104px;
+        height: 104px;
+      }
+      .end-title {
+        margin-top: 36px;
+        font-size: 92px;
+        font-weight: 600;
+        line-height: 1.04;
+        letter-spacing: -0.035em;
+      }
+      .end-title .accent {
+        display: block;
+        color: var(--heat);
+      }
+      .end-commands {
+        margin-top: 52px;
+        width: 860px;
+        list-style: none;
+        border: 1px solid var(--border-strong);
+        border-radius: 14px;
+        background: var(--surface);
+        text-align: left;
+        overflow: hidden;
+      }
+      .end-commands li {
+        display: flex;
+        gap: 18px;
+        padding: 18px 26px;
+        font-family: var(--font-mono);
+        font-size: 25px;
+      }
+      .end-commands li + li {
+        border-top: 1px solid var(--border);
+      }
+      .end-commands li span {
+        color: var(--heat);
+      }
+
+      /* ===== Wireframe =====
+         Vẽ ở cỡ 1152×720, đúng cỡ ảnh màn thật hiện trong khung trình duyệt, số đo lấy theo
+         ảnh customers-light.webp để lúc lộ ảnh thật không nhảy chữ. Trong card thì thu nhỏ. */
+      .wf {
+        position: relative;
+        display: flex;
+        width: 1152px;
+        height: 720px;
+        overflow: hidden;
+        background: #f8f8f8;
+        font-family: var(--font-sans);
+        font-size: 11.5px;
+        color: #3f3f3f;
+        text-align: left;
+      }
+      .wf-layer {
+        width: 1152px;
+        height: 720px;
+      }
+      .wf svg {
+        width: 12px;
+        height: 12px;
+        stroke-width: 1.75;
+        flex-shrink: 0;
+      }
+      .wf-side {
+        position: relative;
+        width: 205px;
+        flex-shrink: 0;
+        padding: 0 10px;
+        border-right: 1px solid #ececec;
+        background: #ffffff;
+      }
+      .wf-logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        height: 50px;
+        margin: 0 -10px 11px;
+        padding: 0 13px;
+        border-bottom: 1px solid #efefef;
+        font-size: 11px;
+        font-weight: 600;
+        color: #262626;
+      }
+      .wf-logo b {
+        display: grid;
+        place-items: center;
+        width: 25px;
+        height: 25px;
+        border-radius: 6px;
+        background: #6b6b6b;
+        color: #fff;
+        font-size: 10px;
+      }
+      .wf-item {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        height: 31px;
+        margin-bottom: 4px;
+        padding: 0 9px;
+        border-radius: 8px;
+        color: #5b5b5b;
+        white-space: nowrap;
+      }
+      .wf-logo + .wf-item {
+        margin-bottom: 10px;
+      }
+      .wf-item em {
+        margin-left: auto;
+        font-style: normal;
+        font-size: 10px;
+        color: #8a8a8a;
+      }
+      .wf-item.is-active {
+        background: #f3f3f4;
+        color: #262626;
+        font-weight: 600;
+      }
+      .wf-item.is-bottom {
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        margin: 0;
+      }
+      .wf-group {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 20px;
+        margin: 14px 9px 11px;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        color: #6b6b6b;
+      }
+      .wf-main {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        min-width: 0;
+      }
+      .wf-header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        height: 50px;
+        flex-shrink: 0;
+        padding: 0 20px 0 22px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #262626;
+      }
+      .wf-header svg {
+        width: 13px;
+        height: 13px;
+        color: #6b6b6b;
+      }
+      .wf-avatar-me {
+        display: grid;
+        place-items: center;
+        width: 25px;
+        height: 25px;
+        margin-left: 16px;
+        border-radius: 50%;
+        background: #efefef;
+        font-size: 10px;
+        color: #6b6b6b;
+      }
+      .wf-body {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        min-height: 0;
+        padding: 20px 20px 0;
+      }
+      .wf-bar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        height: 32px;
+        flex-shrink: 0;
+      }
+      .wf-tabs {
+        display: flex;
+        align-self: stretch;
+        gap: 19px;
+        padding-left: 5px;
+        color: #6b6b6b;
+      }
+      .wf-tabs span {
+        display: flex;
+        align-items: center;
+        border-bottom: 2px solid transparent;
+      }
+      .wf-tabs em {
+        margin-left: 6px;
+        font-style: normal;
+        font-size: 10px;
+        color: #8a8a8a;
+      }
+      .wf-tabs .is-active {
+        border-bottom-color: #3a3a3a;
+        color: #262626;
+        font-weight: 600;
+      }
+      .wf-spacer {
+        flex: 1;
+      }
+      .wf-input {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        height: 32px;
+        padding: 0 13px;
+        border: 1px solid #e5e5e5;
+        border-radius: 7px;
+        background: #ffffff;
+        color: #8a8a8a;
+      }
+      .wf-select {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        height: 32px;
+        padding: 0 10px 0 12px;
+        border: 1px solid #e5e5e5;
+        border-radius: 7px;
+        background: #ffffff;
+        color: #4a4a4a;
+      }
+      .wf-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 141px;
+        height: 32px;
+        flex-shrink: 0;
+        border-radius: 7px;
+        background: #5a5a5a;
+        color: #ffffff;
+        font-weight: 500;
+      }
+      .wf-chips {
+        display: flex;
+        gap: 6px;
+        margin-top: 11px;
+      }
+      .wf-chips span {
+        display: flex;
+        align-items: center;
+        height: 28px;
+        padding: 0 11px;
+        border-radius: 999px;
+        background: #efefef;
+        color: #5b5b5b;
+        white-space: nowrap;
+      }
+      .wf-card {
+        min-height: 0;
+        border: 1px solid #ececec;
+        border-radius: 9px;
+        background: #ffffff;
+        overflow: hidden;
+      }
+      .wf-table {
+        margin-top: 16px;
+        flex-shrink: 0;
+      }
+      .wf-row {
+        display: grid;
+        grid-template-columns: 50px 307px 173px 120px 106px 106px 1fr;
+        align-items: center;
+        height: 49px;
+        border-bottom: 1px solid #f1f1f1;
+        white-space: nowrap;
+      }
+      .wf-row > * {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .wf-row--head {
+        height: 36px;
+        font-size: 10px;
+        font-weight: 500;
+        color: #6b6b6b;
+      }
+      .wf-row .is-number {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+        color: #262626;
+      }
+      .wf-row .is-date {
+        padding-left: 26px;
+        font-variant-numeric: tabular-nums;
+      }
+      .wf-row .is-more {
+        display: flex;
+        justify-content: center;
+        color: #6b6b6b;
+      }
+      .wf-check {
+        width: 12px;
+        height: 12px;
+        margin-left: 16px;
+        border: 1px solid #d9d9d9;
+        border-radius: 3px;
+      }
+      .wf-person {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding-right: 12px;
+      }
+      .wf-person b {
+        display: grid;
+        place-items: center;
+        width: 25px;
+        height: 25px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        background: #efefef;
+        box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.05);
+        color: #7a7a7a;
+        font-size: 9.5px;
+        font-weight: 600;
+      }
+      .wf-person span {
+        min-width: 0;
+      }
+      .wf-person strong,
+      .wf-person small {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .wf-person strong {
+        font-weight: 500;
+        color: #262626;
+      }
+      .wf-person small {
+        margin-top: 1px;
+        font-size: 9.2px;
+        color: #7a7a7a;
+      }
+      .wf-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        height: 18px;
+        padding: 0 7px;
+        border-radius: 999px;
+        background: #f1f1f1;
+        color: #4a4a4a;
+        font-size: 9.8px;
+        font-weight: 500;
+      }
+      .wf-status::before {
+        content: "";
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: currentColor;
+      }
+      .wf-foot {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        height: 39px;
+        padding: 0 16px;
+        font-size: 11px;
+        color: #6b6b6b;
+      }
+      .wf-foot .wf-select {
+        height: 24px;
+        gap: 10px;
+        padding: 0 6px 0 9px;
+        margin-right: 12px;
+      }
+      .wf-pages {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .wf-pages span {
+        display: grid;
+        place-items: center;
+        width: 26px;
+        height: 26px;
+        border-radius: 6px;
+        color: #4a4a4a;
+      }
+      .wf-pages .is-active {
+        border: 1px solid #e5e5e5;
+        color: #262626;
+      }
+
+      /* B: danh sách + panel */
+      .wf-split {
+        display: flex;
+        flex: 1;
+        gap: 14px;
+        min-height: 0;
+        margin-top: 16px;
+      }
+      .wf-list {
+        width: 300px;
+        flex-shrink: 0;
+      }
+      .wf-list-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        height: 52px;
+        padding: 0 12px;
+        border-bottom: 1px solid #f1f1f1;
+      }
+      .wf-list-row .wf-person {
+        min-width: 0;
+        padding: 0;
+      }
+      .wf-list-row.is-active {
+        background: #f6f6f6;
+        box-shadow: inset 2px 0 0 #6b6b6b;
+      }
+      .wf-detail {
+        flex: 1;
+        padding: 22px 24px;
+      }
+      .wf-detail-head {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .wf-detail-head b {
+        display: grid;
+        place-items: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #efefef;
+        color: #7a7a7a;
+        font-size: 16px;
+      }
+      .wf-detail-head strong {
+        display: block;
+        font-size: 16px;
+        color: #262626;
+      }
+      .wf-detail-head small {
+        display: block;
+        margin-top: 2px;
+        color: #7a7a7a;
+      }
+      .wf-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-top: 22px;
+      }
+      .wf-stat {
+        padding: 14px;
+        border: 1px solid #ececec;
+        border-radius: 9px;
+      }
+      .wf-stat small {
+        display: block;
+        font-size: 10px;
+        color: #7a7a7a;
+      }
+      .wf-stat strong {
+        display: block;
+        margin-top: 6px;
+        font-size: 16px;
+        color: #262626;
+        font-variant-numeric: tabular-nums;
+      }
+      .wf-fields {
+        margin-top: 22px;
+      }
+      .wf-fields div {
+        display: flex;
+        justify-content: space-between;
+        padding: 11px 0;
+        border-bottom: 1px solid #f1f1f1;
+      }
+      .wf-fields span {
+        color: #7a7a7a;
+      }
+      .wf-fields strong {
+        font-weight: 500;
+        color: #262626;
+      }
+
+      /* Nấc "Có màu": badge, avatar, nút chính có sắc, như màn thật */
+      .wf.is-color .wf-button,
+      .wf.is-color .wf-logo b {
+        background: #181818;
+      }
+      .wf.is-color .wf-status[data-tone="active"] {
+        background: #eaf7ef;
+        color: #15803d;
+      }
+      .wf.is-color .wf-status[data-tone="stopped"] {
+        background: #fdeded;
+        color: #b91c1c;
+      }
+      .wf.is-color b[data-tone="1"] {
+        background: #fef8e6;
+        color: #a16207;
+      }
+      .wf.is-color b[data-tone="2"] {
+        background: #fdf0f4;
+        color: #be185d;
+      }
+      .wf.is-color b[data-tone="3"] {
+        background: #f3effd;
+        color: #6d28d9;
+      }
+      .wf.is-color b[data-tone="4"] {
+        background: #edf3fe;
+        color: #1d4ed8;
+      }
+      .wf.is-color b[data-tone="5"] {
+        background: #eaf7f1;
+        color: #047857;
+      }
+      .wf.is-color .wf-avatar-me {
+        background: #edf3fe;
+        color: #1d4ed8;
+      }
+
+      #cursor {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 34px;
+        height: 34px;
+        filter: drop-shadow(0 2px 4px rgb(0 0 0 / 0.25));
+        pointer-events: none;
+      }
+      .click-ring {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        border: 3px solid var(--heat);
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="stage">
+      <div class="rail rail--vertical" style="left: 240px"></div>
+      <div class="rail rail--vertical" style="left: 1680px"></div>
+      <div class="rail rail--horizontal" style="top: 120px"></div>
+      <div class="rail rail--horizontal" style="top: 960px"></div>
+      <div class="cross" style="left: 240px; top: 120px"></div>
+      <div class="cross" style="left: 1680px; top: 120px"></div>
+      <div class="cross" style="left: 240px; top: 960px"></div>
+      <div class="cross" style="left: 1680px; top: 960px"></div>
+
+      <div class="topbar">
+        <div class="step-label" id="step-label"></div>
+        <div class="brand">
+          <img src="../../public/brand/logo-mark.png" alt="" />
+          evon:ui-ux
+        </div>
+      </div>
+
+      <!-- 1. Gõ đề -->
+      <section class="scene" id="scene-prompt">
+        <p class="caption" style="top: 150px" data-text="promptCaption" id="prompt-caption"></p>
+        <div class="prompt-box" id="prompt-box">
+          <div class="prompt-head"><span class="dot"></span>Claude Code</div>
+          <p class="prompt-text">
+            <span class="chevron">&gt;</span><span class="command" id="typed-command"></span
+            ><span id="typed-prompt"></span><span class="caret" id="caret"></span>
+          </p>
+          <div class="enter-key" id="enter-key">↵ Enter</div>
+        </div>
+      </section>
+
+      <!-- 2. Brief -->
+      <section class="scene" id="scene-brief">
+        <div class="brief-card" id="brief-card">
+          <div class="brief-title">
+            <span data-text="briefTitle"></span>
+            <span class="gate-tag" data-text="gateTag"></span>
+          </div>
+          <p class="audit-line" data-text="auditLine"></p>
+          <dl class="brief-rows" id="brief-rows"></dl>
+          <p class="brief-foot" id="brief-foot" data-text="briefFoot"></p>
+        </div>
+        <div class="reply-bubble" id="brief-reply" style="left: 1428px; top: 640px">ok</div>
+      </section>
+
+      <!-- 3. Wireframe -->
+      <section class="scene" id="scene-wireframe">
+        <p class="caption" style="top: 70px" data-text="wireframeCaption" id="wireframe-caption"></p>
+        <div class="toolbar" id="wireframe-toolbar">
+          <div class="segmented" id="color-segmented">
+            <span class="segmented-thumb" id="color-thumb"></span>
+          </div>
+        </div>
+        <div id="option-cards"></div>
+        <div class="reply-bubble" id="wireframe-reply" style="left: 1410px; top: 680px"></div>
+      </section>
+
+      <!-- 4. Màn thật -->
+      <section class="scene" id="scene-build">
+        <div class="browser" id="browser">
+          <div class="browser-bar">
+            <i></i><i></i><i></i>
+            <span class="browser-url">localhost:3000/dashboard/customers</span>
+          </div>
+          <div class="browser-view" id="browser-view">
+            <div id="build-wireframe"></div>
+            <img id="build-shot" src="../../public/showcase/customers-light.webp" alt="" />
+          </div>
+          <div class="reveal-line" id="reveal-line"></div>
+        </div>
+        <div class="float-badge" id="badge-components" style="left: 300px; top: 660px">
+          <i data-lucide="blocks"></i><span data-text="badgeComponents"></span>
+        </div>
+        <div class="float-badge" id="badge-probe" style="right: 300px; top: 16px">
+          <i data-lucide="ruler"></i><span data-text="badgeProbe"></span>
+        </div>
+      </section>
+
+      <!-- 5. Tường ảnh -->
+      <section class="scene" id="scene-wall">
+        <p class="caption" style="top: 60px; color: var(--foreground); font-size: 40px; font-weight: 600" id="wall-title" data-text="wallTitle"></p>
+        <div class="wall" id="wall"></div>
+      </section>
+
+      <!-- 6. Kết -->
+      <section class="scene" id="scene-end">
+        <div class="end">
+          <img class="end-logo" id="end-logo" src="../../public/brand/logo-mark.png" alt="" />
+          <h1 class="end-title" id="end-title">
+            <span data-text="endLead"></span>
+            <span class="accent" data-text="endAccent"></span>
+          </h1>
+          <ul class="end-commands" id="end-commands">
+            <li><span>&gt;</span>/plugin marketplace add evondev/evondevKit</li>
+            <li><span>&gt;</span>/plugin install evon@evondevkit</li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="footer">
+        <div class="footer-name">evondevKit<span>github.com/evondev/evondevKit</span></div>
+        <div class="progress" id="progress"></div>
+      </div>
+
+      <svg id="cursor" viewBox="0 0 24 24" fill="#262626" stroke="#ffffff" stroke-width="1.4" stroke-linejoin="round">
+        <path d="M5 3.2 19.2 11l-6.3 1.6-3.1 5.9L5 3.2Z" />
+      </svg>
+      <span class="click-ring" id="click-ring"></span>
+    </div>
+
+    <script>
+      const FPS = 30;
+      const DURATION = 27;
+
+      const copyByLocale = {
+        vi: {
+          steps: ["ĐỀ", "BRIEF", "WIREFRAME", "DỰNG", "SHOWCASE", "CÀI ĐẶT"],
+          promptCaption: "Gõ một câu đề trong Claude Code",
+          prompt:
+            "Dựng cho tôi bảng khách hàng có tìm kiếm, bộ lọc, phân trang và chọn nhiều dòng để xoá hàng loạt.",
+          briefTitle: "Brief · Trang khách hàng",
+          gateTag: "CỔNG 1",
+          auditLine: "Audit: React · Tailwind · dùng component có sẵn của dự án",
+          briefRows: [
+            ["Sản phẩm", "CRM cho đội bán hàng", "đọc code"],
+            ["Cho ai", "Nhân viên chăm sóc khách", "đoán"],
+            ["Việc chính", "Tìm khách, lọc theo trạng thái, xoá hàng loạt", "người dùng nói"],
+            ["Nền tảng", "Máy tính", "đoán"],
+          ],
+          briefFoot: "Đúng thì trả lời ok, sai dòng nào thì sửa dòng đó.",
+          wireframeCaption: "2–3 phương án bố cục khác nhau thật",
+          colorLevels: ["Xám", "Màu", "Có màu"],
+          options: [
+            ["A", "Bộ lọc dropdown + bảng", "Lọc nhiều điều kiện cùng lúc"],
+            ["B", "Danh sách + panel chi tiết", "Xem nhanh từng khách"],
+            ["C", "Tab trạng thái + nhãn nhanh", "Một chạm lọc theo trạng thái"],
+          ],
+          wireframeReply: "C + có màu",
+          badgeComponents: "Dựng bằng component của dự án",
+          badgeProbe: "Tự đo từ 375 tới 1920px",
+          wallTitle: "Màn thật skill đã dựng",
+          endLead: "UI dashboard",
+          endAccent: "không còn mùi AI",
+        },
+        en: {
+          steps: ["PROMPT", "BRIEF", "WIREFRAME", "BUILD", "SHOWCASE", "INSTALL"],
+          promptCaption: "Type one prompt in Claude Code",
+          prompt: "Build me a customer table with search, filters, pagination, and multi-select for bulk delete.",
+          briefTitle: "Brief · Customers page",
+          gateTag: "GATE 1",
+          auditLine: "Audit: React · Tailwind · reuse the project's components",
+          briefRows: [
+            ["Product", "CRM for a sales team", "read from code"],
+            ["For", "Customer care staff", "guess"],
+            ["Main jobs", "Find customers, filter by status, bulk delete", "you said"],
+            ["Platform", "Desktop", "guess"],
+          ],
+          briefFoot: "Right? Reply ok. Wrong? Fix that line.",
+          wireframeCaption: "2–3 genuinely different layouts",
+          colorLevels: ["Gray", "Tint", "Color"],
+          options: [
+            ["A", "Dropdown filters + table", "Combine many filters at once"],
+            ["B", "List + detail panel", "Skim one customer at a time"],
+            ["C", "Status tabs + quick tags", "One tap to filter by status"],
+          ],
+          wireframeReply: "C + color",
+          badgeComponents: "Built with your project's components",
+          badgeProbe: "Self-checked from 375 to 1920px",
+          wallTitle: "Real screens the skill built",
+          endLead: "Dashboard UI that",
+          endAccent: "doesn't look AI-made",
+        },
+      };
+
+      const locale = new URLSearchParams(location.search).get("lang") === "en" ? "en" : "vi";
+      const copy = copyByLocale[locale];
+      const commandText = "/evon:ui-ux ";
+
+      document.documentElement.lang = locale;
+
+      // Dữ liệu bảng lấy đúng theo ảnh màn thật, để wireframe C chuyển sang ảnh không bị lệch.
+      // [chữ đầu, tông avatar, tên, email, công ty, trạng thái, doanh thu, ngày tạo]
+      const customerRows = [
+        ["T", "1", "Tôn Nữ Thị Phương Thảo Nguyên", "phuongthao.tonnu.nguyen@hoanggiaphat-import.vn", "Công ty TNHH Thương mại Hoàng Gia", "lead", "0 ₫", "17/09/2026"],
+        ["L", "2", "Lê Hoàng Long", "long.le@gmail.com", "—", "active", "12.300.000 ₫", "15/09/2026"],
+        ["P", "3", "Phạm Thu Hà", "ha.pham@saoviet.co", "Sao Việt Media", "active", "1.284.500.000 ₫", "12/09/2026"],
+        ["Đ", "1", "Đặng Quốc Bảo", "bao.dang@kientruc360.vn", "Kiến Trúc 360", "lead", "0 ₫", "10/09/2026"],
+        ["V", "2", "Vũ Ngọc Diệp", "diep.vu@outlook.com", "—", "stopped", "4.800.000 ₫", "08/09/2026"],
+        ["T", "4", "Trịnh Gia Huy", "huy.trinh@nexa.tech", "Nexa Tech", "active", "356.000.000 ₫", "05/09/2026"],
+        ["B", "4", "Bùi Khánh Linh", "linh.bui@maison.vn", "Maison Nội Thất", "active", "92.750.000 ₫", "02/09/2026"],
+        ["H", "5", "Hoàng Đức Thắng", "thang.hoang@vantai24h.vn", "Vận Tải 24h", "stopped", "27.000.000 ₫", "29/08/2026"],
+        ["M", "3", "Mai Phương", "phuong.mai@gmail.com", "—", "lead", "0 ₫", "27/08/2026"],
+        ["Đ", "1", "Đỗ Thành Nam", "nam.do@greenfarm.vn", "Green Farm", "active", "148.200.000 ₫", "24/08/2026"],
+      ];
+      const statusLabels = { active: "Đang giao dịch", lead: "Tiềm năng", stopped: "Ngừng giao dịch" };
+
+      // [icon, nhãn, số đếm, đang chọn]. "group" là tiêu đề nhóm.
+      const sidebarItems = [
+        ["search", "Tìm kiếm", "⌘K"],
+        ["house", "Tổng quan"],
+        ["inbox", "Hộp thư", "99+"],
+        ["calendar", "Lịch"],
+        ["bot", "Trợ lý AI"],
+        ["group", "CÔNG VIỆC"],
+        ["folder-kanban", "Dự án", "4"],
+        ["list-checks", "Việc của tôi", "12"],
+        ["file-text", "Tài liệu"],
+        ["group", "KINH DOANH"],
+        ["users", "Khách hàng", "", true],
+        ["file-pen-line", "Hợp đồng"],
+        ["receipt", "Hoá đơn", "3"],
+        ["chart-line", "Báo cáo doanh thu"],
+        ["chart-column", "Báo cáo tài chính theo q..."],
+        ["group", "ĐỘI NGŨ"],
+      ];
+
+      const wallImages = [
+        ["app-shell", "customer-detail", "revenue-report", "calendar", "members", "pricing", "task-list"],
+        ["security-settings", "login", "task-form", "file-upload", "notification-panel", "assistant-chat", "order-modal"],
+        ["customer-drawer", "customers", "revenue-report", "members", "calendar", "app-shell", "customer-detail"],
+      ];
+
+      /* ===== Dựng HTML wireframe ===== */
+
+      function renderSidebar() {
+        const itemsHtml = sidebarItems
+          .map(([icon, label, meta, isActive]) => {
+            if (icon === "group") return `<div class="wf-group">${label}<i data-lucide="chevron-down"></i></div>`;
+
+            return `<div class="wf-item${isActive ? " is-active" : ""}"><i data-lucide="${icon}"></i>${label}${meta ? `<em>${meta}</em>` : ""}</div>`;
+          })
+          .join("");
+
+        return `<aside class="wf-side"><div class="wf-logo"><b>E</b>Evondev Studio</div>${itemsHtml}<div class="wf-item is-bottom"><i data-lucide="settings"></i>Cài đặt</div></aside>`;
+      }
+
+      function renderHeader() {
+        return `<header class="wf-header"><i data-lucide="panel-left"></i>Khách hàng<span class="wf-spacer"></span><i data-lucide="bell"></i><span class="wf-avatar-me">T</span></header>`;
+      }
+
+      function renderStatus(status) {
+        return `<span class="wf-status" data-tone="${status}">${statusLabels[status]}</span>`;
+      }
+
+      function renderPerson(row) {
+        const [initial, tone, name, email] = row;
+
+        return `<div class="wf-person"><b data-tone="${tone}">${initial}</b><span><strong>${name}</strong><small>${email}</small></span></div>`;
+      }
+
+      function renderTable() {
+        const bodyHtml = customerRows
+          .map(
+            (row) =>
+              `<div class="wf-row"><span><div class="wf-check"></div></span>${renderPerson(row)}<span>${row[4]}</span><span>${renderStatus(row[5])}</span><span class="is-number">${row[6]}</span><span class="is-date">${row[7]}</span><span class="is-more"><i data-lucide="ellipsis"></i></span></div>`,
+          )
+          .join("");
+        const pagesHtml = `<span class="wf-pages"><i data-lucide="chevron-left"></i><span class="is-active">1</span><span>2</span><span>3</span><span>4</span><i data-lucide="chevron-right"></i></span>`;
+
+        return `<div class="wf-card wf-table"><div class="wf-row wf-row--head"><span><div class="wf-check"></div></span><span>Khách hàng</span><span>Công ty</span><span>Trạng thái</span><span class="is-number" style="color:inherit">Doanh thu</span><span class="is-date">Ngày tạo</span><span></span></div>${bodyHtml}<div class="wf-foot">1 tới 10 trong 32 khách hàng<span class="wf-spacer"></span>Mỗi trang<span class="wf-select">10<i data-lucide="chevron-down"></i></span>${pagesHtml}</div></div>`;
+      }
+
+      function renderBodyA() {
+        const filtersHtml = ["Trạng thái", "Nhãn", "Ngày tạo"]
+          .map((label) => `<span class="wf-select">${label}<i data-lucide="chevron-down"></i></span>`)
+          .join("");
+
+        return `<div class="wf-bar"><span class="wf-input" style="width:240px"><i data-lucide="search"></i>Tìm khách hàng...</span>${filtersHtml}<span class="wf-spacer"></span><span class="wf-button"><i data-lucide="plus"></i>Thêm khách hàng</span></div>${renderTable()}`;
+      }
+
+      function renderBodyB() {
+        const listHtml = customerRows
+          .map(
+            (row, index) =>
+              `<div class="wf-list-row${index === 2 ? " is-active" : ""}">${renderPerson(row)}${renderStatus(row[5])}</div>`,
+          )
+          .join("");
+        const selectedRow = customerRows[2];
+
+        return `<div class="wf-bar"><span class="wf-input" style="width:300px"><i data-lucide="search"></i>Tìm khách hàng...</span><span class="wf-spacer"></span><span class="wf-button"><i data-lucide="plus"></i>Thêm khách hàng</span></div><div class="wf-split"><div class="wf-card wf-list">${listHtml}</div><div class="wf-card wf-detail"><div class="wf-detail-head"><b data-tone="${selectedRow[1]}">${selectedRow[0]}</b><span><strong>${selectedRow[2]}</strong><small>${selectedRow[3]}</small></span><span class="wf-spacer"></span>${renderStatus(selectedRow[5])}</div><div class="wf-stats"><div class="wf-stat"><small>Doanh thu</small><strong>1.284.500.000 ₫</strong></div><div class="wf-stat"><small>Đơn hàng</small><strong>18</strong></div><div class="wf-stat"><small>Ngày tạo</small><strong>12/09/2026</strong></div></div><div class="wf-fields"><div><span>Công ty</span><strong>Sao Việt Media</strong></div><div><span>Điện thoại</span><strong>0912 345 678</strong></div><div><span>Nhãn</span><strong>VIP, Khách quen</strong></div><div><span>Phụ trách</span><strong>Trần Tuấn</strong></div></div></div></div>`;
+      }
+
+      function renderBodyC() {
+        const tabs = [
+          ["Tất cả", 32, true],
+          ["Đang giao dịch", 19],
+          ["Tiềm năng", 7],
+          ["Ngừng giao dịch", 6],
+        ];
+        const tabsHtml = tabs
+          .map(([label, count, isActive]) => `<span class="${isActive ? "is-active" : ""}">${label}<em>${count}</em></span>`)
+          .join("");
+        const chipsHtml = ["VIP", "Khách quen", "Doanh nghiệp", "Bán sỉ", "Được giới thiệu", "Cần chăm sóc", "Hội chợ Triển lãm Quố..."]
+          .map((label) => `<span>${label}</span>`)
+          .join("");
+
+        return `<div class="wf-bar"><div class="wf-tabs">${tabsHtml}</div><span class="wf-spacer"></span><span class="wf-input" style="width:203px">Tìm khách hàng...</span><span class="wf-button"><i data-lucide="plus"></i>Thêm khách hàng</span></div><div class="wf-chips">${chipsHtml}</div>${renderTable()}`;
+      }
+
+      function renderWireframe(variant, isColor) {
+        const bodyByVariant = { A: renderBodyA, B: renderBodyB, C: renderBodyC };
+
+        return `<div class="wf${isColor ? " is-color" : ""}">${renderSidebar()}<div class="wf-main">${renderHeader()}<div class="wf-body">${bodyByVariant[variant]()}</div></div></div>`;
+      }
+
+      /* ===== Dựng các cảnh ===== */
+
+      function buildScenes() {
+        document.querySelectorAll("[data-text]").forEach((element) => {
+          element.textContent = copy[element.dataset.text];
+        });
+
+        document.getElementById("brief-rows").innerHTML = copy.briefRows
+          .map(
+            ([label, value, source]) =>
+              `<div class="brief-row"><dt>${label}</dt><dd>${value}</dd><span class="source-tag">${source}</span></div>`,
+          )
+          .join("");
+
+        document.getElementById("wireframe-reply").textContent = copy.wireframeReply;
+
+        document.getElementById("color-segmented").insertAdjacentHTML(
+          "beforeend",
+          copy.colorLevels.map((label) => `<span class="segmented-item">${label}</span>`).join(""),
+        );
+
+        document.getElementById("option-cards").innerHTML = copy.options
+          .map(
+            ([letter, title, note], index) =>
+              `<div class="option-card" id="option-${letter}" style="left:${260 + index * 476}px"><div class="option-head"><span class="option-letter">${letter}</span>${title}</div><div class="option-canvas">${renderWireframe(letter, false)}${letter === "C" ? `<div class="wf-layer" id="option-C-color">${renderWireframe("C", true)}</div>` : ""}</div><p class="option-note">${note}</p></div>`,
+          )
+          .join("");
+
+        document.getElementById("build-wireframe").innerHTML = renderWireframe("C", true);
+
+        document.getElementById("wall").innerHTML = wallImages
+          .map(
+            (row, rowIndex) =>
+              `<div class="wall-row" style="top:${rowIndex * 224}px">${row
+                .map((id) => `<img src="../../public/showcase/${id}-light.webp" alt="" />`)
+                .join("")}</div>`,
+          )
+          .join("");
+
+        document.getElementById("progress").innerHTML = copy.steps
+          .map(() => `<span class="progress-segment"><span class="progress-fill"></span></span>`)
+          .join("");
+
+        lucide.createIcons();
+      }
+
+      /* ===== Tiện ích thời gian ===== */
+
+      const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
+      const progressBetween = (time, start, duration) => clamp((time - start) / duration);
+      const easeOut = (value) => 1 - Math.pow(1 - value, 3);
+      const easeInOut = (value) => (value < 0.5 ? 4 * value ** 3 : 1 - Math.pow(-2 * value + 2, 3) / 2);
+      const lerp = (from, to, amount) => from + (to - from) * amount;
+
+      function $(id) {
+        return document.getElementById(id);
+      }
+
+      // Vào kiểu hero của landing: trồi lên 14px, bớt mờ.
+      function applyRise(element, time, start, duration = 0.7, distance = 18) {
+        const amount = easeOut(progressBetween(time, start, duration));
+
+        element.style.opacity = amount;
+        element.style.transform = `translateY(${(1 - amount) * distance}px)`;
+        element.style.filter = amount < 1 ? `blur(${(1 - amount) * 6}px)` : "none";
+      }
+
+      const easeOutBack = (value) => 1 + 2.70158 * Math.pow(value - 1, 3) + 1.70158 * Math.pow(value - 1, 2);
+
+      function applyPop(element, time, start, duration = 0.45) {
+        const amount = progressBetween(time, start, duration);
+
+        element.style.opacity = easeOut(clamp(amount * 1.6));
+        element.style.transform = `scale(${0.8 + 0.2 * easeOutBack(amount)})`;
+      }
+
+      function exitAmount(time, start, duration = 0.5) {
+        return easeInOut(progressBetween(time, start, duration));
+      }
+
+      const scenes = [
+        { id: "scene-prompt", start: 0, end: 4.8 },
+        { id: "scene-brief", start: 4.8, end: 9.6 },
+        { id: "scene-wireframe", start: 9.6, end: 14.9 },
+        { id: "scene-build", start: 14.8, end: 20.4 },
+        { id: "scene-wall", start: 20.4, end: 23.8 },
+        { id: "scene-end", start: 23.8, end: DURATION },
+      ];
+
+      /* ===== Từng cảnh ===== */
+
+      function renderPrompt(time) {
+        const scene = $("scene-prompt");
+        const exit = exitAmount(time, 4.3, 0.5);
+
+        scene.style.opacity = 1 - exit;
+        scene.style.transform = `translateY(${-40 * exit}px)`;
+
+        applyRise($("prompt-caption"), time, 0.15);
+        applyRise($("prompt-box"), time, 0.3, 0.8, 24);
+
+        const commandCount = Math.round(commandText.length * progressBetween(time, 0.9, 0.5));
+        const promptCount = Math.round(copy.prompt.length * progressBetween(time, 1.5, 2.2));
+        const isTyping = time > 0.9 && time < 3.8;
+
+        $("typed-command").textContent = commandText.slice(0, commandCount);
+        $("typed-prompt").textContent = copy.prompt.slice(0, promptCount);
+        $("caret").style.opacity = isTyping || Math.floor(time * 2) % 2 === 0 ? 1 : 0;
+
+        const pressAmount = progressBetween(time, 3.95, 0.25);
+        const isPressed = pressAmount > 0 && pressAmount < 1;
+        const enterKey = $("enter-key");
+
+        enterKey.style.transform = `scale(${isPressed ? 0.92 : 1})`;
+        enterKey.style.background = pressAmount > 0 ? "var(--heat-soft)" : "var(--surface)";
+        enterKey.style.borderColor = pressAmount > 0 ? "var(--heat-border)" : "var(--border-strong)";
+        enterKey.style.color = pressAmount > 0 ? "var(--heat-ink)" : "var(--muted)";
+      }
+
+      function renderBrief(time) {
+        const scene = $("scene-brief");
+        const exit = exitAmount(time, 9.1, 0.5);
+
+        scene.style.opacity = 1 - exit;
+        scene.style.transform = `translateY(${-40 * exit}px)`;
+
+        applyRise($("brief-card"), time, 4.85, 0.8, 30);
+
+        document.querySelectorAll("#brief-rows .brief-row").forEach((row, index) => {
+          applyRise(row, time, 5.4 + index * 0.35, 0.6, 12);
+        });
+
+        applyRise($("brief-foot"), time, 7.0, 0.6, 10);
+        applyPop($("brief-reply"), time, 7.9);
+      }
+
+      // Toạ độ theo stage. Nút "Có màu" đo từ DOM ở cảnh 3 (chữ VI và EN dài khác nhau).
+      const optionClickPoint = { x: 1420, y: 600 };
+      const colorClickPoint = { x: 1040, y: 245 };
+
+      function measureColorClickPoint() {
+        const lastItem = [...document.querySelectorAll("#color-segmented .segmented-item")].at(-1);
+        const rect = lastItem.getBoundingClientRect();
+
+        colorClickPoint.x = rect.left + rect.width / 2;
+        colorClickPoint.y = rect.top + rect.height / 2;
+      }
+
+      function getCursorPath() {
+        return [
+          { time: 10.9, x: 1500, y: 980 },
+          { time: 12.0, ...optionClickPoint },
+          { time: 13.1, ...optionClickPoint },
+          { time: 13.8, ...colorClickPoint },
+          { time: 14.4, ...colorClickPoint },
+          { time: 14.8, x: 1300, y: 900 },
+        ];
+      }
+
+      function positionCursor(time) {
+        const cursorPath = getCursorPath();
+        const cursor = $("cursor");
+        const isVisible = time > cursorPath[0].time - 0.3 && time < cursorPath.at(-1).time;
+
+        cursor.style.opacity = isVisible ? clamp((time - (cursorPath[0].time - 0.3)) / 0.3) : 0;
+
+        if (!isVisible) return;
+
+        let point = cursorPath[0];
+
+        for (let i = 0; i < cursorPath.length - 1; i++) {
+          const from = cursorPath[i];
+          const to = cursorPath[i + 1];
+
+          if (time >= from.time && time <= to.time) {
+            const amount = easeInOut((time - from.time) / (to.time - from.time));
+            point = { x: lerp(from.x, to.x, amount), y: lerp(from.y, to.y, amount) };
+            break;
+          }
+        }
+
+        cursor.style.transform = `translate(${point.x - 6}px, ${point.y - 4}px)`;
+      }
+
+      function renderClick(time, clicks) {
+        const ring = $("click-ring");
+        const activeClick = clicks.find((click) => time >= click.time && time <= click.time + 0.45);
+
+        if (!activeClick) {
+          ring.style.opacity = 0;
+          return;
+        }
+
+        const amount = (time - activeClick.time) / 0.45;
+
+        ring.style.left = `${activeClick.x}px`;
+        ring.style.top = `${activeClick.y}px`;
+        ring.style.opacity = 1 - amount;
+        ring.style.transform = `translate(-50%, -50%) scale(${0.3 + easeOut(amount) * 0.9})`;
+      }
+
+      function placeColorThumb(level) {
+        const items = document.querySelectorAll("#color-segmented .segmented-item");
+        const thumb = $("color-thumb");
+        const levelFloor = Math.floor(level);
+        const levelCeil = Math.min(items.length - 1, levelFloor + 1);
+        const amount = level - levelFloor;
+        const left = lerp(items[levelFloor].offsetLeft, items[levelCeil].offsetLeft, amount);
+        const width = lerp(items[levelFloor].offsetWidth, items[levelCeil].offsetWidth, amount);
+
+        thumb.style.left = `${left}px`;
+        thumb.style.width = `${width}px`;
+
+        items.forEach((item, index) => {
+          item.classList.toggle("is-active", index === Math.round(level));
+        });
+      }
+
+      function renderWireframeScene(time) {
+        applyRise($("wireframe-caption"), time, 9.7);
+        applyRise($("wireframe-toolbar"), time, 9.85);
+        $("wireframe-toolbar").style.transform += " translateX(-50%)";
+
+        if (time >= 11) measureColorClickPoint();
+
+        const selectAmount = easeOut(progressBetween(time, 12.1, 0.3));
+        const optionFade = exitAmount(time, 14.5, 0.4);
+
+        ["A", "B", "C"].forEach((letter, index) => {
+          const card = $(`option-${letter}`);
+          const isChosen = letter === "C";
+
+          applyRise(card, time, 10.0 + index * 0.18, 0.7, 30);
+
+          if (isChosen) {
+            card.style.setProperty("--selected", selectAmount);
+            card.classList.toggle("is-selected", selectAmount > 0);
+            // Card C nhường chỗ cho khung trình duyệt của cảnh 4, đè đúng vị trí.
+            if (time >= 14.8) card.style.opacity = 0;
+          } else {
+            card.style.opacity = Number(card.style.opacity) * (1 - 0.55 * selectAmount) * (1 - optionFade);
+          }
+        });
+
+        applyPop($("wireframe-reply"), time, 12.55);
+        $("wireframe-reply").style.opacity *= 1 - optionFade;
+
+        const colorLevel = 2 * easeInOut(progressBetween(time, 13.8, 0.45));
+
+        placeColorThumb(colorLevel);
+        $("option-C-color").style.opacity = easeInOut(progressBetween(time, 14.05, 0.35));
+
+        $("scene-wireframe").style.opacity = time < 14.8 ? 1 : 1 - optionFade;
+        const toolbarOpacity = 1 - exitAmount(time, 14.5, 0.3);
+        $("wireframe-toolbar").style.opacity *= toolbarOpacity;
+        $("wireframe-caption").style.opacity *= toolbarOpacity;
+      }
+
+      // Khung trình duyệt mọc ra từ ô wireframe của card C (408 rộng trong card, 1152 khi to).
+      function renderBuild(time) {
+        const browser = $("browser");
+        // Ô wireframe trong card C: card + viền 1 + đệm + đầu card + khoảng cách + viền ô 1.
+        const optionCanvas = { left: 1212 + 1 + 20 + 1, top: 250 + 1 + 18 + 32 + 14 + 1 };
+        const growAmount = easeInOut(progressBetween(time, 14.8, 1.0));
+        const finalLeft = 384;
+        const finalTop = 42;
+        const startScale = 408 / 1152;
+        const scale = lerp(startScale, 1, growAmount);
+        // Thanh địa chỉ 36px ở trên cũng thu nhỏ theo, nên lùi lên cho ô xem khớp ô wireframe.
+        const startLeft = optionCanvas.left - startScale;
+        const startTop = optionCanvas.top - 37 * startScale;
+        const settleZoom = 1 + 0.025 * easeInOut(progressBetween(time, 17.2, 3.0));
+        const exit = exitAmount(time, 19.9, 0.5);
+
+        browser.style.left = `${lerp(startLeft, finalLeft, growAmount)}px`;
+        browser.style.top = `${lerp(startTop, finalTop, growAmount)}px`;
+        browser.style.transform = `scale(${scale * (1 - 0.04 * exit)})`;
+        browser.style.opacity = 1 - exit;
+        browser.style.borderRadius = `${lerp(8 / startScale, 14, growAmount)}px`;
+        browser.querySelector(".browser-bar").style.opacity = growAmount;
+
+        $("browser-view").style.transform = `scale(${settleZoom})`;
+        $("browser-view").style.transformOrigin = "30% 20%";
+
+        const revealAmount = easeInOut(progressBetween(time, 16.0, 1.1));
+        const revealLine = $("reveal-line");
+
+        $("build-shot").style.clipPath = `inset(0 0 ${(1 - revealAmount) * 100}% 0)`;
+        revealLine.style.top = `${36 + revealAmount * 720}px`;
+        revealLine.style.opacity = revealAmount > 0 && revealAmount < 1 ? 1 : 0;
+
+        applyRise($("badge-components"), time, 17.3, 0.7, 20);
+        applyRise($("badge-probe"), time, 17.7, 0.7, 20);
+        $("badge-components").style.opacity *= 1 - exit;
+        $("badge-probe").style.opacity *= 1 - exit;
+      }
+
+      function renderWall(time) {
+        const exit = exitAmount(time, 23.35, 0.45);
+
+        $("scene-wall").style.opacity = 1 - exit;
+        applyRise($("wall-title"), time, 20.5);
+
+        const elapsed = time - 20.4;
+
+        document.querySelectorAll(".wall-row").forEach((row, index) => {
+          const direction = index % 2 === 0 ? -1 : 1;
+          const baseOffset = index % 2 === 0 ? -40 : -520;
+          const rise = easeOut(progressBetween(time, 20.5 + index * 0.12, 0.7));
+
+          row.style.transform = `translate(${baseOffset + direction * elapsed * 70}px, ${(1 - rise) * 30}px)`;
+          row.style.opacity = rise;
+        });
+      }
+
+      function renderEnd(time) {
+        applyRise($("end-logo"), time, 23.95, 0.7, 20);
+        applyRise($("end-title"), time, 24.25, 0.8, 24);
+        applyRise($("end-commands"), time, 24.7, 0.7, 20);
+
+        // Mờ về nền ở nửa giây cuối để lặp lại cảnh 1 không bị giật.
+        $("scene-end").style.opacity = 1 - exitAmount(time, DURATION - 0.55, 0.5);
+      }
+
+      function renderChrome(time) {
+        const stepIndex = scenes.findLastIndex((scene) => time >= scene.start);
+        const label = $("step-label");
+        const nextSceneStart = scenes[stepIndex + 1]?.start ?? DURATION;
+        const fadeIn = progressBetween(time, scenes[stepIndex].start, 0.3);
+        const fadeOut = 1 - progressBetween(time, nextSceneStart - 0.25, 0.25);
+        const step = String(stepIndex + 1).padStart(2, "0");
+        const total = String(scenes.length).padStart(2, "0");
+
+        label.innerHTML = `[ ${step} / ${total} ] · <strong>${copy.steps[stepIndex]}</strong>`;
+        label.style.opacity = Math.min(fadeIn, fadeOut);
+
+        document.querySelectorAll(".progress-fill").forEach((fill, index) => {
+          const scene = scenes[index];
+          const endFade = 1 - exitAmount(time, DURATION - 0.55, 0.5);
+
+          fill.style.transform = `scaleX(${progressBetween(time, scene.start, scene.end - scene.start)})`;
+          fill.style.opacity = endFade;
+        });
+      }
+
+      const sceneRenderers = {
+        "scene-prompt": renderPrompt,
+        "scene-brief": renderBrief,
+        "scene-wireframe": renderWireframeScene,
+        "scene-build": renderBuild,
+        "scene-wall": renderWall,
+        "scene-end": renderEnd,
+      };
+
+      function renderFrame(time) {
+        scenes.forEach((scene) => {
+          const element = $(scene.id);
+          const isVisible = time >= scene.start && time < scene.end;
+
+          element.style.display = isVisible ? "block" : "none";
+
+          if (isVisible) sceneRenderers[scene.id](time);
+        });
+
+        renderChrome(time);
+        positionCursor(time);
+        renderClick(time, [
+          { time: 12.05, ...optionClickPoint },
+          { time: 13.85, ...colorClickPoint },
+        ]);
+      }
+
+      /* ===== Khởi động ===== */
+
+      async function waitForAssets() {
+        await document.fonts.ready;
+        await Promise.all([...document.images].map((image) => image.decode().catch(() => {})));
+      }
+
+      buildScenes();
+
+      window.renderFrame = renderFrame;
+      window.videoConfig = { fps: FPS, duration: DURATION };
+      window.videoReady = waitForAssets().then(() => true);
+
+      // Xem trước: tự chạy và lặp. Script render gọi renderFrame từng frame, không dùng vòng này.
+      if (!new URLSearchParams(location.search).has("render")) {
+        window.videoReady.then(() => {
+          const startedAt = performance.now();
+
+          function tick(now) {
+            renderFrame(((now - startedAt) / 1000) % DURATION);
+            requestAnimationFrame(tick);
+          }
+
+          requestAnimationFrame(tick);
+        });
+      } else {
+        renderFrame(0);
+      }
+    </script>
+  </body>
+</html>

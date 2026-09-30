@@ -1,37 +1,28 @@
-import ModeGroupRow from "@/features/landing/components/mode-group-row";
+import BeforeAfterCompare from "@/features/landing/components/before-after-compare";
 import SectionFrame from "@/features/landing/components/section-frame";
 import SectionHeading from "@/features/landing/components/section-heading";
 import SectionIndex from "@/features/landing/components/section-index";
 import type { Dictionary } from "@/features/landing/types/dictionary";
 
-interface ModesSectionProps {
+interface BeforeAfterSectionProps {
   number: number;
-  dictionary: Dictionary["modes"];
-  statusLabels: Dictionary["statusLabels"];
+  dictionary: Dictionary["beforeAfter"];
 }
 
-export default function ModesSection({ number, dictionary, statusLabels }: ModesSectionProps) {
+export default function BeforeAfterSection({ number, dictionary }: BeforeAfterSectionProps) {
   return (
-    <SectionFrame id="modes" labelledBy="modes-title">
+    <SectionFrame id="before-after" labelledBy="before-after-title">
       <SectionIndex number={number} label={dictionary.label} />
       <div className="px-5 py-16 sm:px-10 sm:py-24">
         <SectionHeading
-          id="modes-title"
+          id="before-after-title"
           eyebrow={dictionary.eyebrow}
           title={dictionary.title}
           description={dictionary.description}
           isCentered
         />
+        <BeforeAfterCompare dictionary={dictionary} />
       </div>
-      {dictionary.groups.map((group, index) => (
-        <ModeGroupRow
-          key={group.id}
-          group={group}
-          number={index + 1}
-          promptLabel={dictionary.promptLabel}
-          statusLabels={statusLabels}
-        />
-      ))}
     </SectionFrame>
   );
 }

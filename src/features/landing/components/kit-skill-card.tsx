@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import FeatureIcon from "@/features/landing/components/feature-icon";
 import StatusTag from "@/features/landing/components/status-tag";
 import { kitSkillIcons } from "@/features/landing/constants/kit-skill-icons";
 import { kitSkillPages } from "@/features/landing/constants/kit-skill-pages";
@@ -16,19 +17,11 @@ interface KitSkillCardProps {
 
 /** Một skill đã có trong bộ, dẫn sang trang riêng của skill đó. */
 export default function KitSkillCard({ skill, locale, detailLabel, statusLabels }: KitSkillCardProps) {
-  const Icon = kitSkillIcons[skill.id];
-
   return (
     <li className="group flex min-w-0 flex-col bg-background p-6 transition-colors hover:bg-surface sm:p-8">
       <div className="reveal flex flex-1 flex-col">
         <div className="flex items-center justify-between gap-3">
-          <span className="relative grid size-10 place-items-center rounded-xl border border-border-strong bg-surface text-heat">
-            <Icon className="size-5" aria-hidden />
-            <span
-              aria-hidden
-              className="absolute -inset-2 rounded-full border border-dashed border-heat-border opacity-0 transition-opacity group-hover:opacity-100 motion-safe:group-hover:animate-spin-slow"
-            />
-          </span>
+          <FeatureIcon icon={kitSkillIcons[skill.id]} />
           {skill.status ? <StatusTag status={skill.status} label={statusLabels[skill.status]} /> : null}
         </div>
 

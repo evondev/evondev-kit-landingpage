@@ -9,8 +9,10 @@ interface TasteRuleCardProps {
 export default function TasteRuleCard({ rule }: TasteRuleCardProps) {
   const Demo = tasteDemos[rule.id];
 
+  // Ba hàng minh hoạ / mã + tiêu đề / mô tả dùng chung dòng kẻ với card bên cạnh (subgrid),
+  // nên tiêu đề nào xuống dòng thì mô tả của cả hàng vẫn bắt đầu cùng một chỗ.
   return (
-    <li className="flex min-w-0 flex-col bg-background">
+    <li className="row-span-3 grid min-w-0 grid-rows-subgrid gap-0 bg-background">
       {/* Hình minh hoạ dùng token gốc của skill (.skill-theme), thuần trang trí. */}
       <div
         aria-hidden
@@ -18,11 +20,11 @@ export default function TasteRuleCard({ rule }: TasteRuleCardProps) {
       >
         <Demo />
       </div>
-      <div className="reveal p-6 sm:p-8">
+      <div className="reveal px-6 pt-6 sm:px-8 sm:pt-8">
         <p className="font-mono text-xs text-heat-ink">{rule.code}</p>
         <h3 className="mt-2 text-lg font-medium text-foreground">{rule.title}</h3>
-        <p className="mt-2 text-sm text-pretty text-muted">{rule.description}</p>
       </div>
+      <p className="reveal px-6 pt-2 pb-6 text-sm text-pretty text-muted sm:px-8 sm:pb-8">{rule.description}</p>
     </li>
   );
 }

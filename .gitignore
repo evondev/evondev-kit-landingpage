@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# ảnh soát khung của video (npm run render:video -- --stills ...)
+/video/*/stills/

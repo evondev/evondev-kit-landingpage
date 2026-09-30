@@ -5,17 +5,17 @@ export const viDictionary: Dictionary = {
     home: {
       title: "evondevKit · Bộ skill Claude Code của evondev",
       description:
-        "Bộ skill Claude Code của evondev. Skill đầu tiên: evon:ui-ux dựng UI app như một designer. Mỗi skill là bộ luật có số hiệu, test trên dự án thật. Miễn phí, MIT.",
+        "Bộ skill Claude Code do evondev viết. Skill đầu tiên là evon:ui-ux, làm UI app theo cách một designer làm. Skill nào cũng là bộ luật cụ thể, đã test trên dự án thật. Miễn phí, MIT.",
     },
     "ui-ux": {
       title: "evon:ui-ux · UI dashboard không còn mùi AI",
       description:
-        "Skill cho Claude Code làm UI app như một designer: đọc codebase, đưa brief và 2–3 wireframe để bạn chọn, dựng bằng component của dự án, tự đo bằng máy. Miễn phí, MIT.",
+        "Skill Claude Code làm UI app theo cách một designer làm: đọc codebase, đưa brief và 2–3 wireframe cho bạn chọn, dựng bằng component có sẵn của dự án, rồi tự kiểm tra bằng script. Miễn phí, MIT.",
     },
   },
   announcement: {
-    text: "Mới: skill mặc định làm như một designer. Brief, 2–3 wireframe, bạn chọn rồi mới dựng.",
-    linkLabel: "Xem cách làm",
+    text: "Đang beta: dùng ổn cho giao diện app nền sáng. Dark mode, prompt tiếng Anh, Codex và Antigravity mình vẫn đang test.",
+    linkLabel: "Xem lộ trình",
   },
   header: {
     homeLabel: "evondevKit, về trang chủ",
@@ -35,33 +35,33 @@ export const viDictionary: Dictionary = {
   },
   kitHome: {
     announcement: {
-      text: "Mới: evon:ui-ux mặc định làm như một designer. Brief, 2–3 wireframe, bạn chọn rồi mới dựng.",
+      text: "Mới: evon:ui-ux giờ làm việc như một designer. Đưa brief, 2–3 wireframe, bạn chọn xong mới dựng.",
       linkLabel: "Xem evon:ui-ux",
     },
     hero: {
       badge: "evon:ui-ux: làm UI như một designer",
       title: {
-        lead: "Bộ skill Claude\u00a0Code",
+        lead: "Bộ skill Claude Code",
         accent: "của evondev",
       },
       subheadline:
-        "Mỗi skill là một bộ luật có số hiệu, test trên dự án thật. Cài một lần, gọi trong mọi dự án.",
+        "Mỗi skill là một bộ luật cụ thể, test trên dự án thật rồi mới đưa lên đây. Cài một lần, dùng cho mọi dự án.",
       primaryCta: "Xem evon:ui-ux",
       secondaryCta: "Cài evondevKit",
       commandsLabel: "Gõ hai lệnh này trong Claude Code",
     },
     skills: {
       label: "Skill",
-      eyebrow: "Skill trong bộ",
+      eyebrow: "Có gì trong bộ",
       title: {
-        lead: "Một bộ,",
-        accent: "nhiều skill",
+        lead: "Cài một lần,",
+        accent: "có thêm skill mới",
       },
-      description: "Cài plugin evon một lần. Skill mới thêm vào bộ thì chỉ cần cập nhật marketplace.",
+      description: "Bạn chỉ cần cài plugin evon một lần. Khi mình thêm skill mới, cập nhật marketplace là có.",
       detailLabel: "Xem chi tiết",
       placeholder: {
         title: "Skill tiếp theo",
-        description: "Đang test trên dự án thật. Chưa qua vòng test thì chưa lên đây.",
+        description: "Đang test trên dự án thật. Chưa qua test thì mình chưa đưa lên đây.",
       },
       items: [
         {
@@ -69,40 +69,40 @@ export const viDictionary: Dictionary = {
           command: "/evon:ui-ux",
           title: "UI/UX cho app",
           description:
-            "Dựng và làm lại màn hình app như một designer: brief, 2–3 wireframe, bạn chọn rồi mới dựng. Soi UI đang có, dựng lại giữ brand, refactor giữ nguyên hình.",
-          facts: ["70 đề test đạt", "7 lối vào", "Đo 375–1920px"],
-          status: null,
+            "Dựng mới hoặc làm lại màn hình app theo cách một designer làm: brief, 2–3 wireframe, bạn chọn rồi mới dựng. Ngoài ra còn soi lỗi UI đang có, dựng lại mà giữ brand, và dọn code mà giao diện không đổi.",
+          facts: ["Qua 70 prompt test", "Có wireframe trước khi code", "Đo từ 375 tới 1920px"],
+          status: "beta",
         },
       ],
     },
     principles: {
       label: "Cách làm",
-      eyebrow: "Cách làm skill",
+      eyebrow: "Mình viết skill thế nào",
       title: {
-        lead: "Ít lời hứa,",
-        accent: "nhiều phép đo",
+        lead: "Hứa ít,",
+        accent: "đo nhiều",
       },
-      description: "Ba nguyên tắc mọi skill trong bộ đều theo.",
+      description: "Ba nguyên tắc skill nào trong bộ cũng phải theo.",
       items: [
         {
           icon: "numbered-rules",
           title: {
-            lead: "Luật có số hiệu.",
-            accent: "Không dạy bằng tính từ. Mỗi luật một mã, sống ở đúng một file; nhiều luật sinh ra từ lỗi đã gặp khi test.",
+            lead: "Luật cụ thể, có mã số.",
+            accent: "Không dặn chung chung kiểu “làm\u00a0cho\u00a0đẹp”. Mỗi luật có mã riêng, nhiều luật ra đời từ chính lỗi gặp lúc test.",
           },
         },
         {
           icon: "tested",
           title: {
-            lead: "Test rồi mới hứa.",
-            accent: "Tính năng chưa qua vòng test thì trang này ghi là sắp có, không ghi là có.",
+            lead: "Test xong mới hứa.",
+            accent: "Tính năng nào chưa qua test, trang này ghi là “sắp có”, không ghi là “có”.",
           },
         },
         {
           icon: "codebase",
           title: {
-            lead: "Bám dự án của bạn.",
-            accent: "Đọc codebase trước khi viết: dùng component, token và quy ước sẵn có thay vì áp bộ của skill.",
+            lead: "Theo dự án của bạn.",
+            accent: "Đọc codebase trước khi viết dòng nào. Có component, token, quy ước sẵn thì dùng lại, không ép theo bộ của skill.",
           },
         },
       ],
@@ -110,7 +110,7 @@ export const viDictionary: Dictionary = {
     cta: {
       eyebrow: "Cài đặt",
       title: "Cài evondevKit",
-      description: "Hai lệnh trong Claude Code là có đủ bộ. Miễn phí, mã nguồn mở MIT.",
+      description: "Gõ hai lệnh trong Claude Code là có đủ bộ. Miễn phí, mã nguồn mở MIT.",
       primaryCta: "Xem evon:ui-ux",
       secondaryCta: "Xem trên GitHub",
     },
@@ -125,106 +125,130 @@ export const viDictionary: Dictionary = {
     soon: "Sắp có",
   },
   hero: {
-    badge: "Mới: làm như một designer",
+    badge: "Mới: làm việc như một designer",
     title: {
       lead: "UI dashboard",
       accent: "không còn mùi AI",
     },
     subheadline:
-      "evon:ui-ux đọc codebase của bạn, đưa brief và 2–3 wireframe để bạn chọn, rồi mới dựng bằng component của dự án và tự đo bằng máy.",
+      "evon:ui-ux đọc codebase của bạn, đưa brief và 2–3 wireframe để bạn chọn. Chọn xong mới dựng, bằng chính component của dự án, rồi tự kiểm tra bằng script.",
     primaryCta: "Cài skill",
     secondaryCta: "Xem màn đã dựng",
-    promptBoxLabel: "Lối vào của skill",
-    copyPromptLabel: "Chép đề mẫu",
-    copiedPromptLabel: "Đã chép đề mẫu",
-    imageAlt: "Trang quản lý khách hàng do skill dựng: bảng có tìm kiếm, bộ lọc, phân trang",
-    windowLabel: "localhost:3000/dashboard/customers",
+    promptBoxLabel: "Các cách dùng skill",
+    copyPromptLabel: "Chép prompt mẫu",
+    copiedPromptLabel: "Đã chép prompt mẫu",
+    videoLabel: "Video trước và sau: màn Phòng trọ cũ của 68Lane, wireframe skill đưa ra, rồi màn dựng xong, kèm cách cài",
+    playVideoLabel: "Phát video",
+    pauseVideoLabel: "Tạm dừng video",
   },
   proof: {
     lead: "Đã qua",
-    accent: "70 đề test",
-    tail: "từ một cái nút tới trang hoàn chỉnh",
+    accent: "70 prompt test",
+    tail: "từ một cái nút tới cả trang hoàn chỉnh",
     items: [
-      { value: "30", label: "component đã duyệt" },
-      { value: "8", label: "UI chưa có mẫu vẫn dựng đạt" },
+      { value: "30", label: "component đạt" },
+      { value: "8", label: "UI chưa có mẫu sẵn" },
       { value: "10", label: "khối ghép" },
       { value: "22", label: "trang hoàn chỉnh" },
     ],
-    source: "Đếm từ danh sách test của skill, 29/09/2026.",
+    source: "Đếm từ danh sách test của skill, ngày 29/09/2026.",
   },
   modes: {
     label: "Tính năng",
-    eyebrow: "Bảy lối vào",
+    eyebrow: "Skill làm được gì",
     title: {
       lead: "Một skill,",
-      accent: "bảy cách làm việc",
+      accent: "ba kiểu việc",
     },
     description:
-      "Mặc định là làm như designer. Muốn đi lối khác thì nói rõ trong đề: skill nhận ra, không hỏi lại.",
-    promptLabel: "Đề mẫu",
-    items: [
+      "Không cần nhớ lệnh. Skill đọc prompt rồi tự biết nên làm theo cách nào. Mặc định nó làm như designer, muốn khác thì bạn nói thẳng trong prompt.",
+    promptLabel: "Prompt mẫu",
+    groups: [
       {
-        id: "designer",
-        tabLabel: "Designer",
-        title: "Làm như một designer",
+        id: "build",
+        title: "Dựng màn mới",
         description:
-          "Mặc định cho mọi đề dựng hay làm lại một màn. Brief, việc chính của từng màn, 2–3 wireframe có nội dung thật. Bạn chọn rồi mới dựng.",
-        prompt: "/evon:ui-ux Dựng màn danh sách đơn hàng: mã đơn, khách, tổng tiền, trạng thái.",
-        status: "new",
+          "Mặc định skill đi đủ các bước như designer. Muốn tiết kiệm token thì bảo nó bỏ wireframe. Việc nhỏ hơn một màn thì nó làm luôn.",
+        items: [
+          {
+            id: "designer",
+            tabLabel: "Designer",
+            title: "Làm như một designer",
+            description:
+              "Cách mặc định mỗi khi bạn nhờ dựng hoặc làm lại một màn. Skill viết brief, xác định màn này để làm gì, rồi đưa 2–3 wireframe có nội dung thật. Bạn chọn xong nó mới dựng.",
+            prompt: "/evon:ui-ux Dựng màn danh sách đơn hàng: mã đơn, khách, tổng tiền, trạng thái.",
+            status: "new",
+          },
+          {
+            id: "just-build",
+            tabLabel: "Dựng luôn",
+            title: "Dựng luôn, bỏ wireframe",
+            description:
+              "Tiết kiệm token. Skill tự chọn phương án nó thấy hợp nhất rồi dựng thẳng. Lúc giao, nó nói rõ đã chọn bố cục nào và vì sao.",
+            prompt: "/evon:ui-ux Dựng luôn màn cài đặt thông báo.",
+            status: "new",
+          },
+          {
+            id: "small-fix",
+            tabLabel: "Sửa nhỏ",
+            title: "Việc nhỏ hơn một màn",
+            description:
+              "Sửa một component, thêm một dropdown, fix một lỗi, đổi một màu. Skill vẫn đọc codebase trước, rồi làm luôn, không cần wireframe.",
+            prompt: "/evon:ui-ux Thêm dropdown lọc theo trạng thái vào bảng đơn hàng.",
+            status: null,
+          },
+        ],
       },
       {
-        id: "just-build",
-        tabLabel: "Dựng luôn",
-        title: "Dựng luôn, không wireframe",
+        id: "rework",
+        title: "Làm lại UI đang có",
         description:
-          "Đỡ tốn token. Skill tự chọn phương án nó sẽ khuyên rồi dựng thẳng, lúc giao báo đã chọn bố cục nào và vì sao.",
-        prompt: "/evon:ui-ux Dựng luôn màn cài đặt thông báo.",
-        status: "new",
+          "Cả ba cách đều bắt đầu bằng việc đo trang của bạn. Khác nhau ở chỗ skill được phép đổi tới đâu.",
+        items: [
+          {
+            id: "review",
+            tabLabel: "Soi UI",
+            title: "Soi lỗi UI đang có",
+            description:
+              "Đưa link localhost, skill tự mở trang, đo từ 375 tới 1920px, rồi gửi bảng lỗi kèm ảnh trước / sau. Bạn trả lời “sửa 1, 3” thì nó mới sửa.",
+            prompt: "/evon:ui-ux Xem giúp trang này chỗ nào chưa ổn: http://localhost:3000/orders",
+            status: null,
+          },
+          {
+            id: "keep-brand",
+            tabLabel: "Giữ brand",
+            title: "Dựng lại, giữ brand",
+            description:
+              "Giữ nguyên khung trang và màu của bạn. Skill thay các control tự chế bằng component chuẩn và làm gọn từng card. Bạn trả lời “ok” hoặc “bỏ 7”.",
+            prompt: "/evon:ui-ux Dựng lại trang này giữ brand.",
+            status: null,
+          },
+          {
+            id: "skill-taste",
+            tabLabel: "Theo skill",
+            title: "Làm lại theo gu skill",
+            description:
+              "Giống dựng lại giữ brand, nhưng đổi luôn cả màu sang bộ token của skill. Chỉ giữ logo và màu nhấn chính của bạn.",
+            prompt: "/evon:ui-ux Dựng lại hoàn toàn theo gu skill, bỏ style cũ.",
+            status: null,
+          },
+        ],
       },
       {
-        id: "review",
-        tabLabel: "Soi UI",
-        title: "Soi UI đang có",
-        description:
-          "Đưa link localhost, skill tự mở trang, đo từ 375 tới 1920px, rồi đưa bảng lỗi có ảnh trước / sau. Bạn trả lời “sửa 1, 3” mới sửa.",
-        prompt: "/evon:ui-ux Xem giúp trang này chỗ nào chưa ổn: http://localhost:3000/orders",
-        status: null,
-      },
-      {
-        id: "keep-brand",
-        tabLabel: "Giữ brand",
-        title: "Dựng lại, giữ brand",
-        description:
-          "Giữ khung trang và màu của bạn. Thay control gốc bằng component chuẩn, làm gọn từng card. Trả lời “ok” hoặc “bỏ 7”.",
-        prompt: "/evon:ui-ux Dựng lại trang này giữ brand.",
-        status: null,
-      },
-      {
-        id: "skill-taste",
-        tabLabel: "Gu skill",
-        title: "Đổi hẳn sang gu skill",
-        description:
-          "Như dựng lại giữ brand, nhưng đổi cả màu sang token của skill. Chỉ giữ logo và màu nhấn chính.",
-        prompt: "/evon:ui-ux Dựng lại hoàn toàn theo gu skill, bỏ style cũ.",
-        status: null,
-      },
-      {
-        id: "refactor",
-        tabLabel: "Refactor",
-        title: "Dọn code, giữ nguyên hình",
-        description:
-          "Đổi class, xoá CSS cũ, chụp ảnh trước và sau để chắc giao diện không lệch. Nhánh mới viết, chưa qua vòng test.",
-        prompt: "/evon:ui-ux Refactor CSS trang /settings sang Tailwind, giữ nguyên giao diện.",
-        status: "beta",
-      },
-      {
-        id: "small-fix",
-        tabLabel: "Sửa nhỏ",
-        title: "Việc nhỏ hơn một màn",
-        description:
-          "Sửa một component, thêm một dropdown, sửa một lỗi, đổi một màu. Skill vẫn đọc codebase trước, rồi làm luôn theo bố cục mặc định, không qua wireframe.",
-        prompt: "/evon:ui-ux Thêm dropdown lọc theo trạng thái vào bảng đơn hàng.",
-        status: null,
+        id: "cleanup",
+        title: "Dọn code",
+        description: "Chỉ đổi code bên dưới. Giao diện phải y như cũ.",
+        items: [
+          {
+            id: "refactor",
+            tabLabel: "Refactor",
+            title: "Dọn code, giao diện không đổi",
+            description:
+              "Đổi class, xoá CSS thừa, chụp ảnh trước và sau để chắc giao diện không lệch một pixel nào. Phần này mới viết, chưa qua test.",
+            prompt: "/evon:ui-ux Refactor CSS trang /settings sang Tailwind, giữ nguyên giao diện.",
+            status: "beta",
+          },
+        ],
       },
     ],
   },
@@ -236,32 +260,32 @@ export const viDictionary: Dictionary = {
       accent: "rồi mới dựng",
     },
     description:
-      "Phần xấu nặng nhất thường là cấu trúc, không phải màu: card quá tải, lọc đặt xa bảng, hai nút tranh nhau. Designer bắt mấy thứ này ở wireframe, lúc sửa gần như không tốn gì.",
+      "Màn xấu thường không phải do màu mà do cấu trúc: card nhồi quá nhiều thứ, bộ lọc nằm xa bảng, hai nút tranh nhau. Designer bắt những lỗi này ngay từ wireframe, lúc sửa còn chưa tốn gì.",
     steps: [
       {
         code: "U1",
         title: "Brief",
-        description: "Đọc repo, README, route trước. Chỉ hỏi phần không tự suy ra được.",
+        description: "Đọc repo, README và route trước. Chỉ hỏi những gì không tự tìm ra được.",
         gate: null,
       },
       {
         code: "U2",
-        title: "Việc chính của từng màn",
-        description: "Người dùng đến màn này để làm gì, so sánh bằng gì, hành động cuối là gì.",
-        gate: "Cổng 1: bạn sửa hoặc trả lời “ok”",
+        title: "Màn này để làm gì",
+        description: "Người dùng vào đây để làm gì, họ so sánh dựa trên cái gì, và bấm gì ở cuối.",
+        gate: "Dừng lần 1: bạn sửa brief hoặc trả lời “ok”",
       },
       {
         code: "U3",
         title: "2–3 wireframe",
         description:
-          "Khác nhau thật ở chiến lược bố cục, không chỉ khác màu. Nội dung thật, mỗi khối có số để góp ý.",
-        gate: "Cổng 2: bạn chọn, ví dụ “C + D + có màu”",
+          "Các phương án khác nhau thật ở cách bố cục, không phải chỉ đổi màu. Nội dung thật, khối nào cũng đánh số để bạn góp ý cho dễ.",
+        gate: "Dừng lần 2: bạn chọn, ví dụ “C + D”",
       },
       {
         code: "U4",
         title: "Dựng thật",
         description:
-          "Code theo phương án đã chọn, bám component của dự án. Chạy probe rồi sửa, tối đa ba vòng; lỗi còn lại ghi lý do lúc giao.",
+          "Code theo phương án bạn chọn, bằng component có sẵn của dự án. Chạy script kiểm tra rồi sửa, tối đa ba vòng. Lỗi nào còn lại, lúc giao sẽ ghi rõ lý do.",
         gate: null,
       },
     ],
@@ -273,29 +297,54 @@ export const viDictionary: Dictionary = {
       mobileLabel: "Mobile",
       stateLabel: "Trạng thái",
       stateValue: "Có dữ liệu",
-      reasonTitle: "Vì sao A",
+      reasonTitle: "Vì sao chọn A",
       reasonItems: [
-        { label: "Ưu", text: "Tìm đơn trễ nhanh: ô tìm và lọc nằm ngay trên bảng." },
+        { label: "Ưu", text: "Tìm đơn trễ nhanh vì ô tìm kiếm và bộ lọc nằm ngay trên bảng." },
         { label: "Nhược", text: "Ít chỗ cho biểu đồ tổng quan." },
-        { label: "Hợp khi", text: "Người dùng vào để xử lý đơn, không để xem số tổng." },
+        { label: "Hợp khi", text: "Người dùng vào để xử lý đơn, không phải để xem số tổng." },
       ],
       recommendedLabel: "Khuyên dùng",
     },
     toolbarNote:
-      "Trên wireframe: đổi phương án, bật màu, thử màu nhấn, xem mobile, xem màn rỗng và lỗi, đọc ưu nhược, chép câu góp ý theo số khối.",
+      "Ngay trên wireframe, bạn đổi qua lại các phương án, bật màu, thử màu nhấn, xem bản mobile, xem lúc trống dữ liệu và lúc lỗi, đọc ưu nhược, rồi chép góp ý theo số từng khối.",
+  },
+  beforeAfter: {
+    label: "Trước / sau",
+    eyebrow: "Một màn thật",
+    title: {
+      lead: "Từ màn cũ tới wireframe,",
+      accent: "rồi tới bản hoàn chỉnh",
+    },
+    description:
+      "Màn Phòng trọ của 68Lane qua ba bước: màn gốc, wireframe skill đưa ra để chọn, và màn dựng từ đúng wireframe đó. Kéo thanh ở giữa để so.",
+    stages: {
+      before: "Trước",
+      wireframe: "Wireframe",
+      after: "Sau",
+    },
+    imageAlts: {
+      before: "Màn Phòng trọ của 68Lane trước khi làm lại",
+      wireframe: "Wireframe skill đưa ra cho màn Phòng trọ",
+      after: "Màn Phòng trọ sau khi skill dựng xong",
+    },
+    pairLabel: "Chọn cặp ảnh để so",
+    sliderLabel: "Kéo để so hai ảnh",
+    windowLabel: "68Lane · Phòng trọ",
+    placeholder: "Ảnh đang cập nhật",
+    hint: "Kéo ngang trong khung, hoặc bấm vào tay nắm rồi dùng phím ← →.",
   },
   probe: {
     label: "Soi và đo",
-    eyebrow: "Probe",
+    eyebrow: "Script kiểm tra",
     title: {
-      lead: "Đo bằng máy,",
-      accent: "không đoán bằng mắt",
+      lead: "Đo bằng script,",
+      accent: "không nhìn bằng mắt",
     },
     description:
-      "Script probe mở trang thật, rê chuột, bấm Tab, mở từng menu, đo tương phản và quét bề ngang. Mục nào báo lỗi thì phải lên bảng, hoặc ghi lý do loại.",
+      "Script mở trang thật, rê chuột, bấm Tab, mở từng menu, đo độ tương phản và thử từng độ rộng màn hình. Lỗi nào nó báo cũng phải lên bảng, hoặc phải ghi lý do bỏ qua.",
     reviewTitle: {
-      lead: "Bảng lỗi, bạn chọn dòng.",
-      accent: "Soi không hỏi, sửa thì hỏi. Chấm theo hệ của dự án bạn, không bắt theo gu skill.",
+      lead: "Skill liệt kê lỗi, bạn chọn sửa gì.",
+      accent: "Nó được soi thoải mái, nhưng chỉ sửa khi bạn đồng ý. Lỗi chấm theo chuẩn của dự án bạn, không theo gu của skill.",
     },
     reviewHeaders: {
       number: "#",
@@ -303,31 +352,31 @@ export const viDictionary: Dictionary = {
       fix: "Đề xuất",
     },
     reviewRows: [
-      { issue: "Chữ phụ 3,2:1 trên nền card", severity: "broken", fix: "Đổi sang màu phụ đạt 4,6:1" },
-      { issue: "Nav rớt dòng ở 860–1000px", severity: "broken", fix: "Gom mục phụ vào menu" },
-      { issue: "Ba kiểu bo góc cho cùng loại card", severity: "off-system", fix: "Về một bo góc của dự án" },
-      { issue: "Hai nút nền đặc tranh nhau", severity: "taste", fix: "Giữ một nút chính, nút kia viền" },
+      { issue: "Chữ phụ chỉ đạt 3,2:1 trên nền card", severity: "broken", fix: "Đổi sang màu phụ đạt 4,6:1" },
+      { issue: "Menu bị rớt dòng ở 860–1000px", severity: "broken", fix: "Gom mục phụ vào một menu" },
+      { issue: "Cùng loại card mà ba kiểu bo góc", severity: "off-system", fix: "Dùng một bo góc theo dự án" },
+      { issue: "Hai nút nền đặc tranh nhau", severity: "taste", fix: "Giữ một nút chính, nút kia để viền" },
     ],
     reviewReply: "Bạn trả lời: sửa 1, 2",
     severities: [
-      { tone: "broken", label: "Hỏng", description: "Sai đo được: tương phản, tràn, rớt dòng, bấm không được." },
-      { tone: "off-system", label: "Lệch hệ", description: "Khác chính quy ước của dự án bạn." },
-      { tone: "taste", label: "Gu", description: "Gợi ý theo gu skill, mặc định không chọn." },
+      { tone: "broken", label: "Hỏng", description: "Sai đo được: thiếu tương phản, tràn, rớt dòng, bấm không được." },
+      { tone: "off-system", label: "Lệch chuẩn", description: "Khác với quy ước của chính dự án bạn." },
+      { tone: "taste", label: "Gu", description: "Gợi ý theo gu của skill, mặc định không chọn." },
     ],
     sweepTitle: {
-      lead: "Đo sáu khổ màn.",
-      accent: "375, 768, 1024, 1280, 1440 và 1920px. Thêm --sweep thì quét từ 1440 xuống 375, báo khoảng bề ngang bị lỗi.",
+      lead: "Đo ở sáu độ rộng.",
+      accent: "375, 768, 1024, 1280, 1440 và 1920px. Thêm --sweep để quét liền từ 1440 xuống 375 và chỉ ra đoạn nào bị vỡ.",
     },
     sweepWidths: ["1920", "1440", "1280", "1024", "768", "375"],
-    sweepCheckHeader: "Phép đo",
+    sweepCheckHeader: "Kiểm tra",
     sweepChecks: [
       { name: "Tương phản chữ ≥ 4,5:1", marks: ["pass", "pass", "pass", "pass", "pass", "pass"] },
-      { name: "Trang không cuộn ngang", marks: ["pass", "pass", "pass", "pass", "pass", "fail"] },
-      { name: "Nav không rớt dòng", marks: ["pass", "pass", "pass", "pass", "fail", "pass"] },
-      { name: "Lớp nổi nằm trong màn", marks: ["pass", "pass", "pass", "pass", "pass", "fail"] },
-      { name: "Rê chuột nhìn thấy được", marks: ["pass", "pass", "pass", "pass", "pass", "pass"] },
+      { name: "Không cuộn ngang", marks: ["pass", "pass", "pass", "pass", "pass", "fail"] },
+      { name: "Menu không rớt dòng", marks: ["pass", "pass", "pass", "pass", "fail", "pass"] },
+      { name: "Dropdown, modal không tràn màn", marks: ["pass", "pass", "pass", "pass", "pass", "fail"] },
+      { name: "Hover có thấy rõ", marks: ["pass", "pass", "pass", "pass", "pass", "pass"] },
     ],
-    sweepNote: "Báo cáo mẫu. Probe còn đo mục đang chọn, vòng focus, và trạng thái bấm xong đứng yên.",
+    sweepNote: "Báo cáo mẫu. Script còn kiểm tra mục đang chọn, viền focus và trạng thái ngay sau khi bấm.",
     passLabel: "Đạt",
     failLabel: "Lỗi",
   },
@@ -338,13 +387,13 @@ export const viDictionary: Dictionary = {
       lead: "Gõ một câu,",
       accent: "ra màn này",
     },
-    description: "Mỗi ô là câu đề gốc và màn hình skill dựng ra từ đúng câu đó. Không chỉnh tay sau khi dựng.",
+    description: "Mỗi ô là prompt gốc và màn hình skill dựng từ đúng prompt đó. Không sửa tay sau khi dựng.",
     tabs: {
       component: "Component",
       block: "Khối ghép",
       page: "Trang",
     },
-    promptLabel: "Đề",
+    promptLabel: "Prompt",
     placeholder: "Ảnh đang chụp",
     openImageLabel: "Xem lớn",
     closeLabel: "Đóng",
@@ -357,57 +406,57 @@ export const viDictionary: Dictionary = {
     label: "Gu",
     eyebrow: "Gu của skill",
     title: {
-      lead: "Luật có số hiệu,",
-      accent: "không có tính từ",
+      lead: "Không dặn “làm\u00a0cho\u00a0đẹp”,",
+      accent: "chỉ có luật cụ thể",
     },
     description:
-      "Mỗi luật sống ở đúng một file, nhiều luật sinh ra từ lỗi đã gặp khi test. Đây là bốn luật bạn thấy ngay trên màn hình.",
+      "Mỗi luật nằm ở đúng một file, nhiều luật ra đời từ lỗi gặp lúc test. Đây là bốn luật bạn nhìn thấy ngay trên màn hình.",
     rules: [
       {
         id: "flat",
         code: "P6 · M12",
-        title: "Flat là mặc định",
-        description: "Nền xám nhạt, card trắng. Không gradient, không glass trang trí.",
+        title: "Mặc định là flat",
+        description: "Nền xám nhạt, card trắng. Không gradient, không hiệu ứng kính cho đẹp.",
       },
       {
         id: "one-accent",
         code: "M3 · I1 · I3",
-        title: "Một màu nhấn, một nút chính",
-        description: "Nút mặc định là nút viền. Mỗi khu chỉ một nút nền nhấn, nên nút cần nổi thì nổi thật.",
+        title: "Chỉ một nút chính",
+        description: "Nút mặc định chỉ có viền. Mỗi khu vực chỉ một nút tô màu nhấn, nên nút cần nổi thì nổi thật.",
       },
       {
         id: "hairline",
         code: "M13 · M15",
-        title: "Viền tóc thay cho bóng",
-        description: "Card trong trang tách nhau bằng viền 1px. Bóng chỉ dành cho lớp nổi: modal, dropdown.",
+        title: "Viền thay cho bóng",
+        description: "Card trong trang cách nhau bằng viền 1px. Bóng chỉ dùng cho thứ nổi lên trên trang như modal, dropdown.",
       },
       {
         id: "narrow",
         code: "R1 · T15",
-        title: "Đúng ở 375px",
-        description: "Nhãn dài thì xuống dòng, trang không bao giờ cuộn ngang.",
+        title: "Không vỡ ở 375px",
+        description: "Nhãn dài thì tự xuống dòng, trang không bao giờ bị cuộn ngang.",
       },
     ],
-    stylesTitle: "Đổi phong cách bằng một câu trong đề",
-    stylesNote: "Dự án đã có phong cách riêng thì skill theo dự án và báo lúc giao.",
+    stylesTitle: "Muốn phong cách khác, nói một câu trong prompt",
+    stylesNote: "Dự án đã có phong cách riêng thì skill theo dự án, và báo lại cho bạn lúc giao.",
     defaultStyleLabel: "Mặc định",
     styles: [
-      { name: "Flat đường tóc", isDefault: true },
-      { name: "Nổi", isDefault: false },
+      { name: "Flat viền mảnh", isDefault: true },
+      { name: "Đổ bóng", isDefault: false },
       { name: "Glassmorphism", isDefault: false },
       { name: "Gradient", isDefault: false },
       { name: "Nền tối", isDefault: false },
-      { name: "Có màu", isDefault: false },
+      { name: "Nhiều màu", isDefault: false },
     ],
   },
   install: {
     label: "Cài đặt",
     eyebrow: "Cài đặt",
     title: {
-      lead: "Cài trong",
+      lead: "Cài xong trong",
       accent: "một phút",
     },
-    description: "Chọn công cụ bạn đang dùng. Mọi vòng test của skill chạy trên Claude Code.",
+    description: "Chọn công cụ bạn đang dùng. Toàn bộ test của skill đều chạy trên Claude Code.",
     tabsLabel: "Công cụ",
     testedBadge: "Đã test",
     untestedBadge: "Chưa test",
@@ -416,43 +465,43 @@ export const viDictionary: Dictionary = {
     label: "Sắp có",
     eyebrow: "Lộ trình",
     title: {
-      lead: "Đang làm,",
+      lead: "Mình đang làm,",
       accent: "sắp có",
     },
-    description: "Những thứ skill chưa dám hứa. Chưa chạy xong vòng test thì trang này chưa ghi là có.",
+    description: "Những thứ mình chưa dám hứa. Chưa test xong thì trang này chưa ghi là có.",
     items: [
       {
         icon: "dark-mode",
         title: "Thêm dark mode cho app đang có",
         description:
-          "Nút đổi sáng / tối, nhớ lựa chọn, không nháy trắng khi tải. Soi lại bảng, form, lớp nổi, biểu đồ trên nền tối.",
+          "Nút chuyển sáng / tối, nhớ lựa chọn của người dùng, tải trang không bị nháy trắng. Soi lại bảng, form, modal, biểu đồ trên nền tối.",
         progress: "0/7 mục test",
       },
       {
         icon: "english",
-        title: "Vòng test tiếng Anh",
+        title: "Test với prompt tiếng Anh",
         description:
-          "Gõ đề tiếng Anh vào dự án trống, so ảnh với bản tiếng Việt: bố cục, màu, khoảng thở y hệt, chỉ chữ khác.",
-        progress: "0/8 đề",
+          "Gõ prompt tiếng Anh vào dự án trống rồi so với bản tiếng Việt: bố cục, màu, khoảng cách phải y hệt, chỉ khác chữ.",
+        progress: "0/8 prompt",
       },
       {
         icon: "agents",
         title: "Test trên Codex và Antigravity",
-        description: "README có hướng dẫn cài cho hai công cụ này, nhưng chưa chạy vòng test nào. Test xong mới ghi là hỗ trợ.",
+        description: "README đã có hướng dẫn cài cho hai công cụ này, nhưng mình chưa test lần nào. Test xong mới ghi là hỗ trợ.",
         progress: "Chưa bắt đầu",
       },
       {
         icon: "before-after",
-        title: "Ảnh trước / sau khi làm lại",
-        description: "Thanh kéo so hai ảnh trên dự án thật đã làm lại bằng skill, kèm số đo code trước và sau.",
-        progress: "Đang chọn dự án",
+        title: "Thêm ca trước / sau từ dự án thật",
+        description: "Ca đầu tiên là 68Lane ở phía trên. Mình đang làm thêm vài dự án nữa, kèm số đo code trước và sau.",
+        progress: "Đã có 1 dự án",
       },
     ],
   },
   cta: {
     eyebrow: "Bắt đầu",
-    title: "Dựng màn đầu tiên?",
-    description: "Hai lệnh trong Claude Code, rồi gõ đề như đang nói với designer. Miễn phí, mã nguồn mở MIT.",
+    title: "Dựng màn đầu tiên nhé?",
+    description: "Gõ hai lệnh trong Claude Code, rồi viết prompt như đang nói chuyện với designer. Miễn phí, mã nguồn mở MIT.",
     primaryCta: "Cài skill",
     secondaryCta: "Xem trên GitHub",
   },
@@ -461,42 +510,52 @@ export const viDictionary: Dictionary = {
     eyebrow: "Hỏi đáp",
     title: {
       lead: "Câu hỏi",
-      accent: "thường gặp",
+      accent: "hay gặp",
     },
     items: [
       {
-        question: "Có mất phí không?",
+        question: "Skill dùng thật được chưa?",
+        answer:
+          "Được, đang ở bản beta. Giao diện app nền sáng đã qua 70 prompt test trên dự án thật. Dark mode, prompt tiếng Anh, Codex và Antigravity mình vẫn đang test, bạn xem ở mục Sắp có. Gặp chỗ nào chưa ổn thì mở issue trên GitHub, kèm link hoặc ảnh màn đó. Cập nhật bản mới bằng lệnh /plugin marketplace update evondevkit.",
+      },
+      {
+        question: "Dựng xong mà chưa ưng thì sao?",
+        answer:
+          "Skill không hoàn hảo, nó chỉ làm tốt nhất có thể trong bộ luật của nó. Gu mỗi người mỗi khác, dự án nào cũng có cái riêng. Dựng xong bạn sửa tay hay nhờ AI sửa đều được, cứ nói như đang góp ý cho designer: “tiêu đề đậm hơn”, “thoáng hơn chút”, “bỏ khối 3”.",
+      },
+      {
+        question: "Có tốn phí không?",
         answer: "Không. Skill mở mã nguồn theo giấy phép MIT.",
       },
       {
         question: "Skill có hỏi nhiều không?",
         answer:
-          "Chế độ designer dừng đúng hai lần: duyệt brief và chọn wireframe. Ngoài hai chỗ đó skill lấy mặc định rồi báo lúc giao. Muốn bỏ luôn wireframe thì gõ “dựng luôn”.",
+          "Chế độ designer chỉ dừng hai lần: duyệt brief và chọn wireframe. Ngoài hai lần đó, skill tự chọn theo mặc định rồi báo lại lúc giao. Muốn bỏ luôn bước wireframe thì gõ “dựng luôn”.",
       },
       {
         question: "Dự án đã có design system thì sao?",
         answer:
-          "Skill dùng component của bạn. Có shadcn, Radix, MUI, Ant hay bộ nội bộ thì dùng đúng những component đó, chỉ chỉnh token cho khớp. Màu brand giữ nguyên, trừ khi bạn nói “bỏ style cũ”.",
+          "Skill dùng component của bạn. Dự án dùng shadcn, Radix, MUI, Ant hay bộ tự làm thì nó dùng đúng bộ đó, chỉ chỉnh token cho khớp. Màu brand giữ nguyên, trừ khi bạn nói “bỏ style cũ”.",
       },
       {
-        question: "Có bắt buộc Tailwind không?",
+        question: "Có bắt buộc dùng Tailwind không?",
         answer:
-          "Không. Dự án dùng CSS Module, SCSS hay styled-components thì theo quy ước đó. HTML thuần, WordPress, PHP thì skill dịch mẫu sang HTML và class rồi mới đưa.",
+          "Không. Dự án dùng CSS Module, SCSS hay styled-components thì skill theo cách đó. Với HTML thuần, WordPress hay PHP, skill chuyển mẫu sang HTML và class rồi mới đưa.",
       },
       {
-        question: "Có dark mode không?",
+        question: "Có làm dark mode không?",
         answer:
-          "Skill dựng được giao diện nền tối khi bạn nói trong đề. Thêm dark mode cho một app đang có (nút đổi sáng / tối) thì đang test, xem mục Sắp có.",
+          "Có, skill dựng được giao diện nền tối nếu bạn nói trong prompt. Còn thêm dark mode cho app đang chạy (có nút chuyển sáng / tối) thì mình vẫn đang test, bạn xem ở mục Sắp có.",
       },
       {
-        question: "Skill có dựng landing page không?",
+        question: "Skill có làm landing page không?",
         answer:
-          "Không. Phạm vi là màn hình trong app: dashboard, danh sách, bảng, form, cài đặt, modal, và trang người dùng lướt để chọn. Ngoại lệ là bảng giá.",
+          "Không. Skill chỉ làm màn hình bên trong app: dashboard, danh sách, bảng, form, cài đặt, modal, và các trang người dùng lướt để chọn. Riêng bảng giá thì có làm.",
       },
       {
-        question: "Chữ trên UI ra tiếng gì?",
+        question: "Chữ trên giao diện sẽ là tiếng gì?",
         answer:
-          "Theo ngôn ngữ của dự án. Có i18n thì theo i18n, có nhãn sẵn thì theo nhãn đó, dự án trống thì theo tiếng bạn đang gõ đề.",
+          "Theo ngôn ngữ của dự án. Có i18n thì theo i18n, có sẵn nhãn thì theo nhãn đó, dự án trống thì theo ngôn ngữ bạn gõ prompt.",
       },
     ],
   },

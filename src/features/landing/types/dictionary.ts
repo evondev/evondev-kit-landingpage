@@ -1,6 +1,8 @@
+import type { BeforeAfterStage } from "@/features/landing/types/before-after-stage";
 import type { FeatureStatus } from "@/features/landing/types/feature-status";
 import type { KitPrincipleIconId } from "@/features/landing/types/kit-principle-icon-id";
 import type { KitSkillId } from "@/features/landing/types/kit-skill-id";
+import type { ModeGroupId } from "@/features/landing/types/mode-group-id";
 import type { ModeId } from "@/features/landing/types/mode-id";
 import type { ProbeMark } from "@/features/landing/types/probe-mark";
 import type { RoadmapIconId } from "@/features/landing/types/roadmap-icon-id";
@@ -38,6 +40,13 @@ export interface ModeItem {
   /** Câu đề mẫu, lấy từ bảng "Dùng" trong README của evondevKit */
   prompt: string;
   status: FeatureStatus | null;
+}
+
+export interface ModeGroup {
+  id: ModeGroupId;
+  title: string;
+  description: string;
+  items: ModeItem[];
 }
 
 export interface DesignerStep {
@@ -199,8 +208,9 @@ export interface Dictionary {
     promptBoxLabel: string;
     copyPromptLabel: string;
     copiedPromptLabel: string;
-    imageAlt: string;
-    windowLabel: string;
+    videoLabel: string;
+    playVideoLabel: string;
+    pauseVideoLabel: string;
   };
   proof: {
     lead: string;
@@ -211,12 +221,21 @@ export interface Dictionary {
   };
   modes: SectionIntro & {
     promptLabel: string;
-    items: ModeItem[];
+    groups: ModeGroup[];
   };
   designer: SectionIntro & {
     steps: DesignerStep[];
     wireframe: WireframeLabels;
     toolbarNote: string;
+  };
+  beforeAfter: SectionIntro & {
+    stages: Record<BeforeAfterStage, string>;
+    imageAlts: Record<BeforeAfterStage, string>;
+    pairLabel: string;
+    sliderLabel: string;
+    windowLabel: string;
+    placeholder: string;
+    hint: string;
   };
   probe: SectionIntro & {
     reviewTitle: SplitTitle;

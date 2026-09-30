@@ -1,4 +1,5 @@
 import {
+  BeforeAfterSection,
   CtaSection,
   DesignerSection,
   FaqSection,
@@ -28,19 +29,20 @@ export default function UiUxPage({ locale }: UiUxPageProps) {
 
   return (
     <>
-      <SiteAnnouncement content={dictionary.announcement} href="#designer" />
+      <SiteAnnouncement content={dictionary.announcement} href="#roadmap" />
       <SiteHeader locale={locale} page="ui-ux" navItems={uiUxNavItems} dictionary={dictionary.header} />
       <main className="overflow-x-clip">
-        <HeroSection dictionary={dictionary} />
+        <HeroSection locale={locale} dictionary={dictionary} />
         <ProofStrip dictionary={dictionary.proof} />
         <ModesSection number={1} dictionary={dictionary.modes} statusLabels={dictionary.statusLabels} />
         <DesignerSection number={2} dictionary={dictionary.designer} />
-        <ProbeSection number={3} dictionary={dictionary.probe} />
-        <ShowcaseSection number={4} locale={locale} dictionary={dictionary.showcase} />
-        <TasteSection number={5} dictionary={dictionary.taste} />
-        <InstallSection number={6} locale={locale} dictionary={dictionary} />
-        <RoadmapSection number={7} dictionary={dictionary.roadmap} soonLabel={dictionary.statusLabels.soon} />
-        <FaqSection number={8} dictionary={dictionary.faq} />
+        <BeforeAfterSection number={3} dictionary={dictionary.beforeAfter} />
+        <ProbeSection number={4} dictionary={dictionary.probe} />
+        <ShowcaseSection number={5} locale={locale} dictionary={dictionary.showcase} />
+        <TasteSection number={6} dictionary={dictionary.taste} />
+        <InstallSection number={7} locale={locale} dictionary={dictionary} />
+        <RoadmapSection number={8} dictionary={dictionary.roadmap} soonLabel={dictionary.statusLabels.soon} />
+        <FaqSection number={9} dictionary={dictionary.faq} />
         <CtaSection content={dictionary.cta} primaryHref="#install" copyLabels={dictionary.copyButton} />
       </main>
       <SiteFooter locale={locale} dictionary={dictionary} />

@@ -2,23 +2,22 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { ButtonLink } from "@/components/button";
 import AccentTitle from "@/features/landing/components/accent-title";
-import BrowserFrame from "@/features/landing/components/browser-frame";
 import HeroBackdrop from "@/features/landing/components/hero-backdrop";
 import HeroPromptBox from "@/features/landing/components/hero-prompt-box";
-import Screenshot from "@/features/landing/components/screenshot";
-import { heroShowcaseId } from "@/features/landing/constants/hero-showcase-id";
+import HeroVideo from "@/features/landing/components/hero-video";
+import { heroVideos } from "@/features/landing/constants/hero-videos";
 import type { Dictionary } from "@/features/landing/types/dictionary";
 import type { HeroPromptMode } from "@/features/landing/types/hero-prompt-mode";
-import { getShowcaseImages } from "@/features/landing/utils/get-showcase-images";
+import type { Locale } from "@/features/landing/types/locale";
 
 interface HeroSectionProps {
+  locale: Locale;
   dictionary: Dictionary;
 }
 
-export default function HeroSection({ dictionary }: HeroSectionProps) {
-  const heroImages = getShowcaseImages(heroShowcaseId);
+export default function HeroSection({ locale, dictionary }: HeroSectionProps) {
   const { hero } = dictionary;
-  const promptModes: HeroPromptMode[] = dictionary.modes.items.map((mode) => ({
+  const promptModes: HeroPromptMode[] = dictionary.modes.groups.flatMap((group) => group.items).map((mode) => ({
     id: mode.id,
     tabLabel: mode.tabLabel,
     prompt: mode.prompt,
@@ -70,15 +69,12 @@ export default function HeroSection({ dictionary }: HeroSectionProps) {
         </div>
 
         <div className="relative px-3 pt-16 pb-12 sm:px-8 sm:pt-20 sm:pb-16">
-          <BrowserFrame label={hero.windowLabel}>
-            <Screenshot
-              image={heroImages?.light ?? null}
-              alt={hero.imageAlt}
-              placeholderLabel={dictionary.showcase.placeholder}
-              sizes="(min-width: 1112px) 1040px, 100vw"
-              isPriority
-            />
-          </BrowserFrame>
+          <HeroVideo
+            source={heroVideos[locale]}
+            label={hero.videoLabel}
+            playLabel={hero.playVideoLabel}
+            pauseLabel={hero.pauseVideoLabel}
+          />
         </div>
       </div>
     </section>
