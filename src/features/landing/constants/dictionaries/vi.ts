@@ -143,7 +143,7 @@ export const viDictionary: Dictionary = {
     tail: "từ một cái nút tới cả trang hoàn chỉnh",
     items: [
       { value: "30", label: "component đạt" },
-      { value: "8", label: "UI chưa có mẫu sẵn" },
+      { value: "8", label: "component dựng không cần mẫu" },
       { value: "10", label: "khối ghép" },
       { value: "22", label: "trang hoàn chỉnh" },
     ],
@@ -164,7 +164,7 @@ export const viDictionary: Dictionary = {
         id: "build",
         title: "Dựng màn mới",
         description:
-          "Mặc định skill đi đủ các bước như designer. Muốn tiết kiệm token thì bảo nó bỏ wireframe. Việc nhỏ hơn một màn thì nó làm luôn.",
+          "Mặc định skill đi đủ các bước như designer. Muốn tiết kiệm token thì bảo nó bỏ wireframe. Làm nhiều màn thì chốt design system trước. Việc nhỏ hơn một màn thì nó làm luôn.",
         items: [
           {
             id: "designer",
@@ -182,6 +182,15 @@ export const viDictionary: Dictionary = {
             description:
               "Tiết kiệm token. Skill tự chọn phương án nó thấy hợp nhất rồi dựng thẳng. Lúc giao, nó nói rõ đã chọn bố cục nào và vì sao.",
             prompt: "/evon:ui-ux Dựng luôn màn cài đặt thông báo.",
+            status: "new",
+          },
+          {
+            id: "design-system",
+            tabLabel: "Design system",
+            title: "Dựng design system trước",
+            description:
+              "Chốt màu, chữ, khoảng cách và bảy component nền (nút, badge, ô nhập, card, dòng danh sách, modal, trạng thái rỗng) trên một trang xem chung. Bạn duyệt một lần, các màn sau ráp từ đúng bộ đó. Dự án đã có shadcn hay bộ riêng thì skill chỉnh bộ đó, không dựng bản thứ hai.",
+            prompt: "/evon:ui-ux Dựng design system cho app quản lý phòng khám trước, chưa cần màn nào.",
             status: "new",
           },
           {
@@ -478,7 +487,7 @@ export const viDictionary: Dictionary = {
         title: "Test với prompt tiếng Anh",
         description:
           "Gõ prompt tiếng Anh vào dự án trống rồi so với bản tiếng Việt: bố cục, màu, khoảng cách phải y hệt, chỉ khác chữ.",
-        progress: "0/8 prompt",
+        progress: "0/2 prompt",
       },
       {
         icon: "agents",
@@ -526,7 +535,7 @@ export const viDictionary: Dictionary = {
       {
         question: "Skill có hỏi nhiều không?",
         answer:
-          "Chế độ designer chỉ dừng hai lần: duyệt brief và chọn wireframe. Ngoài hai lần đó, skill tự chọn theo mặc định rồi báo lại lúc giao. Muốn bỏ luôn bước wireframe thì gõ “dựng luôn”.",
+          "Chế độ designer chỉ dừng hai lần: duyệt brief và chọn wireframe. Ngoài hai lần đó, skill tự chọn theo mặc định rồi báo lại lúc giao. Muốn bỏ luôn bước wireframe thì gõ “dựng luôn”. Dựng design system trước thì chỉ dừng một lần, để bạn duyệt trang design system.",
       },
       {
         question: "Dự án đã có design system thì sao?",

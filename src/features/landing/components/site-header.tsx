@@ -52,20 +52,20 @@ export default function SiteHeader({ locale, page, navItems, dictionary, statusL
           ) : null}
         </div>
 
-        <nav aria-label={dictionary.navLabel} className="mx-auto hidden items-center gap-1 lg:flex">
+        <nav aria-label={dictionary.navLabel} className="mx-auto hidden items-center gap-1 xl:flex">
           {navItems.map((item) => (
             <ButtonLink
               key={item.href}
               href={item.href}
               variant="ghost"
-              className="h-9 px-3 py-0 text-[15px] font-normal text-foreground"
+              className="h-9 px-3 py-0 text-[15px] font-normal whitespace-nowrap text-foreground"
             >
               {dictionary.nav[item.labelKey]}
             </ButtonLink>
           ))}
         </nav>
 
-        <div className="ml-auto flex items-center gap-2 lg:ml-0">
+        <div className="ml-auto flex items-center gap-2 xl:ml-0">
           <LanguageSwitch locale={locale} page={page} switchLanguageLabel={dictionary.switchLanguageLabel} />
           <a
             href={githubRepoUrl}
@@ -77,7 +77,7 @@ export default function SiteHeader({ locale, page, navItems, dictionary, statusL
           >
             <IconGithub className="size-5" aria-hidden />
           </a>
-          <ButtonLink href="#install" variant="primary" className="hidden h-9 py-0 sm:inline-flex">
+          <ButtonLink href="#install" variant="primary" className="hidden h-9 py-0 whitespace-nowrap sm:inline-flex">
             {dictionary.installCta}
           </ButtonLink>
         </div>

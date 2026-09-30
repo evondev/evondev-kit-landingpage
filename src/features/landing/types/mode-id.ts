@@ -2,6 +2,7 @@
 export type ModeId =
   | "designer"
   | "just-build"
+  | "design-system"
   | "review"
   | "keep-brand"
   | "skill-taste"

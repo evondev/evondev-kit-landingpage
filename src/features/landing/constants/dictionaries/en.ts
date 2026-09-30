@@ -143,7 +143,7 @@ export const enDictionary: Dictionary = {
     tail: "from a single button to full pages",
     items: [
       { value: "30", label: "approved components" },
-      { value: "8", label: "UIs with no template" },
+      { value: "8", label: "components built without a template" },
       { value: "10", label: "composite blocks" },
       { value: "22", label: "full pages" },
     ],
@@ -164,7 +164,7 @@ export const enDictionary: Dictionary = {
         id: "build",
         title: "Build new",
         description:
-          "By default the skill goes through every designer step. Tell it to skip the wireframes to save tokens. Anything smaller than a screen, it just does.",
+          "By default the skill goes through every designer step. Tell it to skip the wireframes to save tokens. Building several screens? Lock in a design system first. Anything smaller than a screen, it just does.",
         items: [
           {
             id: "designer",
@@ -182,6 +182,15 @@ export const enDictionary: Dictionary = {
             description:
               "Saves tokens. The skill picks the option it thinks fits best and builds it straight away. At handover it tells you which layout it chose and why.",
             prompt: "/evon:ui-ux Build the notification settings screen, just build it.",
+            status: "new",
+          },
+          {
+            id: "design-system",
+            tabLabel: "Design system",
+            title: "Design system first",
+            description:
+              "Locks in color, type, spacing, and seven base components (button, badge, input, card, list row, modal, empty state) on one preview page. You approve it once, and later screens are built from that same set. If your project already has shadcn or its own kit, the skill tunes that kit instead of building a second one.",
+            prompt: "/evon:ui-ux Build a design system for a clinic management app first, no screens yet.",
             status: "new",
           },
           {
@@ -480,7 +489,7 @@ export const enDictionary: Dictionary = {
         title: "Testing with English prompts",
         description:
           "English prompts on an empty project, compared with the Vietnamese builds: same layout, color, and spacing, only the words differ.",
-        progress: "0/8 prompts",
+        progress: "0/2 prompts",
       },
       {
         icon: "agents",
@@ -528,7 +537,7 @@ export const enDictionary: Dictionary = {
       {
         question: "Does it ask a lot of questions?",
         answer:
-          "Designer mode stops exactly twice: to approve the brief and to pick a wireframe. Everywhere else it takes a default and tells you when it hands over. Say “just build it” to skip the wireframes too.",
+          "Designer mode stops exactly twice: to approve the brief and to pick a wireframe. Everywhere else it takes a default and tells you when it hands over. Say “just build it” to skip the wireframes too. Building a design system first stops only once, for you to approve the design system page.",
       },
       {
         question: "What if my project already has a design system?",
