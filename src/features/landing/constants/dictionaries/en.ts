@@ -8,7 +8,7 @@ export const enDictionary: Dictionary = {
         "Claude Code skills written by evondev. The first one, evon:ui-ux, builds app UI the way a designer would. Every skill is a set of concrete rules, tested on real projects. Free, MIT.",
     },
     "ui-ux": {
-      title: "evon:ui-ux · Dashboard UI that doesn't look AI-made",
+      title: "evon:ui-ux · UI dashboard without the AI hassle",
       description:
         "A Claude Code skill that builds app UI the way a designer would: it reads your codebase, shows a brief and 2–3 wireframes to pick from, builds with your own components, then checks its work with a script. Free, MIT.",
     },
@@ -127,8 +127,8 @@ export const enDictionary: Dictionary = {
   hero: {
     badge: "New: works like a designer",
     title: {
-      lead: "Dashboard UI that",
-      accent: "doesn't look AI-made",
+      lead: "UI dashboard",
+      accent: "without the AI hassle",
     },
     subheadline:
       "evon:ui-ux reads your codebase and shows a brief and 2–3 wireframes for you to pick from. Only then does it build, with your project's own components, and check its work with a script.",
