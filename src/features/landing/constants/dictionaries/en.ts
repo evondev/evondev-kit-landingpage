@@ -13,10 +13,6 @@ export const enDictionary: Dictionary = {
         "A Claude Code skill that builds app UI the way a designer would: it reads your codebase, shows a brief and 2–3 wireframes to pick from, builds with your own components, then checks its work with a script. Free, MIT.",
     },
   },
-  announcement: {
-    text: "Beta: solid for light-theme app screens. Dark mode, English prompts, Codex and Antigravity are still being tested.",
-    linkLabel: "See the roadmap",
-  },
   header: {
     homeLabel: "evondevKit, home",
     navLabel: "Main navigation",

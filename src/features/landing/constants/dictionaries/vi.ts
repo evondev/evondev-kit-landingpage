@@ -13,10 +13,6 @@ export const viDictionary: Dictionary = {
         "Skill Claude Code làm UI app theo cách một designer làm: đọc codebase, đưa brief và 2–3 wireframe cho bạn chọn, dựng bằng component có sẵn của dự án, rồi tự kiểm tra bằng script. Miễn phí, MIT.",
     },
   },
-  announcement: {
-    text: "Đang beta: dùng ổn cho giao diện app nền sáng. Dark mode, prompt tiếng Anh, Codex và Antigravity mình vẫn đang test.",
-    linkLabel: "Xem lộ trình",
-  },
   header: {
     homeLabel: "evondevKit, về trang chủ",
     navLabel: "Điều hướng chính",

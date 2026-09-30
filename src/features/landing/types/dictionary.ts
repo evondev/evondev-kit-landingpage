@@ -153,8 +153,6 @@ export interface FaqItem {
 /** Mọi chữ trên trang. vi.ts và en.ts cùng implement interface này. */
 export interface Dictionary {
   meta: Record<SitePage, PageMeta>;
-  /** Dải thông báo trên cùng trang evon:ui-ux */
-  announcement: AnnouncementContent;
   header: {
     homeLabel: string;
     navLabel: string;

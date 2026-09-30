@@ -10,7 +10,6 @@ import {
   ProofStrip,
   RoadmapSection,
   ShowcaseSection,
-  SiteAnnouncement,
   SiteFooter,
   SiteHeader,
   TasteSection,
@@ -29,8 +28,13 @@ export default function UiUxPage({ locale }: UiUxPageProps) {
 
   return (
     <>
-      <SiteAnnouncement content={dictionary.announcement} href="#roadmap" />
-      <SiteHeader locale={locale} page="ui-ux" navItems={uiUxNavItems} dictionary={dictionary.header} />
+      <SiteHeader
+        locale={locale}
+        page="ui-ux"
+        navItems={uiUxNavItems}
+        dictionary={dictionary.header}
+        statusLabel={dictionary.statusLabels.beta}
+      />
       <main className="overflow-x-clip">
         <HeroSection locale={locale} dictionary={dictionary} />
         <ProofStrip dictionary={dictionary.proof} />

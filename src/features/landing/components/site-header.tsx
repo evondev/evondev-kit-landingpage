@@ -3,6 +3,7 @@ import { ButtonLink } from "@/components/button";
 import { IconGithub } from "@/components/icons/icon-github";
 import LanguageSwitch from "@/features/landing/components/language-switch";
 import LogoMark from "@/features/landing/components/logo-mark";
+import StatusTag from "@/features/landing/components/status-tag";
 import { githubRepoUrl } from "@/features/landing/constants/site-links";
 import type { Dictionary } from "@/features/landing/types/dictionary";
 import type { HeaderNavItem } from "@/features/landing/types/header-nav-item";
@@ -16,17 +17,19 @@ interface SiteHeaderProps {
   page: SitePage;
   navItems: HeaderNavItem[];
   dictionary: Dictionary["header"];
+  /** Nhãn trạng thái của skill, hiện sau tên skill trên breadcrumb, ví dụ "Beta" */
+  statusLabel?: string;
 }
 
 const breadcrumbLinkClasses =
   "rounded-lg outline-hidden focus-visible:ring-2 focus-visible:ring-heat/60";
 
 /** Logo luôn về trang chủ evondevKit; ở trang skill thì thêm "/ tên skill" như breadcrumb. */
-export default function SiteHeader({ locale, page, navItems, dictionary }: SiteHeaderProps) {
+export default function SiteHeader({ locale, page, navItems, dictionary, statusLabel }: SiteHeaderProps) {
   const isSkillPage = page !== "home";
 
   return (
-    <header className="sticky top-0 z-40 mt-3 border-y border-border bg-background/90 px-4 backdrop-blur-md sm:px-6">
+    <header className="sticky top-0 z-40 border-y border-border bg-background/90 px-4 backdrop-blur-md sm:px-6">
       <div className="mx-auto flex h-16 w-full max-w-[1112px] items-center gap-3 border-x border-border px-4 sm:px-6">
         <div className="flex min-w-0 items-center gap-2">
           <Link href={getLocalePath(locale)} aria-label={dictionary.homeLabel} className={breadcrumbLinkClasses}>
@@ -44,6 +47,7 @@ export default function SiteHeader({ locale, page, navItems, dictionary }: SiteH
               >
                 {page}
               </Link>
+              {statusLabel ? <StatusTag status="beta" label={statusLabel} /> : null}
             </>
           ) : null}
         </div>

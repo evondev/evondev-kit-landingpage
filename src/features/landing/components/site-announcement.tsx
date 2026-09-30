@@ -10,7 +10,7 @@ interface SiteAnnouncementProps {
 /** Dải cam trên cùng báo tính năng mới. */
 export default function SiteAnnouncement({ content, href }: SiteAnnouncementProps) {
   return (
-    <div className="px-4 pt-3 sm:px-6">
+    <div className="px-4 py-3 sm:px-6">
       <p className="mx-auto max-w-[1112px] rounded-xl bg-heat px-4 py-2.5 text-center text-sm text-pretty text-white">
         {content.text}{" "}
         <Link
