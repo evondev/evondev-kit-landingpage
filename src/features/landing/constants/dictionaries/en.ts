@@ -189,7 +189,7 @@ export const enDictionary: Dictionary = {
             tabLabel: "Design system",
             title: "Design system first",
             description:
-              "Locks in color, type, spacing, and seven base components (button, badge, input, card, list row, modal, empty state) on one preview page. You approve it once, and later screens are built from that same set. If your project already has shadcn or its own kit, the skill tunes that kit instead of building a second one.",
+              "Locks in color, type, spacing, and seven base components on one page. Approve it once, and every later screen is built from that set. Already on shadcn or your own kit? The skill tunes that instead.",
             prompt: "/evon:ui-ux Build a design system for a clinic management app first, no screens yet.",
             status: "new",
           },
@@ -485,19 +485,6 @@ export const enDictionary: Dictionary = {
         progress: "0/7 test items",
       },
       {
-        icon: "english",
-        title: "Testing with English prompts",
-        description:
-          "English prompts on an empty project, compared with the Vietnamese builds: same layout, color, and spacing, only the words differ.",
-        progress: "0/2 prompts",
-      },
-      {
-        icon: "agents",
-        title: "Tested on Codex and Antigravity",
-        description: "The README already covers installing on both tools, but I haven't tested there yet. They get listed as supported once I have.",
-        progress: "Not started",
-      },
-      {
         icon: "before-after",
         title: "More before / after cases from real projects",
         description: "The first case is 68Lane, above. I'm working on a few more projects, with code measurements before and after.",
@@ -523,7 +510,7 @@ export const enDictionary: Dictionary = {
       {
         question: "Is it ready for real work?",
         answer:
-          "Yes, as a beta. Light-theme app screens have passed 70 test prompts on real projects. Dark mode, English prompts, Codex and Antigravity are still being tested, see Coming soon. If something looks off, open a GitHub issue with a link or a screenshot of that screen. Get the latest version with /plugin marketplace update evondevkit.",
+          "Yes, as a beta. Light-theme app screens have passed 70 test prompts on real projects. Dark mode is still being tested, see Coming soon. I haven't tested Codex and Antigravity myself yet, so if you hit a bug there, let me know. If something looks off, open a GitHub issue with a link or a screenshot of that screen. Get the latest version with /plugin marketplace update evondevkit.",
       },
       {
         question: "What if I don't like the result?",

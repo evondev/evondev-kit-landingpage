@@ -189,7 +189,7 @@ export const viDictionary: Dictionary = {
             tabLabel: "Design system",
             title: "Dựng design system trước",
             description:
-              "Chốt màu, chữ, khoảng cách và bảy component nền (nút, badge, ô nhập, card, dòng danh sách, modal, trạng thái rỗng) trên một trang xem chung. Bạn duyệt một lần, các màn sau ráp từ đúng bộ đó. Dự án đã có shadcn hay bộ riêng thì skill chỉnh bộ đó, không dựng bản thứ hai.",
+              "Chốt màu, chữ, khoảng cách và bảy component nền trên một trang. Duyệt một lần, các màn sau đều ráp từ bộ đó. Đã có shadcn hay bộ riêng thì skill chỉnh luôn bộ đó.",
             prompt: "/evon:ui-ux Dựng design system cho app quản lý phòng khám trước, chưa cần màn nào.",
             status: "new",
           },
@@ -483,19 +483,6 @@ export const viDictionary: Dictionary = {
         progress: "0/7 mục test",
       },
       {
-        icon: "english",
-        title: "Test với prompt tiếng Anh",
-        description:
-          "Gõ prompt tiếng Anh vào dự án trống rồi so với bản tiếng Việt: bố cục, màu, khoảng cách phải y hệt, chỉ khác chữ.",
-        progress: "0/2 prompt",
-      },
-      {
-        icon: "agents",
-        title: "Test trên Codex và Antigravity",
-        description: "README đã có hướng dẫn cài cho hai công cụ này, nhưng mình chưa test lần nào. Test xong mới ghi là hỗ trợ.",
-        progress: "Chưa bắt đầu",
-      },
-      {
         icon: "before-after",
         title: "Thêm ca trước / sau từ dự án thật",
         description: "Ca đầu tiên là 68Lane ở phía trên. Mình đang làm thêm vài dự án nữa, kèm số đo code trước và sau.",
@@ -521,7 +508,7 @@ export const viDictionary: Dictionary = {
       {
         question: "Skill dùng thật được chưa?",
         answer:
-          "Được, đang ở bản beta. Giao diện app nền sáng đã qua 70 prompt test trên dự án thật. Dark mode, prompt tiếng Anh, Codex và Antigravity mình vẫn đang test, bạn xem ở mục Sắp có. Gặp chỗ nào chưa ổn thì mở issue trên GitHub, kèm link hoặc ảnh màn đó. Cập nhật bản mới bằng lệnh /plugin marketplace update evondevkit.",
+          "Được, đang ở bản beta. Giao diện app nền sáng đã qua 70 prompt test trên dự án thật. Dark mode mình vẫn đang test, bạn xem ở mục Sắp có. Codex và Antigravity mình chưa tự test, bạn dùng thấy lỗi cứ báo. Gặp chỗ nào chưa ổn thì mở issue trên GitHub, kèm link hoặc ảnh màn đó. Cập nhật bản mới bằng lệnh /plugin marketplace update evondevkit.",
       },
       {
         question: "Dựng xong mà chưa ưng thì sao?",

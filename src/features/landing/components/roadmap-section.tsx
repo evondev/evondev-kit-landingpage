@@ -24,7 +24,7 @@ export default function RoadmapSection({ number, dictionary, soonLabel }: Roadma
           isCentered
         />
       </div>
-      <ul className="grid grid-cols-1 gap-px border-t border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+      <ul className="grid grid-cols-1 gap-px border-t border-border bg-border sm:grid-cols-2">
         {dictionary.items.map((item) => (
           <RoadmapCard key={item.icon} item={item} soonLabel={soonLabel} />
         ))}

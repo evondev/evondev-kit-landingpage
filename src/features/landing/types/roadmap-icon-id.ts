@@ -1,1 +1,1 @@
-export type RoadmapIconId = "dark-mode" | "english" | "agents" | "before-after";
+export type RoadmapIconId = "dark-mode" | "before-after";
