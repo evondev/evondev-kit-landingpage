@@ -53,10 +53,10 @@ export const installTools: InstallTool[] = [
       },
       {
         description: {
-          vi: "Không có lệnh /evon:ui-ux, bạn gõ “dùng skill ui-ux” trong prompt.",
-          en: "There's no /evon:ui-ux command here, so write “use the ui-ux skill” in your prompt.",
+          vi: "Gọi skill bằng lệnh này (hoặc chọn trong /skills), hoặc cứ gõ prompt bình thường: prompt nói về giao diện app là skill tự bật.",
+          en: "Invoke the skill with this command (or pick it from /skills), or just write a prompt: it turns on when the prompt is about app UI.",
         },
-        commands: [],
+        commands: ["$ui-ux"],
       },
     ],
   },
@@ -81,10 +81,10 @@ export const installTools: InstallTool[] = [
       },
       {
         description: {
-          vi: "Không có lệnh /evon:ui-ux, bạn gõ “dùng skill ui-ux” trong prompt.",
-          en: "There's no /evon:ui-ux command here, so write “use the ui-ux skill” in your prompt.",
+          vi: "Gọi skill bằng lệnh này, hoặc cứ gõ prompt bình thường: prompt nói về giao diện app là skill tự bật.",
+          en: "Invoke the skill with this command, or just write a prompt: it turns on when the prompt is about app UI.",
         },
-        commands: [],
+        commands: ["/ui-ux"],
       },
     ],
   },
