@@ -392,7 +392,7 @@ export const viDictionary: Dictionary = {
       lead: "Gõ một câu,",
       accent: "ra màn này",
     },
-    description: "Mỗi ô là prompt gốc và màn hình skill dựng từ đúng prompt đó. Không sửa tay sau khi dựng.",
+    description: "Mỗi ô là prompt gốc và màn hình skill dựng từ đúng prompt đó, chụp nguyên bản chưa chỉnh. Dựng xong bạn vẫn tuỳ chỉnh thêm theo ý mình.",
     tabs: {
       component: "Component",
       block: "Khối ghép",

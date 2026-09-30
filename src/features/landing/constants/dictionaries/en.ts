@@ -393,7 +393,7 @@ export const enDictionary: Dictionary = {
       lead: "One prompt,",
       accent: "this screen",
     },
-    description: "Each tile shows the original prompt and the screen the skill built from it. No hand edits after the build.",
+    description: "Each tile shows the original prompt and the screen the skill built from it, captured as-is. You can still customize it however you like afterward.",
     tabs: {
       component: "Components",
       block: "Blocks",
