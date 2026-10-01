@@ -51,6 +51,8 @@
   --animate-pixel-blink: pixel-blink 2.4s ease-in-out infinite;
   --animate-spin-slow: spin 14s linear infinite;
   --animate-caret-blink: caret-blink 1s steps(1) infinite;
+  /* Dải logo: hai bản danh sách nối nhau, lùi đúng một nửa thì quay về đầu mà không thấy chỗ nối. */
+  --animate-marquee: marquee 40s linear infinite;
 
   @keyframes hero-rise {
     from {
@@ -72,6 +74,15 @@
     }
     50% {
       opacity: 0.15;
+    }
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
     }
   }
 
@@ -135,6 +146,11 @@
     linear-gradient(to bottom, var(--color-border) 1px, transparent 1px);
   background-size: calc(100% / var(--cell-columns, 4)) var(--cell-height, 96px);
   background-position: 0 0;
+}
+
+/* Mờ dần hai đầu để logo chạy vào và ra khỏi khung, không bị cắt cụt ở mép. */
+@utility mask-fade-x {
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
 }
 
 /* Mờ dần ở giữa để chữ hero nằm trên nền trơn. */

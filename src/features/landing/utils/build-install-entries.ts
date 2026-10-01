@@ -6,7 +6,6 @@ export function buildInstallEntries(locale: Locale): InstallToolEntry[] {
   return installTools.map((tool) => ({
     id: tool.id,
     name: tool.name,
-    isTested: tool.isTested,
     steps: tool.steps.map((step) => ({
       description: step.description[locale],
       commands: step.commands,

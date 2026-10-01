@@ -5,12 +5,12 @@ export const enDictionary: Dictionary = {
     home: {
       title: "evondevKit · evondev's skills for coding agents",
       description:
-        "Skills for Claude Code, Codex and Antigravity, written by evondev. The first one, evon:ui-ux, builds app UI the way a designer would. Every skill is a set of concrete rules, tested on real projects. Free, MIT.",
+        "Skills for Claude Code, Cursor, Codex, OpenCode and Antigravity, written by evondev. The first one, evon:ui-ux, builds app UI the way a designer would. Every skill is a set of concrete rules, tested on real projects. Free, MIT.",
     },
     "ui-ux": {
       title: "evon:ui-ux · Wireframes, design systems, UI rebuilds like a designer",
       description:
-        "A UI/UX skill for Claude Code, Codex and Antigravity: a brief and 2–3 wireframes to pick from, a design system, reviews and rebuilds of your existing UI, always with your project's own components. Free, MIT.",
+        "A UI/UX skill for Claude Code, Cursor, Codex, OpenCode and Antigravity: a brief and 2–3 wireframes to pick from, a design system, reviews and rebuilds of your existing UI, always with your project's own components. Free, MIT.",
     },
   },
   header: {
@@ -41,7 +41,7 @@ export const enDictionary: Dictionary = {
         accent: "by evondev",
       },
       subheadline:
-        "Every skill is a set of concrete rules, tested on real projects before it shows up here. Install once, use it in every project, in Claude Code, Codex or Antigravity.",
+        "Every skill is a set of concrete rules, tested on real projects before it shows up here. Install once, use it in every project, in Claude Code, Cursor, Codex, OpenCode or Antigravity.",
       primaryCta: "See evon:ui-ux",
       secondaryCta: "Install evondevKit",
       commandsLabel: "Run these two commands in Claude Code",
@@ -106,7 +106,7 @@ export const enDictionary: Dictionary = {
     cta: {
       eyebrow: "Install",
       title: "Install evondevKit",
-      description: "Two commands in Claude Code and you have the whole kit; in Codex or Antigravity, copy the skill folder into your project. Free and MIT licensed.",
+      description: "Two commands in Claude Code and you have the whole kit; in Cursor, Codex, OpenCode or Antigravity, one npx skills add. Free and MIT licensed.",
       primaryCta: "See evon:ui-ux",
       secondaryCta: "View on GitHub",
     },
@@ -136,6 +136,9 @@ export const enDictionary: Dictionary = {
     videoLabel: "Before and after video: 68Lane's old room listing screen, the wireframe the skill proposed, then the finished build, plus how to install",
     playVideoLabel: "Play video",
     pauseVideoLabel: "Pause video",
+  },
+  supportedTools: {
+    label: "Works with",
   },
   proof: {
     lead: "Passed",
@@ -208,7 +211,7 @@ export const enDictionary: Dictionary = {
         id: "rework",
         title: "Redo existing UI",
         description:
-          "All three start by measuring your page. They differ in how much the skill is allowed to change.",
+          "All four start by measuring your page. They differ in how much the skill is allowed to change.",
         items: [
           {
             id: "review",
@@ -236,6 +239,15 @@ export const enDictionary: Dictionary = {
               "Like keeping the brand, but the colors switch to the skill's tokens too. Only your logo and main accent stay.",
             prompt: "/evon:ui-ux Rebuild this fully in the skill's taste, drop the old style.",
             status: null,
+          },
+          {
+            id: "dark-mode",
+            tabLabel: "Dark mode",
+            title: "Add dark mode to an existing app",
+            description:
+              "A Light / Dark / System toggle that remembers the choice and never flashes white on load. The skill switches colors through tokens, then re-checks tables, forms, overlays, and charts on dark. Tested on one real project, 7/7 items.",
+            prompt: "/evon:ui-ux Add dark mode to the app, with a light / dark toggle in the header, following the OS by default.",
+            status: "new",
           },
         ],
       },
@@ -462,8 +474,6 @@ export const enDictionary: Dictionary = {
     },
     description: "Pick the tool you use. All of the skill's testing ran on Claude Code.",
     tabsLabel: "Tool",
-    testedBadge: "Tested",
-    untestedBadge: "Not tested yet",
   },
   roadmap: {
     label: "Coming soon",
@@ -475,24 +485,37 @@ export const enDictionary: Dictionary = {
     description: "Things I'm not promising yet. Until testing is done, this page won't say they're there.",
     items: [
       {
-        icon: "dark-mode",
-        title: "Add dark mode to an existing app",
+        icon: "landing-page",
+        title: "Landing page",
         description:
-          "A light / dark toggle that remembers the choice and never flashes white on load. Tables, forms, modals, and charts re-checked on dark.",
-        progress: "0/7 test items",
+          "Hero, features, pricing, FAQ. Sections picked by what visitors should do: start a trial, buy now, book a demo, or join a waitlist.",
+        progress: "Not taught yet, still does it if asked",
       },
       {
-        icon: "before-after",
-        title: "More before / after cases from real projects",
-        description: "The first case is 68Lane, above. I'm working on a few more projects, with code measurements before and after.",
-        progress: "1 project so far",
+        icon: "ecommerce",
+        title: "E-commerce",
+        description: "Product listings, product pages, cart, checkout.",
+        progress: "Not taught yet, still does it if asked",
+      },
+      {
+        icon: "blog",
+        title: "Blog",
+        description: "Post lists and reading pages: type size, line length, table of contents, code blocks.",
+        progress: "Not taught yet, still does it if asked",
+      },
+      {
+        icon: "component-styles",
+        title: "More styles per component",
+        description:
+          "Take input focus: right now the skill uses a ring. I'm trying an underline-only style with no ring, plus a few others, so you can pick the one that fits your app.",
+        progress: "Researching",
       },
     ],
   },
   cta: {
     eyebrow: "Get started",
     title: "Ready to build your first screen?",
-    description: "Install it in Claude Code, Codex or Antigravity, then write your prompt like you're talking to a designer. Free and open source under MIT.",
+    description: "Install it in Claude Code, Cursor, Codex, OpenCode or Antigravity, then write your prompt like you're talking to a designer. Free and open source under MIT.",
     primaryCta: "Install skill",
     secondaryCta: "View on GitHub",
   },
@@ -507,7 +530,7 @@ export const enDictionary: Dictionary = {
       {
         question: "Is it ready for real work?",
         answer:
-          "Yes, as a beta. Light-theme app screens have passed 70 test prompts on real projects. Dark mode is still being tested, see Coming soon. I haven't tested Codex and Antigravity myself yet, so if you hit a bug there, let me know. If something looks off, open a GitHub issue with a link or a screenshot of that screen. Get the latest version with /plugin marketplace update evondevkit.",
+          "Yes, as a beta. Light-theme app screens have passed 70 test prompts on real projects. Dark mode for an existing app has been tested on one project. I haven't tested Cursor, Codex, OpenCode and Antigravity myself yet, so if you hit a bug there, let me know. If something looks off, open a GitHub issue with a link or a screenshot of that screen. Get the latest version with /plugin marketplace update evondevkit (Claude Code) or npx skills update (other tools).",
       },
       {
         question: "What if I don't like the result?",
@@ -541,12 +564,12 @@ export const enDictionary: Dictionary = {
       {
         question: "Does it do dark mode?",
         answer:
-          "Not yet. So far the skill has only been tested thoroughly on light UIs. Dark mode, both building dark screens and adding a light / dark toggle to an existing app, is in progress, see Coming soon.",
+          "Yes, as a beta. Adding dark mode to an existing app has been tested on one real project, all 7 items (theme toggle, tables, app shell, overlays, forms, charts, sign-in screen). By default the skill still builds light screens; it only does dark mode when you ask. Everyone's taste in dark themes differs, so if you want changes after it's built, just say so.",
       },
       {
         question: "Does it build landing pages?",
         answer:
-          "No. It only builds screens inside an app: dashboards, lists, tables, forms, settings, modals, and pages people browse to choose something. Pricing tables are the one exception.",
+          "It will if you ask, but it hasn't been taught them yet. The skill is taught for screens inside an app: dashboards, lists, tables, forms, settings, modals, and pages people browse to choose something, pricing tables included. For landing pages, e-commerce, and blogs, it tells you so in one line before it starts. I'm working on these, see Coming soon.",
       },
       {
         question: "Does it work in English?",

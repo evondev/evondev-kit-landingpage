@@ -1,1 +1,1 @@
-export type InstallToolId = "claude-code" | "codex" | "antigravity";
+export type InstallToolId = "claude-code" | "cursor" | "codex" | "opencode" | "antigravity";

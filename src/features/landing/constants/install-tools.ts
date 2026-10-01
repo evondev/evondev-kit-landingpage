@@ -1,13 +1,11 @@
 import type { InstallTool } from "@/features/landing/types/install-tool";
-
-const cloneCommand = "git clone https://github.com/evondev/evondevKit.git ~/evondevKit";
+import { buildSkillsCliSteps } from "@/features/landing/utils/build-skills-cli-steps";
 
 /** Lệnh lấy từ README của evondevKit. README đổi thì sửa ở đây. */
 export const installTools: InstallTool[] = [
   {
     id: "claude-code",
     name: "Claude Code",
-    isTested: true,
     steps: [
       {
         description: {
@@ -33,59 +31,59 @@ export const installTools: InstallTool[] = [
     ],
   },
   {
+    id: "cursor",
+    name: "Cursor",
+    steps: buildSkillsCliSteps({
+      agentId: "cursor",
+      invokeStep: {
+        description: {
+          vi: "Gọi skill bằng lệnh này trong khung chat Agent, hoặc cứ gõ prompt bình thường: prompt nói về giao diện app là skill tự bật.",
+          en: "Invoke the skill with this command in the Agent chat, or just write a prompt: it turns on when the prompt is about app UI.",
+        },
+        commands: ["/ui-ux"],
+      },
+    }),
+  },
+  {
     id: "codex",
     name: "Codex",
-    isTested: false,
-    steps: [
-      {
-        description: {
-          vi: "Tải repo về máy.",
-          en: "Clone the repo.",
-        },
-        commands: [cloneCommand],
-      },
-      {
-        description: {
-          vi: "Chép thư mục skill vào .agents/skills/ của dự án.",
-          en: "Copy the skill folder into your project's .agents/skills/.",
-        },
-        commands: ["mkdir -p .agents/skills", "cp -R ~/evondevKit/skills/ui-ux .agents/skills/"],
-      },
-      {
+    steps: buildSkillsCliSteps({
+      agentId: "codex",
+      invokeStep: {
         description: {
           vi: "Gọi skill bằng lệnh này (hoặc chọn trong /skills), hoặc cứ gõ prompt bình thường: prompt nói về giao diện app là skill tự bật.",
           en: "Invoke the skill with this command (or pick it from /skills), or just write a prompt: it turns on when the prompt is about app UI.",
         },
         commands: ["$ui-ux"],
       },
-    ],
+    }),
+  },
+  {
+    id: "opencode",
+    name: "OpenCode",
+    steps: buildSkillsCliSteps({
+      agentId: "opencode",
+      invokeStep: {
+        description: {
+          vi: "Cứ gõ prompt bình thường: prompt nói về giao diện app là skill tự bật. Muốn chắc thì ghi \"dùng skill ui-ux\" ngay đầu prompt.",
+          en: "Just write a prompt: the skill turns on when the prompt is about app UI. To be sure, start the prompt with \"use the ui-ux skill\".",
+        },
+        commands: [],
+      },
+    }),
   },
   {
     id: "antigravity",
     name: "Antigravity",
-    isTested: false,
-    steps: [
-      {
-        description: {
-          vi: "Tải repo về máy.",
-          en: "Clone the repo.",
-        },
-        commands: [cloneCommand],
-      },
-      {
-        description: {
-          vi: "Chép thư mục skill vào .agents/skills/ của dự án.",
-          en: "Copy the skill folder into your project's .agents/skills/.",
-        },
-        commands: ["mkdir -p .agents/skills", "cp -R ~/evondevKit/skills/ui-ux .agents/skills/"],
-      },
-      {
+    steps: buildSkillsCliSteps({
+      agentId: "antigravity",
+      invokeStep: {
         description: {
           vi: "Gọi skill bằng lệnh này, hoặc cứ gõ prompt bình thường: prompt nói về giao diện app là skill tự bật.",
           en: "Invoke the skill with this command, or just write a prompt: it turns on when the prompt is about app UI.",
         },
         commands: ["/ui-ux"],
       },
-    ],
+    }),
   },
 ];

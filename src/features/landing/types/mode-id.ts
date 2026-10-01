@@ -6,5 +6,6 @@ export type ModeId =
   | "review"
   | "keep-brand"
   | "skill-taste"
+  | "dark-mode"
   | "refactor"
   | "small-fix";

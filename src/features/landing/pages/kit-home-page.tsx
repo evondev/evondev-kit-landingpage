@@ -6,6 +6,7 @@ import {
   SiteAnnouncement,
   SiteFooter,
   SiteHeader,
+  SupportedToolsStrip,
 } from "@/features/landing/components";
 import { kitHomeNavItems } from "@/features/landing/constants/kit-home-nav-items";
 import { kitHomeSectionCount } from "@/features/landing/constants/kit-home-section-count";
@@ -28,6 +29,7 @@ export default function KitHomePage({ locale }: KitHomePageProps) {
       <SiteHeader locale={locale} page="home" navItems={kitHomeNavItems} dictionary={dictionary.header} />
       <main className="overflow-x-clip">
         <KitHeroSection locale={locale} dictionary={dictionary} />
+        <SupportedToolsStrip dictionary={dictionary.supportedTools} />
         <KitSkillsSection number={1} total={kitHomeSectionCount} locale={locale} dictionary={dictionary} />
         <KitPrinciplesSection number={2} total={kitHomeSectionCount} dictionary={kitHome.principles} />
         <CtaSection id="install" content={kitHome.cta} primaryHref={uiUxPath} copyLabels={dictionary.copyButton} />

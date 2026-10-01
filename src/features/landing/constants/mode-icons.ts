@@ -2,6 +2,7 @@ import {
   Blocks,
   Hammer,
   LayoutTemplate,
+  MoonStar,
   Paintbrush,
   Palette,
   PencilRuler,
@@ -18,6 +19,7 @@ export const modeIcons: Record<ModeId, LucideIcon> = {
   review: ScanSearch,
   "keep-brand": Paintbrush,
   "skill-taste": Palette,
+  "dark-mode": MoonStar,
   refactor: Wrench,
   "small-fix": PencilRuler,
 };

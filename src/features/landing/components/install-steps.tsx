@@ -1,5 +1,4 @@
 import CommandBlock from "@/features/landing/components/command-block";
-import TestedBadge from "@/features/landing/components/tested-badge";
 import type { Dictionary } from "@/features/landing/types/dictionary";
 import type { InstallToolEntry } from "@/features/landing/types/install-tool-entry";
 
@@ -19,23 +18,22 @@ export default function InstallSteps({ tool, dictionary }: InstallStepsProps) {
           <span className="size-2.5 rounded-full border border-border-strong" />
         </span>
         <span className="flex-1 font-mono text-xs text-muted">{tool.name}</span>
-        <TestedBadge
-          isTested={tool.isTested}
-          label={tool.isTested ? dictionary.install.testedBadge : dictionary.install.untestedBadge}
-        />
       </div>
       <ol className="divide-y divide-border">
         {tool.steps.map((step, index) => (
-          <li key={step.description} className="flex gap-4 p-5 sm:p-6">
-            <span className="w-6 shrink-0 pt-0.5 font-mono text-sm text-heat-ink tabular-nums">
+          // Màn hẹp ô lệnh tràn hết bề ngang bước, không thụt theo cột số: thụt thì lệnh npx bị bẻ giữa chữ.
+          <li key={step.description} className="grid grid-cols-[1.5rem_1fr] gap-x-4 p-5 sm:p-6">
+            <span className="pt-0.5 font-mono text-sm text-heat-ink tabular-nums">
               {String(index + 1).padStart(2, "0")}
             </span>
-            <div className="min-w-0 flex-1">
-              <p className="text-pretty text-foreground">{step.description}</p>
-              {step.commands.length > 0 ? (
-                <CommandBlock commands={step.commands} copyLabels={dictionary.copyButton} className="mt-3 bg-background" />
-              ) : null}
-            </div>
+            <p className="min-w-0 text-pretty text-foreground">{step.description}</p>
+            {step.commands.length > 0 ? (
+              <CommandBlock
+                commands={step.commands}
+                copyLabels={dictionary.copyButton}
+                className="col-span-2 mt-3 bg-background sm:col-span-1 sm:col-start-2"
+              />
+            ) : null}
           </li>
         ))}
       </ol>

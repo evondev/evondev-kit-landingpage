@@ -9,6 +9,5 @@ export interface InstallStepEntry {
 export interface InstallToolEntry {
   id: InstallToolId;
   name: string;
-  isTested: boolean;
   steps: InstallStepEntry[];
 }

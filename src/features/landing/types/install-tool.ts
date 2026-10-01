@@ -9,7 +9,5 @@ export interface InstallStep {
 export interface InstallTool {
   id: InstallToolId;
   name: string;
-  /** Đã chạy vòng test của skill trên công cụ này chưa */
-  isTested: boolean;
   steps: InstallStep[];
 }

@@ -5,12 +5,12 @@ export const viDictionary: Dictionary = {
     home: {
       title: "evondevKit · Bộ skill cho coding agent của evondev",
       description:
-        "Bộ skill cho Claude Code, Codex và Antigravity do evondev viết. Skill đầu tiên là evon:ui-ux, làm UI app theo cách một designer làm. Skill nào cũng là bộ luật cụ thể, đã test trên dự án thật. Miễn phí, MIT.",
+        "Bộ skill cho Claude Code, Cursor, Codex, OpenCode và Antigravity do evondev viết. Skill đầu tiên là evon:ui-ux, làm UI app theo cách một designer làm. Skill nào cũng là bộ luật cụ thể, đã test trên dự án thật. Miễn phí, MIT.",
     },
     "ui-ux": {
       title: "evon:ui-ux · Wireframe, design system, dựng lại UI như designer",
       description:
-        "Skill UI/UX cho Claude Code, Codex và Antigravity: đưa brief và 2–3 wireframe cho bạn chọn, dựng design system, soi và dựng lại UI đang có, luôn bằng component của dự án. Miễn phí, MIT.",
+        "Skill UI/UX cho Claude Code, Cursor, Codex, OpenCode và Antigravity: đưa brief và 2–3 wireframe cho bạn chọn, dựng design system, soi và dựng lại UI đang có, luôn bằng component của dự án. Miễn phí, MIT.",
     },
   },
   header: {
@@ -41,7 +41,7 @@ export const viDictionary: Dictionary = {
         accent: "của evondev",
       },
       subheadline:
-        "Mỗi skill là một bộ luật cụ thể, test trên dự án thật rồi mới đưa lên đây. Cài một lần, dùng cho mọi dự án, trên Claude Code, Codex hay Antigravity.",
+        "Mỗi skill là một bộ luật cụ thể, test trên dự án thật rồi mới đưa lên đây. Cài một lần, dùng cho mọi dự án, trên Claude Code, Cursor, Codex, OpenCode hay Antigravity.",
       primaryCta: "Xem evon:ui-ux",
       secondaryCta: "Cài evondevKit",
       commandsLabel: "Gõ hai lệnh này trong Claude Code",
@@ -106,7 +106,7 @@ export const viDictionary: Dictionary = {
     cta: {
       eyebrow: "Cài đặt",
       title: "Cài evondevKit",
-      description: "Claude Code gõ hai lệnh là có đủ bộ, Codex và Antigravity thì chép thư mục skill vào dự án. Miễn phí, mã nguồn mở MIT.",
+      description: "Claude Code gõ hai lệnh là có đủ bộ, Cursor, Codex, OpenCode và Antigravity thì một lệnh npx skills add. Miễn phí, mã nguồn mở MIT.",
       primaryCta: "Xem evon:ui-ux",
       secondaryCta: "Xem trên GitHub",
     },
@@ -136,6 +136,9 @@ export const viDictionary: Dictionary = {
     videoLabel: "Video trước và sau: màn Phòng trọ cũ của 68Lane, wireframe skill đưa ra, rồi màn dựng xong, kèm cách cài",
     playVideoLabel: "Phát video",
     pauseVideoLabel: "Tạm dừng video",
+  },
+  supportedTools: {
+    label: "Dùng được với",
   },
   proof: {
     lead: "Đã qua",
@@ -208,7 +211,7 @@ export const viDictionary: Dictionary = {
         id: "rework",
         title: "Làm lại UI đang có",
         description:
-          "Cả ba cách đều bắt đầu bằng việc đo trang của bạn. Khác nhau ở chỗ skill được phép đổi tới đâu.",
+          "Cả bốn cách đều bắt đầu bằng việc đo trang của bạn. Khác nhau ở chỗ skill được phép đổi tới đâu.",
         items: [
           {
             id: "review",
@@ -236,6 +239,15 @@ export const viDictionary: Dictionary = {
               "Giống dựng lại giữ brand, nhưng đổi luôn cả màu sang bộ token của skill. Chỉ giữ logo và màu nhấn chính của bạn.",
             prompt: "/evon:ui-ux Dựng lại hoàn toàn theo gu skill, bỏ style cũ.",
             status: null,
+          },
+          {
+            id: "dark-mode",
+            tabLabel: "Dark mode",
+            title: "Thêm dark mode cho app đang có",
+            description:
+              "Nút Sáng / Tối / Theo hệ thống, nhớ lựa chọn, tải trang không nháy trắng. Skill đổi màu qua token rồi soi lại bảng, form, lớp nổi, biểu đồ trên nền tối. Đã test trên một dự án thật, 7/7 mục.",
+            prompt: "/evon:ui-ux Thêm dark mode cho app, có nút đổi sáng / tối trên header, mặc định theo hệ điều hành.",
+            status: "new",
           },
         ],
       },
@@ -460,8 +472,6 @@ export const viDictionary: Dictionary = {
     },
     description: "Chọn công cụ bạn đang dùng. Toàn bộ test của skill đều chạy trên Claude Code.",
     tabsLabel: "Công cụ",
-    testedBadge: "Đã test",
-    untestedBadge: "Chưa test",
   },
   roadmap: {
     label: "Sắp có",
@@ -473,24 +483,37 @@ export const viDictionary: Dictionary = {
     description: "Những thứ mình chưa dám hứa. Chưa test xong thì trang này chưa ghi là có.",
     items: [
       {
-        icon: "dark-mode",
-        title: "Thêm dark mode cho app đang có",
+        icon: "landing-page",
+        title: "Landing page",
         description:
-          "Nút chuyển sáng / tối, nhớ lựa chọn của người dùng, tải trang không bị nháy trắng. Soi lại bảng, form, modal, biểu đồ trên nền tối.",
-        progress: "0/7 mục test",
+          "Hero, tính năng, bảng giá, FAQ. Chọn section theo việc khách cần làm: dùng thử, mua luôn, đặt lịch demo hay vào danh sách chờ.",
+        progress: "Chưa dạy, nhờ thì vẫn làm",
       },
       {
-        icon: "before-after",
-        title: "Thêm ca trước / sau từ dự án thật",
-        description: "Ca đầu tiên là 68Lane ở phía trên. Mình đang làm thêm vài dự án nữa, kèm số đo code trước và sau.",
-        progress: "Đã có 1 dự án",
+        icon: "ecommerce",
+        title: "E-commerce",
+        description: "Danh sách sản phẩm, trang chi tiết, giỏ hàng, thanh toán.",
+        progress: "Chưa dạy, nhờ thì vẫn làm",
+      },
+      {
+        icon: "blog",
+        title: "Blog",
+        description: "Trang danh sách bài và trang đọc bài: cỡ chữ, độ rộng dòng, mục lục, khối code.",
+        progress: "Chưa dạy, nhờ thì vẫn làm",
+      },
+      {
+        icon: "component-styles",
+        title: "Nhiều kiểu cho component",
+        description:
+          "Ví dụ ô nhập lúc focus: giờ skill dùng viền ring. Mình đang thử thêm kiểu chỉ gạch chân, không ring, và vài kiểu khác, để bạn chọn kiểu hợp app.",
+        progress: "Đang nghiên cứu",
       },
     ],
   },
   cta: {
     eyebrow: "Bắt đầu",
     title: "Dựng màn đầu tiên nhé?",
-    description: "Cài vào Claude Code, Codex hoặc Antigravity, rồi viết prompt như đang nói chuyện với designer. Miễn phí, mã nguồn mở MIT.",
+    description: "Cài vào Claude Code, Cursor, Codex, OpenCode hoặc Antigravity, rồi viết prompt như đang nói chuyện với designer. Miễn phí, mã nguồn mở MIT.",
     primaryCta: "Cài skill",
     secondaryCta: "Xem trên GitHub",
   },
@@ -505,7 +528,7 @@ export const viDictionary: Dictionary = {
       {
         question: "Skill dùng thật được chưa?",
         answer:
-          "Được, đang ở bản beta. Giao diện app nền sáng đã qua 70 prompt test trên dự án thật. Dark mode mình vẫn đang test, bạn xem ở mục Sắp có. Codex và Antigravity mình chưa tự test, bạn dùng thấy lỗi cứ báo. Gặp chỗ nào chưa ổn thì mở issue trên GitHub, kèm link hoặc ảnh màn đó. Cập nhật bản mới bằng lệnh /plugin marketplace update evondevkit.",
+          "Được, đang ở bản beta. Giao diện app nền sáng đã qua 70 prompt test trên dự án thật. Dark mode cho app đang có đã test trên một dự án. Cursor, Codex, OpenCode và Antigravity mình chưa tự test, bạn dùng thấy lỗi cứ báo. Gặp chỗ nào chưa ổn thì mở issue trên GitHub, kèm link hoặc ảnh màn đó. Cập nhật bản mới bằng lệnh /plugin marketplace update evondevkit (Claude Code) hoặc npx skills update (công cụ khác).",
       },
       {
         question: "Dựng xong mà chưa ưng thì sao?",
@@ -539,12 +562,12 @@ export const viDictionary: Dictionary = {
       {
         question: "Có làm dark mode không?",
         answer:
-          "Chưa. Hiện skill mới test kỹ với giao diện nền sáng. Dark mode, cả dựng màn nền tối lẫn thêm nút chuyển sáng / tối cho app đang chạy, mình đang làm, bạn xem ở mục Sắp có.",
+          "Có, đang ở bản beta. Thêm dark mode cho app đang có đã test trên một dự án thật, đủ 7 mục (nút đổi theme, bảng, khung app, lớp nổi, form, biểu đồ, màn đăng nhập). Mặc định skill vẫn dựng nền sáng, bạn nhờ thì nó mới làm dark mode. Gu tối mỗi người một khác, dựng xong muốn chỉnh thì cứ nhắn.",
       },
       {
         question: "Skill có làm landing page không?",
         answer:
-          "Không. Skill chỉ làm màn hình bên trong app: dashboard, danh sách, bảng, form, cài đặt, modal, và các trang người dùng lướt để chọn. Riêng bảng giá thì có làm.",
+          "Nhờ thì vẫn làm, nhưng chưa được dạy. Skill được dạy kỹ cho màn hình bên trong app: dashboard, danh sách, bảng, form, cài đặt, modal, và các trang người dùng lướt để chọn, kể cả bảng giá. Landing page, e-commerce, blog thì skill báo trước một dòng rồi mới làm. Mình đang làm phần này, bạn xem ở mục Sắp có.",
       },
       {
         question: "Chữ trên giao diện sẽ là tiếng gì?",

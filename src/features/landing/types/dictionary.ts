@@ -211,6 +211,10 @@ export interface Dictionary {
     playVideoLabel: string;
     pauseVideoLabel: string;
   };
+  supportedTools: {
+    /** Nhãn mono bên trái dải logo chạy ngang */
+    label: string;
+  };
   proof: {
     lead: string;
     accent: string;
@@ -273,8 +277,6 @@ export interface Dictionary {
   };
   install: SectionIntro & {
     tabsLabel: string;
-    testedBadge: string;
-    untestedBadge: string;
   };
   roadmap: SectionIntro & {
     items: RoadmapItem[];

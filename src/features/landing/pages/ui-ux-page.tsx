@@ -12,6 +12,7 @@ import {
   ShowcaseSection,
   SiteFooter,
   SiteHeader,
+  SupportedToolsStrip,
   TasteSection,
 } from "@/features/landing/components";
 import { uiUxNavItems } from "@/features/landing/constants/ui-ux-nav-items";
@@ -37,6 +38,7 @@ export default function UiUxPage({ locale }: UiUxPageProps) {
       />
       <main className="overflow-x-clip">
         <HeroSection locale={locale} dictionary={dictionary} />
+        <SupportedToolsStrip dictionary={dictionary.supportedTools} />
         <ProofStrip dictionary={dictionary.proof} />
         <ModesSection number={1} dictionary={dictionary.modes} statusLabels={dictionary.statusLabels} />
         <DesignerSection number={2} dictionary={dictionary.designer} />

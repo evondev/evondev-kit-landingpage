@@ -1,1 +1,1 @@
-export type RoadmapIconId = "dark-mode" | "before-after";
+export type RoadmapIconId = "landing-page" | "ecommerce" | "blog" | "component-styles";

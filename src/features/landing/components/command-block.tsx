@@ -22,7 +22,7 @@ export default function CommandBlock({ commands, copyLabels, className }: Comman
           <span className="shrink-0 font-mono text-sm text-heat select-none" aria-hidden>
             &gt;
           </span>
-          <code className="min-w-0 flex-1 font-mono text-[13px] [overflow-wrap:anywhere]">{command}</code>
+          <code className="min-w-0 flex-1 font-mono text-[13px] [overflow-wrap:break-word]">{command}</code>
           <CopyButton text={command} copyLabel={copyLabels.copy} copiedLabel={copyLabels.copied} />
         </li>
       ))}
