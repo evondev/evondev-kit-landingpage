@@ -1,5 +1,20 @@
 @import "tailwindcss";
 
+/* Theme tối chạy theo máy, trừ khi người xem đã bấm nút đổi theme: lựa chọn đó lưu ở localStorage,
+   script inline trong <head> gắn data-theme lên <html> trước khi vẽ (site-document.tsx).
+   Tắt JavaScript vẫn theo máy được, vì nhánh prefers-color-scheme là CSS thuần. */
+@custom-variant dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme="light"]), :root:not([data-theme="light"]) *) {
+      @slot;
+    }
+  }
+}
+
 /* Phong cách landing: nền xám rất nhạt, khung lưới đường tóc có dấu + ở giao điểm,
    nhãn mono kiểu [ 01 / 08 ], một màu nhấn cam "heat". Khác với gu flat của skill:
    đây là trang giới thiệu, không phải màn hình trong app. */
@@ -36,6 +51,9 @@
   --color-secondary: #0000000a;
   --color-secondary-hover: #00000012;
   --color-background-hover: #0000000a;
+
+  /* Lớp phủ tối trên ảnh và sau lightbox: theme nào cũng tối, nên không khai lại ở khối dark. */
+  --color-scrim: #0a0a0a;
 
   --shadow-card: 0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px -12px rgb(0 0 0 / 0.08);
   --shadow-float: 0 1px 2px rgb(0 0 0 / 0.04), 0 16px 40px -16px rgb(0 0 0 / 0.14);
@@ -132,6 +150,66 @@
   --color-muted: #6b6b73;
   --color-border: #f7f7f8;
   --color-border-strong: #eaeaea;
+
+  /* Bản tối của skill là navy rất tối (khối .dark trong tokens.css), giữ nguyên để hình minh hoạ
+     trông đúng như skill dựng ra ở nền tối. */
+  @variant dark {
+    --color-primary: #e9edf5;
+    --color-primary-foreground: #05060f;
+    --color-background: #05060f;
+    --color-surface: #0f111a;
+    --color-surface-hover: #141722;
+    --color-foreground: #e9edf5;
+    --color-muted: #8b93a7;
+    --color-border: rgb(160 180 220 / 0.12);
+    --color-border-strong: rgb(160 180 220 / 0.16);
+  }
+}
+
+/* ===== THEME TỐI =====
+   Tham khảo bảng tối của vercel.com (Geist), linear.app, supabase.com, resend.com:
+   - Nền gần đen chứ không đen tuyệt đối (#0a0a0a như Vercel), chữ chính #ededed chứ không trắng
+     tinh: trắng trên đen 21:1 làm chữ nhoè, chói khi đọc lâu.
+   - Lớp nổi SÁNG dần lên (nền < card < vùng tô), bóng đổ gần như không thấy trên nền tối.
+   - Viền là thứ chính tách khối: #1f1f1f / #2e2e2e đúng như gray-200 / gray-400 của Geist,
+     bằng cỡ viền rgba(255,255,255,.08) của Linear trên nền này.
+   - Giữ nguyên cam #fa5d19 (6,3:1 trên nền tối, đủ cho cả chữ nhỏ). Chỉ chữ cam nhỏ nhích sáng
+     lên một chút, nền cam nhạt và viền cam tăng độ đục vì phủ mờ trên nền tối khó thấy hơn.
+   Tương phản đo trên --color-background: foreground 16,9:1, body 13,4:1, muted 7,7:1, faint 3:1. */
+:root {
+  color-scheme: light;
+
+  @variant dark {
+    color-scheme: dark;
+
+    --color-heat-ink: #ff7a3d;
+    --color-heat-soft: #fa5d1924;
+    --color-heat-border: #fa5d1952;
+
+    --color-background: #0a0a0a;
+    --color-surface: #111111;
+    --color-surface-hover: #161616;
+    /* Vùng tô ở nền tối sáng hơn card, không chìm xuống như bản sáng: tối hơn #0a0a0a thì không
+       tách được khỏi nền. */
+    --color-sunken: #171717;
+    --color-foreground: #ededed;
+    --color-body: #d4d4d4;
+    --color-muted: #a1a1a1;
+    --color-faint: #5e5e5e;
+
+    --color-border: #1f1f1f;
+    --color-border-strong: #2e2e2e;
+
+    --color-secondary: #ffffff0f;
+    --color-secondary-hover: #ffffff1a;
+    --color-background-hover: #ffffff0f;
+
+    /* Bóng đen phải đậm gấp nhiều lần mới thấy; viền sáng 1px mới là thứ tách lớp nổi. */
+    --shadow-card: 0 0 0 1px rgb(255 255 255 / 0.03), 0 8px 24px -12px rgb(0 0 0 / 0.6);
+    --shadow-float: 0 0 0 1px rgb(255 255 255 / 0.04), 0 16px 40px -16px rgb(0 0 0 / 0.7);
+    --shadow-segment-thumb:
+      0 0 0 1px rgb(255 255 255 / 0.08), inset 0 1px 0 rgb(255 255 255 / 0.05), 0 1px 2px rgb(0 0 0 / 0.5);
+  }
 }
 
 /* Lưới ô có chấm giữa ô, như nền hero và hai bên khối CTA.

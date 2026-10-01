@@ -28,6 +28,7 @@ export const enDictionary: Dictionary = {
     github: "GitHub",
     installCta: "Install skill",
     switchLanguageLabel: "Xem bản tiếng Việt",
+    themeToggleLabel: "Toggle light / dark theme",
   },
   kitHome: {
     announcement: {

@@ -43,7 +43,7 @@ export default function ShowcaseLightbox({ entry, theme, dictionary, onClose }: 
       aria-labelledby="showcase-lightbox-title"
       onClose={onClose}
       onClick={handleBackdropClick}
-      className="m-auto w-[calc(100%-2rem)] max-w-6xl rounded-2xl bg-surface p-0 text-foreground shadow-2xl backdrop:bg-foreground/40 backdrop:backdrop-blur-sm"
+      className="m-auto w-[calc(100%-2rem)] max-w-6xl rounded-2xl bg-surface p-0 text-foreground shadow-2xl backdrop:bg-scrim/50 backdrop:backdrop-blur-sm"
     >
       {entry ? (
         <div className="flex max-h-[calc(100dvh-2rem)] flex-col">

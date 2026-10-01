@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { asciiGlyphs } from "@/features/landing/constants/ascii-glyphs";
 import { motionTimings } from "@/features/landing/constants/motion-timings";
-import { useInView, usePrefersReducedMotion } from "@/features/landing/hooks";
+import { useInView, usePrefersReducedMotion, useResolvedTheme } from "@/features/landing/hooks";
 import type { AsciiShape } from "@/features/landing/types/ascii-shape";
 import { getAsciiDensity } from "@/features/landing/utils/get-ascii-density";
 import { cn } from "@/utils/cn";
@@ -27,6 +27,8 @@ export default function AsciiField({ shape = "blob", className }: AsciiFieldProp
 
   const prefersReducedMotion = usePrefersReducedMotion();
   const isInView = useInView(canvasRef, { rootMargin: "120px" });
+  // Màu chữ đọc từ token CSS một lần mỗi lần chạy effect, nên đổi theme phải chạy lại để lấy màu mới.
+  const resolvedTheme = useResolvedTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -110,7 +112,7 @@ export default function AsciiField({ shape = "blob", className }: AsciiFieldProp
       cancelAnimationFrame(frameId);
       resizeObserver.disconnect();
     };
-  }, [isInView, prefersReducedMotion, shape]);
+  }, [isInView, prefersReducedMotion, resolvedTheme, shape]);
 
   return <canvas ref={canvasRef} aria-hidden className={cn("pointer-events-none font-mono select-none", className)} />;
 }

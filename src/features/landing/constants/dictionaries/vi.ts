@@ -28,6 +28,7 @@ export const viDictionary: Dictionary = {
     github: "GitHub",
     installCta: "Cài skill",
     switchLanguageLabel: "Xem bản tiếng Anh",
+    themeToggleLabel: "Đổi giao diện sáng / tối",
   },
   kitHome: {
     announcement: {

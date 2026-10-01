@@ -4,6 +4,7 @@ import { IconGithub } from "@/components/icons/icon-github";
 import LanguageSwitch from "@/features/landing/components/language-switch";
 import LogoMark from "@/features/landing/components/logo-mark";
 import StatusTag from "@/features/landing/components/status-tag";
+import ThemeToggle from "@/features/landing/components/theme-toggle";
 import { githubRepoUrl } from "@/features/landing/constants/site-links";
 import type { Dictionary } from "@/features/landing/types/dictionary";
 import type { HeaderNavItem } from "@/features/landing/types/header-nav-item";
@@ -67,6 +68,7 @@ export default function SiteHeader({ locale, page, navItems, dictionary, statusL
 
         <div className="ml-auto flex items-center gap-2 xl:ml-0">
           <LanguageSwitch locale={locale} page={page} switchLanguageLabel={dictionary.switchLanguageLabel} />
+          <ThemeToggle label={dictionary.themeToggleLabel} />
           <a
             href={githubRepoUrl}
             target="_blank"

@@ -30,7 +30,7 @@ export default function KitHeroSection({ locale, dictionary }: KitHeroSectionPro
             className="inline-flex items-center gap-2 rounded-full border border-border-strong bg-surface py-1 pr-1 pl-3 text-xs font-medium text-foreground shadow-card transition-colors outline-hidden hover:bg-surface-hover focus-visible:ring-2 focus-visible:ring-heat/60 motion-safe:animate-hero-rise"
           >
             {hero.badge}
-            <span className="grid size-5 place-items-center rounded-full bg-foreground text-white">
+            <span className="grid size-5 place-items-center rounded-full bg-foreground text-background">
               <ArrowRight className="size-3" aria-hidden />
             </span>
           </Link>

@@ -169,6 +169,7 @@ export interface Dictionary {
     github: string;
     installCta: string;
     switchLanguageLabel: string;
+    themeToggleLabel: string;
   };
   kitHome: {
     announcement: AnnouncementContent;

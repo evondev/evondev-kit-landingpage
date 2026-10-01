@@ -31,9 +31,9 @@ export default function SweepTable({ dictionary }: SweepTableProps) {
               {check.marks.map((mark, index) => (
                 <td key={`${check.name}-${dictionary.sweepWidths[index]}`} className="px-2 py-3 text-center">
                   {mark === "pass" ? (
-                    <CircleCheck className="mx-auto size-4 text-emerald-600" aria-label={dictionary.passLabel} />
+                    <CircleCheck className="mx-auto size-4 text-emerald-600 dark:text-emerald-400" aria-label={dictionary.passLabel} />
                   ) : (
-                    <CircleX className="mx-auto size-4 text-red-600" aria-label={dictionary.failLabel} />
+                    <CircleX className="mx-auto size-4 text-red-600 dark:text-red-400" aria-label={dictionary.failLabel} />
                   )}
                 </td>
               ))}

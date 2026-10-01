@@ -96,7 +96,7 @@ export default function BeforeAfterSlider({ left, right, sliderLabel }: BeforeAf
         />
       </div>
 
-      <span className="pointer-events-none absolute bottom-3 left-3 rounded-md bg-foreground/80 px-2 py-1 font-mono text-xs text-white uppercase backdrop-blur-sm">
+      <span className="pointer-events-none absolute bottom-3 left-3 rounded-md bg-scrim/80 px-2 py-1 font-mono text-xs text-white uppercase backdrop-blur-sm">
         {left.label}
       </span>
       <span className="pointer-events-none absolute right-3 bottom-3 rounded-md bg-heat px-2 py-1 font-mono text-xs text-white uppercase">

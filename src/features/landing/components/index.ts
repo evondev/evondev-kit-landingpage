@@ -69,6 +69,7 @@ export { default as TasteDemoNarrow } from "./taste-demo-narrow";
 export { default as TasteDemoOneAccent } from "./taste-demo-one-accent";
 export { default as TasteRuleCard } from "./taste-rule-card";
 export { default as TasteSection } from "./taste-section";
+export { default as ThemeToggle } from "./theme-toggle";
 export { default as WireframeBlock } from "./wireframe-block";
 export { default as WireframePreview } from "./wireframe-preview";
 export { default as WireframeToolbar } from "./wireframe-toolbar";
