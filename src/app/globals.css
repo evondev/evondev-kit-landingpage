@@ -258,7 +258,7 @@
   }
 }
 
-/* Hàng tab cuộn ngang ở màn hẹp: ẩn thanh cuộn, trông như lỗi khi nằm dưới hàng. */
+/* Ẩn hẳn thanh cuộn nhưng vẫn cuộn được (luật I18 của skill): hàng tab cuộn ngang, vùng ảnh trong lightbox. */
 .scrollbar-clean {
   scrollbar-width: none;
 }

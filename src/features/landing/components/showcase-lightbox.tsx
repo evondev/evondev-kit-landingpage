@@ -43,7 +43,7 @@ export default function ShowcaseLightbox({ entry, theme, dictionary, onClose }: 
       aria-labelledby="showcase-lightbox-title"
       onClose={onClose}
       onClick={handleBackdropClick}
-      className="m-auto w-[calc(100%-2rem)] max-w-6xl rounded-2xl bg-surface p-0 text-foreground shadow-2xl backdrop:bg-scrim/50 backdrop:backdrop-blur-sm"
+      className="m-auto max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-6xl overflow-hidden rounded-2xl bg-surface p-0 text-foreground shadow-2xl backdrop:bg-scrim/50 backdrop:backdrop-blur-sm"
     >
       {entry ? (
         <div className="flex max-h-[calc(100dvh-2rem)] flex-col">
@@ -60,7 +60,7 @@ export default function ShowcaseLightbox({ entry, theme, dictionary, onClose }: 
               <X className="size-5" aria-hidden />
             </Button>
           </div>
-          <div className="overflow-y-auto bg-sunken p-2 sm:p-4">
+          <div className="scrollbar-clean overflow-y-auto overscroll-contain bg-sunken p-2 sm:p-4">
             <Screenshot
               image={image}
               alt={entry.title}
