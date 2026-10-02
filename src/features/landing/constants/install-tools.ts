@@ -86,4 +86,19 @@ export const installTools: InstallTool[] = [
       },
     }),
   },
+  {
+    id: "zcode",
+    name: "ZCode",
+    steps: buildSkillsCliSteps({
+      agentId: "zcode",
+      skillsDir: ".zcode/skills/",
+      invokeStep: {
+        description: {
+          vi: "Gọi skill bằng lệnh này (hoặc chọn trong menu /), hoặc cứ gõ prompt bình thường: prompt nói về giao diện app là skill tự bật. Không thấy skill thì vào Settings → Skills bấm Refresh.",
+          en: "Invoke the skill with this command (or pick it from the / menu), or just write a prompt: it turns on when the prompt is about app UI. If the skill doesn't show up, open Settings → Skills and click Refresh.",
+        },
+        commands: ["$ui-ux"],
+      },
+    }),
+  },
 ];

@@ -4,5 +4,7 @@ import type { InstallStep } from "@/features/landing/types/install-tool";
 export interface SkillsCliAgent {
   /** Giá trị cờ `-a` của CLI skills */
   agentId: string;
+  /** Thư mục công cụ đọc skill, mặc định `.agents/skills/` */
+  skillsDir?: string;
   invokeStep: InstallStep;
 }

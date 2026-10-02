@@ -1,13 +1,13 @@
 import type { InstallStep } from "@/features/landing/types/install-tool";
 import type { SkillsCliAgent } from "@/features/landing/types/skills-cli-agent";
 
-/** Ba bước chung của các công cụ đọc `.agents/skills/`: cài bằng npx, gọi skill, cập nhật. */
-export function buildSkillsCliSteps({ agentId, invokeStep }: SkillsCliAgent): InstallStep[] {
+/** Ba bước chung của các công cụ cài bằng CLI skills: cài bằng npx, gọi skill, cập nhật. */
+export function buildSkillsCliSteps({ agentId, skillsDir = ".agents/skills/", invokeStep }: SkillsCliAgent): InstallStep[] {
   return [
     {
       description: {
-        vi: "Chạy một trong hai lệnh ở thư mục gốc dự án: npx nếu máy có Node, bunx nếu dùng Bun. Skill vào .agents/skills/, thêm -g để dùng chung cho mọi dự án.",
-        en: "Run one of these in your project root: npx if you have Node, bunx if you use Bun. The skill lands in .agents/skills/; add -g to install it for every project.",
+        vi: `Chạy một trong hai lệnh ở thư mục gốc dự án: npx nếu máy có Node, bunx nếu dùng Bun. Skill vào ${skillsDir}, thêm -g để dùng chung cho mọi dự án.`,
+        en: `Run one of these in your project root: npx if you have Node, bunx if you use Bun. The skill lands in ${skillsDir}; add -g to install it for every project.`,
       },
       commands: [`npx skills add evondev/evondevKit -a ${agentId}`, `bunx skills add evondev/evondevKit -a ${agentId}`],
     },

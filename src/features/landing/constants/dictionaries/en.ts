@@ -5,12 +5,12 @@ export const enDictionary: Dictionary = {
     home: {
       title: "evondevKit · evondev's skills for coding agents",
       description:
-        "Skills for Claude Code, Cursor, Codex, OpenCode and Antigravity, written by evondev. The first one, evon:ui-ux, builds app UI the way a designer would. Every skill is a set of concrete rules, tested on real projects. Free, MIT.",
+        "Skills for Claude Code, Cursor, Codex, OpenCode, Antigravity and ZCode, written by evondev. The first one, evon:ui-ux, builds app UI the way a designer would. Every skill is a set of concrete rules, tested on real projects. Free, MIT.",
     },
     "ui-ux": {
       title: "evon:ui-ux · Wireframes, design systems, UI rebuilds like a designer",
       description:
-        "A UI/UX skill for Claude Code, Cursor, Codex, OpenCode and Antigravity: a brief and 2–3 wireframes to pick from, a design system, reviews and rebuilds of your existing UI, always with your project's own components. Free, MIT.",
+        "A UI/UX skill for Claude Code, Cursor, Codex, OpenCode, Antigravity and ZCode: a brief and 2–3 wireframes to pick from, a design system, reviews and rebuilds of your existing UI, always with your project's own components. Free, MIT.",
     },
   },
   header: {
@@ -42,7 +42,7 @@ export const enDictionary: Dictionary = {
         accent: "by evondev",
       },
       subheadline:
-        "Every skill is a set of concrete rules, tested on real projects before it shows up here. Install once, use it in every project, in Claude Code, Cursor, Codex, OpenCode or Antigravity.",
+        "Every skill is a set of concrete rules, tested on real projects before it shows up here. Install once, use it in every project, in Claude Code, Cursor, Codex, OpenCode, Antigravity or ZCode.",
       primaryCta: "See evon:ui-ux",
       secondaryCta: "Install evondevKit",
       commandsLabel: "Run these two commands in Claude Code",
@@ -107,7 +107,7 @@ export const enDictionary: Dictionary = {
     cta: {
       eyebrow: "Install",
       title: "Install evondevKit",
-      description: "Two commands in Claude Code and you have the whole kit; in Cursor, Codex, OpenCode or Antigravity, one npx skills add. Free and MIT licensed.",
+      description: "Two commands in Claude Code and you have the whole kit; in Cursor, Codex, OpenCode, Antigravity or ZCode, one npx skills add. Free and MIT licensed.",
       primaryCta: "See evon:ui-ux",
       secondaryCta: "View on GitHub",
     },
@@ -516,7 +516,7 @@ export const enDictionary: Dictionary = {
   cta: {
     eyebrow: "Get started",
     title: "Ready to build your first screen?",
-    description: "Install it in Claude Code, Cursor, Codex, OpenCode or Antigravity, then write your prompt like you're talking to a designer. Free and open source under MIT.",
+    description: "Install it in Claude Code, Cursor, Codex, OpenCode, Antigravity or ZCode, then write your prompt like you're talking to a designer. Free and open source under MIT.",
     primaryCta: "Install skill",
     secondaryCta: "View on GitHub",
   },
@@ -531,7 +531,7 @@ export const enDictionary: Dictionary = {
       {
         question: "Is it ready for real work?",
         answer:
-          "Yes, as a beta. Light-theme app screens have passed 70 test prompts on real projects. Dark mode for an existing app has been tested on one project. I haven't tested Cursor, Codex, OpenCode and Antigravity myself yet, so if you hit a bug there, let me know. If something looks off, open a GitHub issue with a link or a screenshot of that screen. Get the latest version with /plugin marketplace update evondevkit (Claude Code) or npx skills update (other tools).",
+          "Yes, as a beta. Light-theme app screens have passed 70 test prompts on real projects. Dark mode for an existing app has been tested on one project. I haven't tested Cursor, Codex, OpenCode, Antigravity and ZCode myself yet, so if you hit a bug there, let me know. If something looks off, open a GitHub issue with a link or a screenshot of that screen. Get the latest version with /plugin marketplace update evondevkit (Claude Code) or npx skills update (other tools).",
       },
       {
         question: "What if I don't like the result?",

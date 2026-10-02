@@ -33,15 +33,16 @@ export default function InstallSection({ number, locale, dictionary }: InstallSe
   return (
     <SectionFrame id="install" labelledBy="install-title">
       <SectionIndex number={number} label={dictionary.install.label} />
-      <div className="grid grid-cols-1 gap-12 px-5 py-16 sm:px-10 sm:py-24 lg:grid-cols-[2fr_3fr] lg:gap-16">
+      {/* Một cột: hàng sáu tab rộng hơn cột phải của bố cục hai cột, tab cuối bị khuất ở desktop. */}
+      <div className="flex flex-col gap-12 px-5 py-16 sm:px-10 sm:py-24">
         <SectionHeading
           id="install-title"
           eyebrow={dictionary.install.eyebrow}
           title={dictionary.install.title}
           description={dictionary.install.description}
-          className="lg:sticky lg:top-28 lg:self-start"
+          isCentered
         />
-        <div className="min-w-0">
+        <div className="mx-auto w-full max-w-3xl min-w-0">
           <InstallTabs tabs={tabs} panels={panels} tabsLabel={dictionary.install.tabsLabel} />
         </div>
       </div>

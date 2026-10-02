@@ -5,12 +5,12 @@ export const viDictionary: Dictionary = {
     home: {
       title: "evondevKit · Bộ skill cho coding agent của evondev",
       description:
-        "Bộ skill cho Claude Code, Cursor, Codex, OpenCode và Antigravity do evondev viết. Skill đầu tiên là evon:ui-ux, làm UI app theo cách một designer làm. Skill nào cũng là bộ luật cụ thể, đã test trên dự án thật. Miễn phí, MIT.",
+        "Bộ skill cho Claude Code, Cursor, Codex, OpenCode, Antigravity và ZCode do evondev viết. Skill đầu tiên là evon:ui-ux, làm UI app theo cách một designer làm. Skill nào cũng là bộ luật cụ thể, đã test trên dự án thật. Miễn phí, MIT.",
     },
     "ui-ux": {
       title: "evon:ui-ux · Wireframe, design system, dựng lại UI như designer",
       description:
-        "Skill UI/UX cho Claude Code, Cursor, Codex, OpenCode và Antigravity: đưa brief và 2–3 wireframe cho bạn chọn, dựng design system, soi và dựng lại UI đang có, luôn bằng component của dự án. Miễn phí, MIT.",
+        "Skill UI/UX cho Claude Code, Cursor, Codex, OpenCode, Antigravity và ZCode: đưa brief và 2–3 wireframe cho bạn chọn, dựng design system, soi và dựng lại UI đang có, luôn bằng component của dự án. Miễn phí, MIT.",
     },
   },
   header: {
@@ -42,7 +42,7 @@ export const viDictionary: Dictionary = {
         accent: "của evondev",
       },
       subheadline:
-        "Mỗi skill là một bộ luật cụ thể, test trên dự án thật rồi mới đưa lên đây. Cài một lần, dùng cho mọi dự án, trên Claude Code, Cursor, Codex, OpenCode hay Antigravity.",
+        "Mỗi skill là một bộ luật cụ thể, test trên dự án thật rồi mới đưa lên đây. Cài một lần, dùng cho mọi dự án, trên Claude Code, Cursor, Codex, OpenCode, Antigravity hay ZCode.",
       primaryCta: "Xem evon:ui-ux",
       secondaryCta: "Cài evondevKit",
       commandsLabel: "Gõ hai lệnh này trong Claude Code",
@@ -107,7 +107,7 @@ export const viDictionary: Dictionary = {
     cta: {
       eyebrow: "Cài đặt",
       title: "Cài evondevKit",
-      description: "Claude Code gõ hai lệnh là có đủ bộ, Cursor, Codex, OpenCode và Antigravity thì một lệnh npx skills add. Miễn phí, mã nguồn mở MIT.",
+      description: "Claude Code gõ hai lệnh là có đủ bộ, Cursor, Codex, OpenCode, Antigravity và ZCode thì một lệnh npx skills add. Miễn phí, mã nguồn mở MIT.",
       primaryCta: "Xem evon:ui-ux",
       secondaryCta: "Xem trên GitHub",
     },
@@ -514,7 +514,7 @@ export const viDictionary: Dictionary = {
   cta: {
     eyebrow: "Bắt đầu",
     title: "Dựng màn đầu tiên nhé?",
-    description: "Cài vào Claude Code, Cursor, Codex, OpenCode hoặc Antigravity, rồi viết prompt như đang nói chuyện với designer. Miễn phí, mã nguồn mở MIT.",
+    description: "Cài vào Claude Code, Cursor, Codex, OpenCode, Antigravity hoặc ZCode, rồi viết prompt như đang nói chuyện với designer. Miễn phí, mã nguồn mở MIT.",
     primaryCta: "Cài skill",
     secondaryCta: "Xem trên GitHub",
   },
@@ -529,7 +529,7 @@ export const viDictionary: Dictionary = {
       {
         question: "Skill dùng thật được chưa?",
         answer:
-          "Được, đang ở bản beta. Giao diện app nền sáng đã qua 70 prompt test trên dự án thật. Dark mode cho app đang có đã test trên một dự án. Cursor, Codex, OpenCode và Antigravity mình chưa tự test, bạn dùng thấy lỗi cứ báo. Gặp chỗ nào chưa ổn thì mở issue trên GitHub, kèm link hoặc ảnh màn đó. Cập nhật bản mới bằng lệnh /plugin marketplace update evondevkit (Claude Code) hoặc npx skills update (công cụ khác).",
+          "Được, đang ở bản beta. Giao diện app nền sáng đã qua 70 prompt test trên dự án thật. Dark mode cho app đang có đã test trên một dự án. Cursor, Codex, OpenCode, Antigravity và ZCode mình chưa tự test, bạn dùng thấy lỗi cứ báo. Gặp chỗ nào chưa ổn thì mở issue trên GitHub, kèm link hoặc ảnh màn đó. Cập nhật bản mới bằng lệnh /plugin marketplace update evondevkit (Claude Code) hoặc npx skills update (công cụ khác).",
       },
       {
         question: "Dựng xong mà chưa ưng thì sao?",
