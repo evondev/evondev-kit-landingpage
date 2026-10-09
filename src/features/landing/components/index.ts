@@ -41,6 +41,7 @@ export { default as ProbeSection } from "./probe-section";
 export { default as ProofStrip } from "./proof-strip";
 export { default as ReviewTable } from "./review-table";
 export { default as RoadmapCard } from "./roadmap-card";
+export { default as RoadmapPlaceholderCard } from "./roadmap-placeholder-card";
 export { default as RoadmapSection } from "./roadmap-section";
 export { default as ScrambleText } from "./scramble-text";
 export { default as Screenshot } from "./screenshot";

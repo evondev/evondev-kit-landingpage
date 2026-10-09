@@ -1,7 +1,9 @@
 import RoadmapCard from "@/features/landing/components/roadmap-card";
+import RoadmapPlaceholderCard from "@/features/landing/components/roadmap-placeholder-card";
 import SectionFrame from "@/features/landing/components/section-frame";
 import SectionHeading from "@/features/landing/components/section-heading";
 import SectionIndex from "@/features/landing/components/section-index";
+import { roadmapPlaceholderCount } from "@/features/landing/constants/roadmap-placeholder-count";
 import type { Dictionary } from "@/features/landing/types/dictionary";
 
 interface RoadmapSectionProps {
@@ -12,6 +14,8 @@ interface RoadmapSectionProps {
 
 /** Tính năng chưa có: hiện rõ là sắp có, không hứa như đã xong. */
 export default function RoadmapSection({ number, dictionary, soonLabel }: RoadmapSectionProps) {
+  const placeholderKeys = Array.from({ length: roadmapPlaceholderCount }, (_, index) => `placeholder-${index}`);
+
   return (
     <SectionFrame id="roadmap" labelledBy="roadmap-title">
       <SectionIndex number={number} label={dictionary.label} />
@@ -27,6 +31,14 @@ export default function RoadmapSection({ number, dictionary, soonLabel }: Roadma
       <ul className="grid grid-cols-1 gap-px border-t border-border bg-border sm:grid-cols-2">
         {dictionary.items.map((item) => (
           <RoadmapCard key={item.icon} item={item} soonLabel={soonLabel} />
+        ))}
+        {placeholderKeys.map((placeholderKey, index) => (
+          <RoadmapPlaceholderCard
+            key={placeholderKey}
+            label={dictionary.placeholderLabel}
+            soonLabel={soonLabel}
+            isHiddenOnMobile={index > 0}
+          />
         ))}
       </ul>
     </SectionFrame>

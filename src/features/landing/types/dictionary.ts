@@ -281,6 +281,8 @@ export interface Dictionary {
   };
   roadmap: SectionIntro & {
     items: RoadmapItem[];
+    /** Nhãn của ô che: tên đọc cho trình đọc màn hình và dòng trạng thái */
+    placeholderLabel: string;
   };
   cta: CtaContent;
   faq: Omit<SectionIntro, "description"> & {

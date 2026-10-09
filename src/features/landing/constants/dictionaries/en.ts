@@ -486,32 +486,14 @@ export const enDictionary: Dictionary = {
     description: "Things I'm not promising yet. Until testing is done, this page won't say they're there.",
     items: [
       {
-        icon: "landing-page",
-        title: "Landing page",
+        icon: "mobile-app",
+        title: "Mobile app UI",
         description:
-          "Hero, features, pricing, FAQ. Sections picked by what visitors should do: start a trial, buy now, book a demo, or join a waitlist.",
-        progress: "Not taught yet, still does it if asked",
-      },
-      {
-        icon: "ecommerce",
-        title: "E-commerce",
-        description: "Product listings, product pages, cart, checkout.",
-        progress: "Not taught yet, still does it if asked",
-      },
-      {
-        icon: "blog",
-        title: "Blog",
-        description: "Post lists and reading pages: type size, line length, table of contents, code blocks.",
-        progress: "Not taught yet, still does it if asked",
-      },
-      {
-        icon: "component-styles",
-        title: "More styles per component",
-        description:
-          "Take input focus: right now the skill uses a ring. I'm trying an underline-only style with no ring, plus a few others, so you can pick the one that fits your app.",
+          "Screens for iOS and Android apps: a bottom tab bar, touch targets sized for a thumb, bottom sheets, room for the notch and the home indicator.",
         progress: "Researching",
       },
     ],
+    placeholderLabel: "Not announced yet",
   },
   cta: {
     eyebrow: "Get started",
@@ -570,7 +552,7 @@ export const enDictionary: Dictionary = {
       {
         question: "Does it build landing pages?",
         answer:
-          "It will if you ask, but it hasn't been taught them yet. The skill is taught for screens inside an app: dashboards, lists, tables, forms, settings, modals, and pages people browse to choose something, pricing tables included. For landing pages, e-commerce, and blogs, it tells you so in one line before it starts. I'm working on these, see Coming soon.",
+          "No. The skill is only for screens inside an app: dashboards, lists, tables, forms, settings, modals, and pages people browse to choose something, pricing tables included. Landing pages, e-commerce, and blogs aren't what this skill is for.",
       },
       {
         question: "Does it work in English?",

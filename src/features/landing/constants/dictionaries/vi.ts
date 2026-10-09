@@ -484,32 +484,14 @@ export const viDictionary: Dictionary = {
     description: "Những thứ mình chưa dám hứa. Chưa test xong thì trang này chưa ghi là có.",
     items: [
       {
-        icon: "landing-page",
-        title: "Landing page",
+        icon: "mobile-app",
+        title: "Giao diện mobile app",
         description:
-          "Hero, tính năng, bảng giá, FAQ. Chọn section theo việc khách cần làm: dùng thử, mua luôn, đặt lịch demo hay vào danh sách chờ.",
-        progress: "Chưa dạy, nhờ thì vẫn làm",
-      },
-      {
-        icon: "ecommerce",
-        title: "E-commerce",
-        description: "Danh sách sản phẩm, trang chi tiết, giỏ hàng, thanh toán.",
-        progress: "Chưa dạy, nhờ thì vẫn làm",
-      },
-      {
-        icon: "blog",
-        title: "Blog",
-        description: "Trang danh sách bài và trang đọc bài: cỡ chữ, độ rộng dòng, mục lục, khối code.",
-        progress: "Chưa dạy, nhờ thì vẫn làm",
-      },
-      {
-        icon: "component-styles",
-        title: "Nhiều kiểu cho component",
-        description:
-          "Ví dụ ô nhập lúc focus: giờ skill dùng viền ring. Mình đang thử thêm kiểu chỉ gạch chân, không ring, và vài kiểu khác, để bạn chọn kiểu hợp app.",
+          "Màn cho app iOS và Android: thanh tab dưới đáy, vùng chạm vừa ngón cái, sheet kéo từ dưới lên, chừa chỗ cho tai thỏ và thanh home.",
         progress: "Đang nghiên cứu",
       },
     ],
+    placeholderLabel: "Chưa công bố",
   },
   cta: {
     eyebrow: "Bắt đầu",
@@ -568,7 +550,7 @@ export const viDictionary: Dictionary = {
       {
         question: "Skill có làm landing page không?",
         answer:
-          "Nhờ thì vẫn làm, nhưng chưa được dạy. Skill được dạy kỹ cho màn hình bên trong app: dashboard, danh sách, bảng, form, cài đặt, modal, và các trang người dùng lướt để chọn, kể cả bảng giá. Landing page, e-commerce, blog thì skill báo trước một dòng rồi mới làm. Mình đang làm phần này, bạn xem ở mục Sắp có.",
+          "Không. Skill chỉ dành cho màn hình bên trong app: dashboard, danh sách, bảng, form, cài đặt, modal, và các trang người dùng lướt để chọn, kể cả bảng giá. Landing page, e-commerce, blog không phải việc của skill này.",
       },
       {
         question: "Chữ trên giao diện sẽ là tiếng gì?",
