@@ -32,8 +32,9 @@ export const enDictionary: Dictionary = {
   },
   kitHome: {
     announcement: {
-      text: "New: evon:ui-ux now works like a designer. A brief, 2–3 wireframes, and it only builds once you pick.",
-      linkLabel: "See evon:ui-ux",
+      tag: "NEW",
+      text: "evon:ui-ux 0.5.0 analyzes your product by industry before building, and can review your whole onboarding flow.",
+      linkLabel: "See what's new",
     },
     hero: {
       badge: "evon:ui-ux: UI like a designer",
@@ -121,6 +122,11 @@ export const enDictionary: Dictionary = {
     beta: "Beta",
     soon: "Coming soon",
   },
+  announcement: {
+    tag: "NEW",
+    text: "Version 0.5.0: product analysis by industry, onboarding flow review, design decisions remembered in DESIGN.md.",
+    linkLabel: "See what's new",
+  },
   hero: {
     badge: "New: works like a designer",
     title: {
@@ -180,6 +186,15 @@ export const enDictionary: Dictionary = {
             status: "new",
           },
           {
+            id: "analyze",
+            tabLabel: "Analyze",
+            title: "Analyze the product before building",
+            description:
+              "Not sure how it should be designed? Ask first. The skill reads your code, looks up what products in the same industry usually do, and sends one report: the main screens, what yours is missing, three accent colors that fit the industry, and a look that fits your users. No code is touched.",
+            prompt: "/evon:ui-ux Analyze this e-learning product, how should it be designed?",
+            status: "new",
+          },
+          {
             id: "just-build",
             tabLabel: "Just build it",
             title: "Just build it, no wireframes",
@@ -212,7 +227,7 @@ export const enDictionary: Dictionary = {
         id: "rework",
         title: "Redo existing UI",
         description:
-          "All four start by measuring your page. They differ in how much the skill is allowed to change.",
+          "All five start by measuring your page. They differ in what the skill looks at and how much it is allowed to change.",
         items: [
           {
             id: "review",
@@ -222,6 +237,15 @@ export const enDictionary: Dictionary = {
               "Give it a localhost link. It opens the page, measures from 375 to 1920px, and sends back an issue table with before / after shots. It only fixes after you reply “fix 1, 3”.",
             prompt: "/evon:ui-ux What's wrong with this page: http://localhost:3000/orders",
             status: null,
+          },
+          {
+            id: "flow",
+            tabLabel: "Flow review",
+            title: "Review a flow across screens",
+            description:
+              "Walks the steps in order, for example from sign-up to the first time a user gets the main job done. The skill counts the steps and points out where newcomers get lost: an empty screen with no next step, a save with no sign it worked, one name on this screen and another on the next. It fixes only the rows you pick.",
+            prompt: "/evon:ui-ux Review the onboarding flow: from sign-up to creating the first course.",
+            status: "new",
           },
           {
             id: "keep-brand",
@@ -395,7 +419,8 @@ export const enDictionary: Dictionary = {
       { name: "Popovers stay on screen", marks: ["pass", "pass", "pass", "pass", "pass", "fail"] },
       { name: "Hover is visible", marks: ["pass", "pass", "pass", "pass", "pass", "pass"] },
     ],
-    sweepNote: "Sample report. The script also checks selected items, focus rings, and the state right after a click.",
+    sweepNote:
+      "Sample report. The script also checks selected items, focus rings, and the state right after a click. New: add --stress and it fills tables and cards with long names and billion-scale amounts, then measures again to see if the screen breaks on real data.",
     passLabel: "Pass",
     failLabel: "Fail",
   },
@@ -538,6 +563,11 @@ export const enDictionary: Dictionary = {
         question: "What if my project already has a design system?",
         answer:
           "The skill uses your components. With shadcn, Radix, MUI, Ant, or an in-house kit, it uses those and only adjusts tokens to fit. Your brand colors stay unless you say “drop the old style”.",
+      },
+      {
+        question: "Will later screens keep the look of earlier ones?",
+        answer:
+          "Yes. The skill writes what has been decided (the look, accent color, layout of each screen, anything you asked for app-wide) to a DESIGN.md file at the project root. The next session reads it before building, so it doesn't start recommending from scratch. You can edit that file by hand.",
       },
       {
         question: "Do I need Tailwind?",

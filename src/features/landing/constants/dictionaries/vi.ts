@@ -32,8 +32,9 @@ export const viDictionary: Dictionary = {
   },
   kitHome: {
     announcement: {
-      text: "Mới: evon:ui-ux giờ làm việc như một designer. Đưa brief, 2–3 wireframe, bạn chọn xong mới dựng.",
-      linkLabel: "Xem evon:ui-ux",
+      tag: "NEW",
+      text: "evon:ui-ux 0.5.0 phân tích sản phẩm theo ngành trước khi dựng, và soi được cả luồng onboarding.",
+      linkLabel: "Xem tính năng mới",
     },
     hero: {
       badge: "evon:ui-ux: làm UI như một designer",
@@ -121,6 +122,11 @@ export const viDictionary: Dictionary = {
     beta: "Beta",
     soon: "Sắp có",
   },
+  announcement: {
+    tag: "NEW",
+    text: "Bản 0.5.0: phân tích sản phẩm theo ngành, soi luồng onboarding, nhớ quyết định thiết kế qua DESIGN.md.",
+    linkLabel: "Xem tính năng mới",
+  },
   hero: {
     badge: "Mới: làm việc như một designer",
     title: {
@@ -180,6 +186,15 @@ export const viDictionary: Dictionary = {
             status: "new",
           },
           {
+            id: "analyze",
+            tabLabel: "Phân tích",
+            title: "Phân tích sản phẩm trước khi dựng",
+            description:
+              "Chưa biết nên thiết kế ra sao thì hỏi trước. Skill đọc code, tra cách các sản phẩm cùng ngành thường làm, rồi gửi một bản báo cáo: các màn chính, chỗ sản phẩm của bạn còn thiếu, ba màu nhấn hợp ngành, kiểu giao diện hợp người dùng. Chưa đụng tới code.",
+            prompt: "/evon:ui-ux Phân tích sản phẩm e-learning này, nên thiết kế ra sao?",
+            status: "new",
+          },
+          {
             id: "just-build",
             tabLabel: "Dựng luôn",
             title: "Dựng luôn, bỏ wireframe",
@@ -212,7 +227,7 @@ export const viDictionary: Dictionary = {
         id: "rework",
         title: "Làm lại UI đang có",
         description:
-          "Cả bốn cách đều bắt đầu bằng việc đo trang của bạn. Khác nhau ở chỗ skill được phép đổi tới đâu.",
+          "Cả năm cách đều bắt đầu bằng việc đo trang của bạn. Khác nhau ở chỗ skill soi cái gì và được phép đổi tới đâu.",
         items: [
           {
             id: "review",
@@ -222,6 +237,15 @@ export const viDictionary: Dictionary = {
               "Đưa link localhost, skill tự mở trang, đo từ 375 tới 1920px, rồi gửi bảng lỗi kèm ảnh trước / sau. Bạn trả lời “sửa 1, 3” thì nó mới sửa.",
             prompt: "/evon:ui-ux Xem giúp trang này chỗ nào chưa ổn: http://localhost:3000/orders",
             status: null,
+          },
+          {
+            id: "flow",
+            tabLabel: "Soi luồng",
+            title: "Soi luồng qua nhiều màn",
+            description:
+              "Đi lần lượt từng bước, ví dụ từ lúc đăng ký tới lần đầu làm được việc chính. Skill đếm số bước, chỉ ra chỗ người mới bị lạc: màn rỗng không có nút đi tiếp, lưu xong không biết đã lưu, màn này gọi một tên màn sau gọi tên khác. Bạn chọn dòng rồi nó mới sửa.",
+            prompt: "/evon:ui-ux Soi luồng onboarding: từ đăng ký tới lúc tạo được khoá học đầu tiên.",
+            status: "new",
           },
           {
             id: "keep-brand",
@@ -394,7 +418,8 @@ export const viDictionary: Dictionary = {
       { name: "Dropdown, modal không tràn màn", marks: ["pass", "pass", "pass", "pass", "pass", "fail"] },
       { name: "Hover có thấy rõ", marks: ["pass", "pass", "pass", "pass", "pass", "pass"] },
     ],
-    sweepNote: "Báo cáo mẫu. Script còn kiểm tra mục đang chọn, viền focus và trạng thái ngay sau khi bấm.",
+    sweepNote:
+      "Báo cáo mẫu. Script còn kiểm tra mục đang chọn, viền focus và trạng thái ngay sau khi bấm. Mới: thêm --stress thì nó bơm tên dài, số tiền hàng tỷ vào bảng và card rồi đo lại, xem màn có vỡ khi gặp dữ liệu thật không.",
     passLabel: "Đạt",
     failLabel: "Lỗi",
   },
@@ -536,6 +561,11 @@ export const viDictionary: Dictionary = {
         question: "Dự án đã có design system thì sao?",
         answer:
           "Skill dùng component của bạn. Dự án dùng shadcn, Radix, MUI, Ant hay bộ tự làm thì nó dùng đúng bộ đó, chỉ chỉnh token cho khớp. Màu brand giữ nguyên, trừ khi bạn nói “bỏ style cũ”.",
+      },
+      {
+        question: "Màn dựng sau có giữ đúng kiểu màn trước không?",
+        answer:
+          "Có. Skill ghi những gì đã chốt (kiểu giao diện, màu nhấn, bố cục từng màn, điều bạn dặn cho cả app) vào file DESIGN.md ở gốc dự án. Phiên sau đọc file đó trước khi dựng, nên không khuyên lại từ đầu. Bạn sửa tay file đó được.",
       },
       {
         question: "Có bắt buộc dùng Tailwind không?",

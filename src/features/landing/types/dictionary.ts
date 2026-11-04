@@ -119,6 +119,8 @@ export interface PageMeta {
 }
 
 export interface AnnouncementContent {
+  /** Nhãn nhỏ đầu dải, ví dụ "NEW" */
+  tag: string;
   text: string;
   linkLabel: string;
 }
@@ -199,6 +201,8 @@ export interface Dictionary {
     copied: string;
   };
   statusLabels: Record<FeatureStatus, string>;
+  /** Dải cam đầu trang evon:ui-ux, bấm vào cuộn xuống tính năng mới */
+  announcement: AnnouncementContent;
   hero: {
     badge: string;
     title: SplitTitle;

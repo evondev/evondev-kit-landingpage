@@ -10,6 +10,7 @@ import {
 } from "@/features/landing/components";
 import { kitHomeNavItems } from "@/features/landing/constants/kit-home-nav-items";
 import { kitHomeSectionCount } from "@/features/landing/constants/kit-home-section-count";
+import { newFeatureAnchor } from "@/features/landing/constants/new-feature-anchor";
 import type { Locale } from "@/features/landing/types/locale";
 import { getDictionary, getLocalePath } from "@/features/landing/utils";
 
@@ -25,7 +26,7 @@ export default function KitHomePage({ locale }: KitHomePageProps) {
 
   return (
     <>
-      <SiteAnnouncement content={kitHome.announcement} href={`${uiUxPath}#designer`} />
+      <SiteAnnouncement content={kitHome.announcement} href={`${uiUxPath}${newFeatureAnchor}`} />
       <SiteHeader locale={locale} page="home" navItems={kitHomeNavItems} dictionary={dictionary.header} />
       <main className="overflow-x-clip">
         <KitHeroSection locale={locale} dictionary={dictionary} />

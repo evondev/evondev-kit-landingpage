@@ -11,12 +11,14 @@ interface ModeCardProps {
   statusLabels: Dictionary["statusLabels"];
   /** Lối duy nhất của nhóm: card chiếm cả hàng, chữ bên trái, đề mẫu bên phải */
   isWide?: boolean;
+  /** Số cột card chiếm trong lưới của nhóm, rỗng khi mỗi card một cột */
+  spanClassName?: string;
 }
 
-export default function ModeCard({ mode, promptLabel, statusLabels, isWide = false }: ModeCardProps) {
+export default function ModeCard({ mode, promptLabel, statusLabels, isWide = false, spanClassName = "" }: ModeCardProps) {
   // Hiện dần từng phần nội dung, không phải cả ô: ô mờ đi sẽ để lộ nền xám của đường kẻ lưới.
   return (
-    <li className={getModeCardClasses(isWide)}>
+    <li id={`mode-${mode.id}`} className={cn(getModeCardClasses(isWide), spanClassName)}>
       <div className="reveal flex items-start justify-between gap-3 pb-6">
         <FeatureIcon icon={modeIcons[mode.id]} />
         {mode.status ? <StatusTag status={mode.status} label={statusLabels[mode.status]} /> : null}

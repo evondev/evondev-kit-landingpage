@@ -28,6 +28,8 @@
   --color-heat-hover: #ec5212;
   /* Chữ cam cỡ nhỏ trên nền sáng: #fa5d19 chỉ đạt 3:1, bản đậm này đạt 5,1:1. */
   --color-heat-ink: #c2410c;
+  /* Chữ cam trên nhãn nền trắng giữa dải cam: giữ bản đậm ở cả nền tối (heat-ink tối sáng lên, chỉ còn ~2,6:1 trên trắng). */
+  --color-heat-ink-fixed: #c2410c;
   --color-heat-soft: #fa5d1914;
   --color-heat-border: #fa5d1933;
   /* ==================== */

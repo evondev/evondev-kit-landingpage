@@ -5,6 +5,9 @@ export function getModeGridClasses(modeCount: number) {
   return cn(
     "grid grid-cols-1 gap-px bg-border",
     (modeCount === 2 || modeCount === 4) && "md:grid-cols-2",
-    (modeCount === 3 || modeCount > 4) && "md:grid-cols-3",
+    modeCount === 3 && "md:grid-cols-3",
+    // Năm lối: lưới sáu cột, hai card đầu rộng ba cột, ba card sau rộng hai cột (getModeCardSpanClasses).
+    modeCount === 5 && "md:grid-cols-6",
+    modeCount > 5 && "md:grid-cols-3",
   );
 }

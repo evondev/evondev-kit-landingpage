@@ -10,11 +10,13 @@ import {
   ProofStrip,
   RoadmapSection,
   ShowcaseSection,
+  SiteAnnouncement,
   SiteFooter,
   SiteHeader,
   SupportedToolsStrip,
   TasteSection,
 } from "@/features/landing/components";
+import { newFeatureAnchor } from "@/features/landing/constants/new-feature-anchor";
 import { uiUxNavItems } from "@/features/landing/constants/ui-ux-nav-items";
 import type { Locale } from "@/features/landing/types/locale";
 import { getDictionary } from "@/features/landing/utils";
@@ -29,6 +31,7 @@ export default function UiUxPage({ locale }: UiUxPageProps) {
 
   return (
     <>
+      <SiteAnnouncement content={dictionary.announcement} href={newFeatureAnchor} />
       <SiteHeader
         locale={locale}
         page="ui-ux"

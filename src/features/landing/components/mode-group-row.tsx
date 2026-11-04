@@ -1,5 +1,6 @@
 import ModeCard from "@/features/landing/components/mode-card";
 import type { Dictionary, ModeGroup } from "@/features/landing/types/dictionary";
+import { getModeCardSpanClasses } from "@/features/landing/utils/get-mode-card-span-classes";
 import { getModeGridClasses } from "@/features/landing/utils/get-mode-grid-classes";
 
 interface ModeGroupRowProps {
@@ -22,10 +23,11 @@ export default function ModeGroupRow({ group, number, promptLabel, statusLabels 
         <p className="text-sm text-pretty text-muted">{group.description}</p>
       </div>
       <ul className={getModeGridClasses(group.items.length)}>
-        {group.items.map((mode) => (
+        {group.items.map((mode, index) => (
           <ModeCard
             key={mode.id}
             mode={mode}
+            spanClassName={getModeCardSpanClasses(group.items.length, index)}
             promptLabel={promptLabel}
             statusLabels={statusLabels}
             isWide={isSingleMode}
