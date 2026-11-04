@@ -128,7 +128,7 @@ export const enDictionary: Dictionary = {
     linkLabel: "See what's new",
   },
   hero: {
-    badge: "New: works like a designer",
+    badge: "Works like a designer",
     title: {
       lead: "UI dashboard",
       accent: "without the AI hassle",
@@ -183,7 +183,7 @@ export const enDictionary: Dictionary = {
             description:
               "The default whenever you ask for a screen to be built or redesigned. It writes a brief, works out what the screen is for, and shows 2–3 wireframes with real content. It builds once you pick.",
             prompt: "/evon:ui-ux Redesign the jobs page.",
-            status: "new",
+            status: null,
           },
           {
             id: "analyze",
@@ -201,7 +201,7 @@ export const enDictionary: Dictionary = {
             description:
               "Saves tokens. The skill picks the option it thinks fits best and builds it straight away. At handover it tells you which layout it chose and why.",
             prompt: "/evon:ui-ux Build the notification settings screen, just build it.",
-            status: "new",
+            status: null,
           },
           {
             id: "design-system",
@@ -210,7 +210,7 @@ export const enDictionary: Dictionary = {
             description:
               "Locks in color, type, spacing, and seven base components on one page. Approve it once, and every later screen is built from that set. Already on shadcn or your own kit? The skill tunes that instead.",
             prompt: "/evon:ui-ux Build a design system for a clinic management app first, no screens yet.",
-            status: "new",
+            status: null,
           },
           {
             id: "small-fix",
@@ -272,7 +272,7 @@ export const enDictionary: Dictionary = {
             description:
               "A Light / Dark / System toggle that remembers the choice and never flashes white on load. The skill switches colors through tokens, then re-checks tables, forms, overlays, and charts on dark. Tested on one real project, 7/7 items.",
             prompt: "/evon:ui-ux Add dark mode to the app, with a light / dark toggle in the header, following the OS by default.",
-            status: "new",
+            status: null,
           },
         ],
       },

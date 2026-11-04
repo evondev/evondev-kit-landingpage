@@ -128,7 +128,7 @@ export const viDictionary: Dictionary = {
     linkLabel: "Xem tính năng mới",
   },
   hero: {
-    badge: "Mới: làm việc như một designer",
+    badge: "Làm việc như một designer",
     title: {
       lead: "UI dashboard",
       accent: "không còn mùi AI",
@@ -183,7 +183,7 @@ export const viDictionary: Dictionary = {
             description:
               "Cách mặc định mỗi khi bạn nhờ dựng hoặc làm lại một màn. Skill viết brief, xác định màn này để làm gì, rồi đưa 2–3 wireframe có nội dung thật. Bạn chọn xong nó mới dựng.",
             prompt: "/evon:ui-ux Dựng màn danh sách đơn hàng: mã đơn, khách, tổng tiền, trạng thái.",
-            status: "new",
+            status: null,
           },
           {
             id: "analyze",
@@ -201,7 +201,7 @@ export const viDictionary: Dictionary = {
             description:
               "Tiết kiệm token. Skill tự chọn phương án nó thấy hợp nhất rồi dựng thẳng. Lúc giao, nó nói rõ đã chọn bố cục nào và vì sao.",
             prompt: "/evon:ui-ux Dựng luôn màn cài đặt thông báo.",
-            status: "new",
+            status: null,
           },
           {
             id: "design-system",
@@ -210,7 +210,7 @@ export const viDictionary: Dictionary = {
             description:
               "Chốt màu, chữ, khoảng cách và bảy component nền trên một trang. Duyệt một lần, các màn sau đều ráp từ bộ đó. Đã có shadcn hay bộ riêng thì skill chỉnh luôn bộ đó.",
             prompt: "/evon:ui-ux Dựng design system cho app quản lý phòng khám trước, chưa cần màn nào.",
-            status: "new",
+            status: null,
           },
           {
             id: "small-fix",
@@ -272,7 +272,7 @@ export const viDictionary: Dictionary = {
             description:
               "Nút Sáng / Tối / Theo hệ thống, nhớ lựa chọn, tải trang không nháy trắng. Skill đổi màu qua token rồi soi lại bảng, form, lớp nổi, biểu đồ trên nền tối. Đã test trên một dự án thật, 7/7 mục.",
             prompt: "/evon:ui-ux Thêm dark mode cho app, có nút đổi sáng / tối trên header, mặc định theo hệ điều hành.",
-            status: "new",
+            status: null,
           },
         ],
       },
