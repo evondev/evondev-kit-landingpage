@@ -33,7 +33,7 @@ export const viDictionary: Dictionary = {
   kitHome: {
     announcement: {
       tag: "NEW",
-      text: "evon:ui-ux 0.5.0 phân tích sản phẩm theo ngành trước khi dựng, và soi được cả luồng onboarding.",
+      text: "evon:ui-ux 0.6.0 có thêm 6 kiểu khung dashboard để chọn ngay trên wireframe, và bố cục chọn theo việc chính.",
       linkLabel: "Xem tính năng mới",
     },
     hero: {
@@ -124,7 +124,7 @@ export const viDictionary: Dictionary = {
   },
   announcement: {
     tag: "NEW",
-    text: "Bản 0.5.0: phân tích sản phẩm theo ngành, soi luồng onboarding, nhớ quyết định thiết kế qua DESIGN.md.",
+    text: "Bản 0.6.0: thêm 6 kiểu khung dashboard (Inset, Paper, Float, Rail, Topbar, Editorial), chọn ngay trên wireframe.",
     linkLabel: "Xem tính năng mới",
   },
   hero: {
@@ -348,7 +348,7 @@ export const viDictionary: Dictionary = {
       recommendedLabel: "Khuyên dùng",
     },
     toolbarNote:
-      "Ngay trên wireframe, bạn đổi qua lại các phương án, bật màu, thử màu nhấn, xem bản mobile, xem lúc trống dữ liệu và lúc lỗi, đọc ưu nhược, rồi chép góp ý theo số từng khối.",
+      "Ngay trên wireframe, bạn đổi qua lại các phương án, đổi kiểu khung dashboard trong 10 kiểu (Clean, Inset, Paper, Rail, Topbar…), bật màu, thử màu nhấn, xem bản mobile, xem lúc trống dữ liệu và lúc lỗi, đọc ưu nhược, rồi chép góp ý theo số từng khối.",
   },
   beforeAfter: {
     label: "Trước / sau",
@@ -571,6 +571,11 @@ export const viDictionary: Dictionary = {
         question: "Có bắt buộc dùng Tailwind không?",
         answer:
           "Không. Dự án dùng CSS Module, SCSS hay styled-components thì skill theo cách đó. Với HTML thuần, WordPress hay PHP, skill chuyển mẫu sang HTML và class rồi mới đưa.",
+      },
+      {
+        question: "Có những kiểu giao diện dashboard nào?",
+        answer:
+          "10 kiểu có tên: Clean, Dark Sidebar, Soft, Midnight, Inset, Paper, Float, Rail, Topbar và Editorial. Chúng khác nhau ở chỗ đặt điều hướng (sidebar, dải icon, menu ngang), ở vùng chứa nội dung và ở bề mặt. Skill tự khuyên một trong 4 kiểu đầu theo người dùng sản phẩm của bạn. 6 kiểu sau mới thêm, chưa test ở dự án thật, nên chỉ dùng khi bạn chọn trong wireframe hoặc gửi ảnh mẫu.",
       },
       {
         question: "Có làm dark mode không?",

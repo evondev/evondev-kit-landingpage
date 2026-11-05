@@ -33,7 +33,7 @@ export const enDictionary: Dictionary = {
   kitHome: {
     announcement: {
       tag: "NEW",
-      text: "evon:ui-ux 0.5.0 analyzes your product by industry before building, and can review your whole onboarding flow.",
+      text: "evon:ui-ux 0.6.0 adds 6 dashboard shell styles you can pick right on the wireframe, plus layouts chosen by the main job.",
       linkLabel: "See what's new",
     },
     hero: {
@@ -124,7 +124,7 @@ export const enDictionary: Dictionary = {
   },
   announcement: {
     tag: "NEW",
-    text: "Version 0.5.0: product analysis by industry, onboarding flow review, design decisions remembered in DESIGN.md.",
+    text: "Version 0.6.0: 6 new dashboard shell styles (Inset, Paper, Float, Rail, Topbar, Editorial), picked right on the wireframe.",
     linkLabel: "See what's new",
   },
   hero: {
@@ -349,7 +349,7 @@ export const enDictionary: Dictionary = {
       recommendedLabel: "Recommended",
     },
     toolbarNote:
-      "Right on the wireframe you can switch options, turn on color, try accents, check mobile, see the empty and error states, read pros and cons, and copy feedback by block number.",
+      "Right on the wireframe you can switch options, switch between 10 dashboard styles (Clean, Inset, Paper, Rail, Topbar…), turn on color, try accents, check mobile, see the empty and error states, read pros and cons, and copy feedback by block number.",
   },
   beforeAfter: {
     label: "Before / after",
@@ -573,6 +573,11 @@ export const enDictionary: Dictionary = {
         question: "Do I need Tailwind?",
         answer:
           "No. If your project uses CSS Modules, SCSS, or styled-components, it follows that. For plain HTML, WordPress, or PHP, it translates its samples into HTML and classes first.",
+      },
+      {
+        question: "What dashboard styles are there?",
+        answer:
+          "10 named styles: Clean, Dark Sidebar, Soft, Midnight, Inset, Paper, Float, Rail, Topbar, and Editorial. They differ in where navigation sits (sidebar, icon rail, top menu), how content is contained, and the surface. The skill recommends one of the first 4 based on who uses your product. The other 6 are new and not yet tested on real projects, so they're used only when you pick them on the wireframe or send a reference image.",
       },
       {
         question: "Does it do dark mode?",

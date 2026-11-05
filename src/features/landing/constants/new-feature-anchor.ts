@@ -1,2 +1,2 @@
-/** Card tính năng mới đầu tiên trong mục Tính năng; dải thông báo cuộn tới đây. Id là `mode-<ModeId>` (mode-card.tsx). */
-export const newFeatureAnchor = "#mode-analyze";
+/** Chỗ dải thông báo NEW cuộn tới: tính năng của bản mới nhất. 0.6.0: mục Quy trình designer (thanh công cụ wireframe có menu Kiểu). */
+export const newFeatureAnchor = "#designer";
