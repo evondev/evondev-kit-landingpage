@@ -33,7 +33,7 @@ export const viDictionary: Dictionary = {
   kitHome: {
     announcement: {
       tag: "NEW",
-      text: "evon:ui-ux 0.6.0 có thêm 6 kiểu khung dashboard để chọn ngay trên wireframe, và bố cục chọn theo việc chính.",
+      text: "evon:ui-ux 0.8.0 tô màu dashboard theo dữ liệu khi bạn muốn, và có thêm bố cục lưới thực thể, màn giám sát.",
       linkLabel: "Xem tính năng mới",
     },
     hero: {
@@ -124,7 +124,7 @@ export const viDictionary: Dictionary = {
   },
   announcement: {
     tag: "NEW",
-    text: "Bản 0.6.0: thêm 6 kiểu khung dashboard (Inset, Paper, Float, Rail, Topbar, Editorial), chọn ngay trên wireframe.",
+    text: "Bản 0.8.0: màu theo dữ liệu (Tinted, Vivid), lưới thực thể, màn giám sát, ô KPI tiến tới mục tiêu, heatmap theo ngày.",
     linkLabel: "Xem tính năng mới",
   },
   hero: {
@@ -348,7 +348,7 @@ export const viDictionary: Dictionary = {
       recommendedLabel: "Khuyên dùng",
     },
     toolbarNote:
-      "Ngay trên wireframe, bạn đổi qua lại các phương án, đổi kiểu khung dashboard trong 10 kiểu (Clean, Inset, Paper, Rail, Topbar…), bật màu, thử màu nhấn, xem bản mobile, xem lúc trống dữ liệu và lúc lỗi, đọc ưu nhược, rồi chép góp ý theo số từng khối.",
+      "Ngay trên wireframe, bạn đổi qua lại các phương án, đổi kiểu khung dashboard trong 10 kiểu (Clean, Inset, Paper, Rail, Topbar…), đổi Sắc (Neutral, Tinted, Vivid), thử màu nhấn, xem bản mobile, xem lúc trống dữ liệu và lúc lỗi, đọc ưu nhược, rồi chép góp ý theo số từng khối.",
   },
   beforeAfter: {
     label: "Trước / sau",
@@ -485,7 +485,7 @@ export const viDictionary: Dictionary = {
       "Flat được chăm kỹ nhất. Kiểu khác vẫn giữ đúng tương phản và thứ bậc nhưng chưa tinh bằng. Dự án đã có phong cách riêng thì skill theo dự án, và báo lại lúc giao.",
     styleGroups: [
       { label: "Mặc định", isDefault: true, styles: ["Flat viền mảnh"] },
-      { label: "Theo dự án hoặc khi bạn nói", isDefault: false, styles: ["Shadow", "Nền tối", "Có màu"] },
+      { label: "Theo dự án hoặc khi bạn nói", isDefault: false, styles: ["Shadow", "Nền tối", "Có màu (Tinted, Vivid)"] },
       { label: "Làm được, ít hợp dashboard", isDefault: false, styles: ["Glassmorphism", "Gradient"] },
     ],
   },
@@ -576,6 +576,16 @@ export const viDictionary: Dictionary = {
         question: "Có những kiểu giao diện dashboard nào?",
         answer:
           "10 kiểu có tên: Clean, Dark Sidebar, Soft, Midnight, Inset, Paper, Float, Rail, Topbar và Editorial. Chúng khác nhau ở chỗ đặt điều hướng (sidebar, dải icon, menu ngang), ở vùng chứa nội dung và ở bề mặt. Skill tự khuyên một trong 4 kiểu đầu theo người dùng sản phẩm của bạn. 6 kiểu sau mới thêm, chưa test ở dự án thật, nên chỉ dùng khi bạn chọn trong wireframe hoặc gửi ảnh mẫu.",
+      },
+      {
+        question: "Dashboard có nhiều màu được không?",
+        answer:
+          "Được. Mặc định skill dựng trung tính, màu chỉ ở nút chính và trạng thái. Nói “nhiều màu” hay “sinh động” thì skill bật Tinted: mỗi loại dữ liệu (kênh, bộ phận, nguồn) một màu cố định trên mọi màn, sự cố còn mở có màu riêng. Nói “gradient” hay “rực” thì bật Vivid, thêm gradient ở nút chính và khối tổng kết. Hai nấc này mới thêm, chưa test ở dự án thật, nên chỉ bật khi bạn xin hoặc chọn trong wireframe.",
+      },
+      {
+        question: "Dựng được những loại dashboard nào?",
+        answer:
+          "Skill chọn bố cục theo việc chính của màn: tổng quan nhiều khối, bảng, danh sách + chi tiết, kanban, lịch, trang báo cáo theo khoảng ngày, báo cáo kể bằng số. Bản 0.8.0 thêm lưới thực thể (card có ảnh và thanh chỉ số, hợp với nhân vật game, nhân sự, sản phẩm) và màn giám sát trực tiếp (ngưỡng, sự cố, tự làm mới). Biểu đồ dùng thư viện dự án đang có, như shadcn chart; chưa có thì vẽ bằng SVG.",
       },
       {
         question: "Có làm dark mode không?",

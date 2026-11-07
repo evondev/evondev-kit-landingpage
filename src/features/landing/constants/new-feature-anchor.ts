@@ -1,2 +1,2 @@
-/** Chỗ dải thông báo NEW cuộn tới: tính năng của bản mới nhất. 0.6.0: mục Quy trình designer (thanh công cụ wireframe có menu Kiểu). */
-export const newFeatureAnchor = "#designer";
+/** Chỗ dải thông báo NEW cuộn tới: tính năng của bản mới nhất. 0.8.0: mục Gu (nhóm phong cách có Có màu: Tinted, Vivid). */
+export const newFeatureAnchor = "#taste";

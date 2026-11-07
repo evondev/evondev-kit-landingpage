@@ -33,7 +33,7 @@ export const enDictionary: Dictionary = {
   kitHome: {
     announcement: {
       tag: "NEW",
-      text: "evon:ui-ux 0.6.0 adds 6 dashboard shell styles you can pick right on the wireframe, plus layouts chosen by the main job.",
+      text: "evon:ui-ux 0.8.0 colors dashboards by data when you ask, and adds entity grid and live monitoring layouts.",
       linkLabel: "See what's new",
     },
     hero: {
@@ -124,7 +124,7 @@ export const enDictionary: Dictionary = {
   },
   announcement: {
     tag: "NEW",
-    text: "Version 0.6.0: 6 new dashboard shell styles (Inset, Paper, Float, Rail, Topbar, Editorial), picked right on the wireframe.",
+    text: "Version 0.8.0: color by data (Tinted, Vivid), entity grid, live monitoring, goal KPI tiles, and a daily heatmap.",
     linkLabel: "See what's new",
   },
   hero: {
@@ -349,7 +349,7 @@ export const enDictionary: Dictionary = {
       recommendedLabel: "Recommended",
     },
     toolbarNote:
-      "Right on the wireframe you can switch options, switch between 10 dashboard styles (Clean, Inset, Paper, Rail, Topbar…), turn on color, try accents, check mobile, see the empty and error states, read pros and cons, and copy feedback by block number.",
+      "Right on the wireframe you can switch options, switch between 10 dashboard styles (Clean, Inset, Paper, Rail, Topbar…), switch color level (Neutral, Tinted, Vivid), try accents, check mobile, see the empty and error states, read pros and cons, and copy feedback by block number.",
   },
   beforeAfter: {
     label: "Before / after",
@@ -487,7 +487,7 @@ export const enDictionary: Dictionary = {
       "Flat gets the most care. Other styles keep the same contrast and hierarchy but are less polished. If your project already has its own style, the skill follows it and tells you when it hands over.",
     styleGroups: [
       { label: "Default", isDefault: true, styles: ["Flat, thin borders"] },
-      { label: "From your project, or on request", isDefault: false, styles: ["Elevated", "Dark", "Colorful"] },
+      { label: "From your project, or on request", isDefault: false, styles: ["Elevated", "Dark", "Colorful (Tinted, Vivid)"] },
       { label: "Doable, rarely right for dashboards", isDefault: false, styles: ["Glassmorphism", "Gradient"] },
     ],
   },
@@ -578,6 +578,16 @@ export const enDictionary: Dictionary = {
         question: "What dashboard styles are there?",
         answer:
           "10 named styles: Clean, Dark Sidebar, Soft, Midnight, Inset, Paper, Float, Rail, Topbar, and Editorial. They differ in where navigation sits (sidebar, icon rail, top menu), how content is contained, and the surface. The skill recommends one of the first 4 based on who uses your product. The other 6 are new and not yet tested on real projects, so they're used only when you pick them on the wireframe or send a reference image.",
+      },
+      {
+        question: "Can a dashboard be more colorful?",
+        answer:
+          "Yes. By default the skill builds neutral, with color only on the main button and statuses. Say “more colorful” or “lively” and it turns on Tinted: each kind of data (channel, team, source) gets one fixed color across every screen, and open incidents get their own. Say “gradient” or “vivid” and it turns on Vivid, adding a gradient to the main button and the summary block. Both levels are new and not yet tested on real projects, so they're used only when you ask or pick them on the wireframe.",
+      },
+      {
+        question: "What kinds of dashboards can it build?",
+        answer:
+          "The skill picks the layout by the screen's main job: multi-block overview, table, list + detail, kanban, calendar, date-range report, and a report that reads top to bottom. Version 0.8.0 adds the entity grid (cards with an image and stat bars, good for game characters, staff, products) and live monitoring (thresholds, incidents, auto refresh). Charts use the library your project already has, like shadcn chart; without one it draws them in SVG.",
       },
       {
         question: "Does it do dark mode?",
