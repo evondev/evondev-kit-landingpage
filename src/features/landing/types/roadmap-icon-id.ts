@@ -1,1 +1,1 @@
-export type RoadmapIconId = "mobile-app";
+export type RoadmapIconId = "native-code";

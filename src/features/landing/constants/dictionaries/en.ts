@@ -33,7 +33,7 @@ export const enDictionary: Dictionary = {
   kitHome: {
     announcement: {
       tag: "NEW",
-      text: "evon:ui-ux 0.8.0 colors dashboards by data when you ask, and adds entity grid and live monitoring layouts.",
+      text: "evon:ui-ux 0.9.0 builds phone apps (beta): one prompt, a whole clickable app. It also uses fewer tokens.",
       linkLabel: "See what's new",
     },
     hero: {
@@ -67,7 +67,7 @@ export const enDictionary: Dictionary = {
           command: "/evon:ui-ux",
           title: "UI/UX for apps",
           description:
-            "Builds and redesigns app screens the way a designer would: a brief, 2–3 wireframes, you pick, then it builds. It also reviews the UI you have, rebuilds it while keeping your brand, and cleans up code without changing the look.",
+            "Builds and redesigns app screens the way a designer would: a brief, 2–3 wireframes, you pick, then it builds. It also reviews the UI you have, rebuilds it while keeping your brand, and cleans up code without changing the look. Phone apps are in beta.",
           facts: ["70 test prompts passed", "Wireframes before code", "Measured 375–1920px"],
           status: "beta",
         },
@@ -124,7 +124,7 @@ export const enDictionary: Dictionary = {
   },
   announcement: {
     tag: "NEW",
-    text: "Version 0.8.0: color by data (Tinted, Vivid), entity grid, live monitoring, goal KPI tiles, and a daily heatmap.",
+    text: "Version 0.9.0: phone apps (beta) inside a device frame, with a flow board. Each turn reads only the rules it needs, so it uses fewer tokens.",
     linkLabel: "See what's new",
   },
   hero: {
@@ -184,6 +184,15 @@ export const enDictionary: Dictionary = {
               "The default whenever you ask for a screen to be built or redesigned. It writes a brief, works out what the screen is for, and shows 2–3 wireframes with real content. It builds once you pick.",
             prompt: "/evon:ui-ux Redesign the jobs page.",
             status: null,
+          },
+          {
+            id: "mobile",
+            tabLabel: "Phone app",
+            title: "Build a phone app",
+            description:
+              "You get an HTML prototype inside a phone frame, with every screen clickable. On a wide screen it opens a flow board, one row per flow. Your prompt needs to say “mobile app”, “phone app”, “iOS” or “Android”, otherwise the skill builds a web app. Porting to React Native or Flutter isn't well tested yet.",
+            prompt: "/evon:ui-ux Build a coffee ordering mobile app: menu, cart, checkout.",
+            status: "beta",
           },
           {
             id: "analyze",
@@ -511,11 +520,11 @@ export const enDictionary: Dictionary = {
     description: "Things I'm not promising yet. Until testing is done, this page won't say they're there.",
     items: [
       {
-        icon: "mobile-app",
-        title: "Mobile app UI",
+        icon: "native-code",
+        title: "Phone apps in React Native and Flutter",
         description:
-          "Screens for iOS and Android apps: a bottom tab bar, touch targets sized for a thumb, bottom sheets, room for the notch and the home indicator.",
-        progress: "Researching",
+          "From the approved prototype to code that runs on a device: tab bar, sheets, safe areas and keyboard done the way each platform expects.",
+        progress: "Testing",
       },
     ],
     placeholderLabel: "Not announced yet",
@@ -538,7 +547,7 @@ export const enDictionary: Dictionary = {
       {
         question: "Is it ready for real work?",
         answer:
-          "Yes, as a beta. Light-theme app screens have passed 70 test prompts on real projects. Dark mode for an existing app has been tested on one project. I haven't tested Cursor, Codex, OpenCode, Antigravity and ZCode myself yet, so if you hit a bug there, let me know. If something looks off, open a GitHub issue with a link or a screenshot of that screen. Get the latest version with /plugin marketplace update evondevkit (Claude Code) or npx skills update (other tools).",
+          "Yes, as a beta. Light-theme app screens have passed 70 test prompts on real projects. Dark mode for an existing app has been tested on one project. Building new phone apps has passed about 13 test prompts; reviewing an existing phone app hasn't been tested yet. I haven't tested Cursor, Codex, OpenCode, Antigravity and ZCode myself yet, so if you hit a bug there, let me know. If something looks off, open a GitHub issue with a link or a screenshot of that screen. Get the latest version with /plugin marketplace update evondevkit (Claude Code) or npx skills update (other tools).",
       },
       {
         question: "What if I don't like the result?",
@@ -597,7 +606,7 @@ export const enDictionary: Dictionary = {
       {
         question: "Does it build landing pages?",
         answer:
-          "No. The skill is only for screens inside an app: dashboards, lists, tables, forms, settings, modals, and pages people browse to choose something, pricing tables included. Landing pages, e-commerce, and blogs aren't what this skill is for.",
+          "No. The skill is only for screens inside an app, web or phone: dashboards, lists, tables, forms, settings, modals, and pages people browse to choose something, pricing tables included. Landing pages, e-commerce, and blogs aren't what this skill is for.",
       },
       {
         question: "Does it work in English?",

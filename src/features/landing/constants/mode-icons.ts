@@ -9,6 +9,7 @@ import {
   PencilRuler,
   Route,
   ScanSearch,
+  Smartphone,
   Wrench,
   type LucideIcon,
 } from "lucide-react";
@@ -16,6 +17,7 @@ import type { ModeId } from "@/features/landing/types/mode-id";
 
 export const modeIcons: Record<ModeId, LucideIcon> = {
   designer: LayoutTemplate,
+  mobile: Smartphone,
   analyze: Compass,
   "just-build": Hammer,
   "design-system": Blocks,

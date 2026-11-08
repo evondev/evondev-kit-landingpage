@@ -33,7 +33,7 @@ export const viDictionary: Dictionary = {
   kitHome: {
     announcement: {
       tag: "NEW",
-      text: "evon:ui-ux 0.8.0 tô màu dashboard theo dữ liệu khi bạn muốn, và có thêm bố cục lưới thực thể, màn giám sát.",
+      text: "evon:ui-ux 0.9.0 dựng được app điện thoại (beta): một prompt ra cả app bấm qua lại được. Skill cũng tốn ít token hơn.",
       linkLabel: "Xem tính năng mới",
     },
     hero: {
@@ -67,7 +67,7 @@ export const viDictionary: Dictionary = {
           command: "/evon:ui-ux",
           title: "UI/UX cho app",
           description:
-            "Dựng mới hoặc làm lại màn hình app theo cách một designer làm: brief, 2–3 wireframe, bạn chọn rồi mới dựng. Ngoài ra còn soi lỗi UI đang có, dựng lại mà giữ brand, và dọn code mà giao diện không đổi.",
+            "Dựng mới hoặc làm lại màn hình app theo cách một designer làm: brief, 2–3 wireframe, bạn chọn rồi mới dựng. Ngoài ra còn soi lỗi UI đang có, dựng lại mà giữ brand, và dọn code mà giao diện không đổi. Có thêm app điện thoại, bản beta.",
           facts: ["Qua 70 prompt test", "Có wireframe trước khi code", "Đo từ 375 tới 1920px"],
           status: "beta",
         },
@@ -124,7 +124,7 @@ export const viDictionary: Dictionary = {
   },
   announcement: {
     tag: "NEW",
-    text: "Bản 0.8.0: màu theo dữ liệu (Tinted, Vivid), lưới thực thể, màn giám sát, ô KPI tiến tới mục tiêu, heatmap theo ngày.",
+    text: "Bản 0.9.0: app điện thoại (beta) trong khung máy, có bảng luồng. Mỗi lượt skill chỉ đọc phần luật nó cần, nên tốn ít token hơn.",
     linkLabel: "Xem tính năng mới",
   },
   hero: {
@@ -184,6 +184,15 @@ export const viDictionary: Dictionary = {
               "Cách mặc định mỗi khi bạn nhờ dựng hoặc làm lại một màn. Skill viết brief, xác định màn này để làm gì, rồi đưa 2–3 wireframe có nội dung thật. Bạn chọn xong nó mới dựng.",
             prompt: "/evon:ui-ux Dựng màn danh sách đơn hàng: mã đơn, khách, tổng tiền, trạng thái.",
             status: null,
+          },
+          {
+            id: "mobile",
+            tabLabel: "App điện thoại",
+            title: "Dựng app điện thoại",
+            description:
+              "Ra bản mẫu HTML trong khung máy, bấm qua lại giữa các màn được. Mở trên màn rộng thì thấy bảng luồng, mỗi luồng một hàng. Prompt cần nói rõ “app điện thoại”, “mobile”, “iOS” hay “Android”, không thì skill dựng app web. Chuyển sang React Native, Flutter chưa test kỹ.",
+            prompt: "/evon:ui-ux Dựng app điện thoại order cà phê: menu, giỏ, thanh toán.",
+            status: "beta",
           },
           {
             id: "analyze",
@@ -509,11 +518,11 @@ export const viDictionary: Dictionary = {
     description: "Những thứ mình chưa dám hứa. Chưa test xong thì trang này chưa ghi là có.",
     items: [
       {
-        icon: "mobile-app",
-        title: "Giao diện mobile app",
+        icon: "native-code",
+        title: "App điện thoại sang React Native, Flutter",
         description:
-          "Màn cho app iOS và Android: thanh tab dưới đáy, vùng chạm vừa ngón cái, sheet kéo từ dưới lên, chừa chỗ cho tai thỏ và thanh home.",
-        progress: "Đang nghiên cứu",
+          "Từ bản mẫu đã duyệt sang code chạy được trên máy: thanh tab, sheet, vùng an toàn, bàn phím theo đúng từng nền tảng.",
+        progress: "Đang test",
       },
     ],
     placeholderLabel: "Chưa công bố",
@@ -536,7 +545,7 @@ export const viDictionary: Dictionary = {
       {
         question: "Skill dùng thật được chưa?",
         answer:
-          "Được, đang ở bản beta. Giao diện app nền sáng đã qua 70 prompt test trên dự án thật. Dark mode cho app đang có đã test trên một dự án. Cursor, Codex, OpenCode, Antigravity và ZCode mình chưa tự test, bạn dùng thấy lỗi cứ báo. Gặp chỗ nào chưa ổn thì mở issue trên GitHub, kèm link hoặc ảnh màn đó. Cập nhật bản mới bằng lệnh /plugin marketplace update evondevkit (Claude Code) hoặc npx skills update (công cụ khác).",
+          "Được, đang ở bản beta. Giao diện app nền sáng đã qua 70 prompt test trên dự án thật. Dark mode cho app đang có đã test trên một dự án. App điện thoại dựng mới đã qua khoảng 13 prompt test, soi app điện thoại có sẵn thì chưa. Cursor, Codex, OpenCode, Antigravity và ZCode mình chưa tự test, bạn dùng thấy lỗi cứ báo. Gặp chỗ nào chưa ổn thì mở issue trên GitHub, kèm link hoặc ảnh màn đó. Cập nhật bản mới bằng lệnh /plugin marketplace update evondevkit (Claude Code) hoặc npx skills update (công cụ khác).",
       },
       {
         question: "Dựng xong mà chưa ưng thì sao?",
@@ -595,7 +604,7 @@ export const viDictionary: Dictionary = {
       {
         question: "Skill có làm landing page không?",
         answer:
-          "Không. Skill chỉ dành cho màn hình bên trong app: dashboard, danh sách, bảng, form, cài đặt, modal, và các trang người dùng lướt để chọn, kể cả bảng giá. Landing page, e-commerce, blog không phải việc của skill này.",
+          "Không. Skill chỉ dành cho màn hình bên trong app, cả web lẫn điện thoại: dashboard, danh sách, bảng, form, cài đặt, modal, và các trang người dùng lướt để chọn, kể cả bảng giá. Landing page, e-commerce, blog không phải việc của skill này.",
       },
       {
         question: "Chữ trên giao diện sẽ là tiếng gì?",
