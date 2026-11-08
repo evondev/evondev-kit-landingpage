@@ -545,7 +545,7 @@ export const viDictionary: Dictionary = {
       {
         question: "Skill dùng thật được chưa?",
         answer:
-          "Được, đang ở bản beta. Giao diện app nền sáng đã qua 70 prompt test trên dự án thật. Dark mode cho app đang có đã test trên một dự án. App điện thoại dựng mới đã qua khoảng 13 prompt test, soi app điện thoại có sẵn thì chưa. Cursor, Codex, OpenCode, Antigravity và ZCode mình chưa tự test, bạn dùng thấy lỗi cứ báo. Gặp chỗ nào chưa ổn thì mở issue trên GitHub, kèm link hoặc ảnh màn đó. Cập nhật bản mới bằng lệnh /plugin marketplace update evondevkit (Claude Code) hoặc npx skills update (công cụ khác).",
+          "Được, đang ở bản beta. Giao diện app nền sáng đã qua 70 prompt test trên dự án thật. Dark mode cho app đang có đã test trên một dự án. App điện thoại dựng mới đã qua khoảng 13 prompt test, soi app điện thoại có sẵn mới test trên một app, bắt đủ các lỗi cài sẵn. Cursor, Codex, OpenCode, Antigravity và ZCode mình chưa tự test, bạn dùng thấy lỗi cứ báo. Gặp chỗ nào chưa ổn thì mở issue trên GitHub, kèm link hoặc ảnh màn đó. Cập nhật bản mới bằng lệnh /plugin marketplace update evondevkit (Claude Code) hoặc npx skills update (công cụ khác).",
       },
       {
         question: "Dựng xong mà chưa ưng thì sao?",

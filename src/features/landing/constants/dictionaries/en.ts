@@ -547,7 +547,7 @@ export const enDictionary: Dictionary = {
       {
         question: "Is it ready for real work?",
         answer:
-          "Yes, as a beta. Light-theme app screens have passed 70 test prompts on real projects. Dark mode for an existing app has been tested on one project. Building new phone apps has passed about 13 test prompts; reviewing an existing phone app hasn't been tested yet. I haven't tested Cursor, Codex, OpenCode, Antigravity and ZCode myself yet, so if you hit a bug there, let me know. If something looks off, open a GitHub issue with a link or a screenshot of that screen. Get the latest version with /plugin marketplace update evondevkit (Claude Code) or npx skills update (other tools).",
+          "Yes, as a beta. Light-theme app screens have passed 70 test prompts on real projects. Dark mode for an existing app has been tested on one project. Building new phone apps has passed about 13 test prompts; reviewing an existing phone app has been tested on one app, where it caught every planted bug. I haven't tested Cursor, Codex, OpenCode, Antigravity and ZCode myself yet, so if you hit a bug there, let me know. If something looks off, open a GitHub issue with a link or a screenshot of that screen. Get the latest version with /plugin marketplace update evondevkit (Claude Code) or npx skills update (other tools).",
       },
       {
         question: "What if I don't like the result?",
